@@ -2,11 +2,17 @@
 <div id="sidebar" class="flex flex-col border-r-2 border-black basis-1/5">
   <div
     id="titlebar"
-    class="flex items-center justify-center p-4 border-0 border-black"
+    class="flex flex-col items-center justify-center border-0 border-black"
   >
     <img
       class="mix-blend-multiply"
       src="{{ url_for('static', filename='logo.svg') }}"
+      alt="Toosh"
+    />
+    <!--TODO: fix relative margin issue -->
+    <img
+      class="mx-2 mix-blend-multiply"
+      src="{{ url_for('static', filename='logoline.svg') }}"
       alt="Toosh"
     />
   </div>
