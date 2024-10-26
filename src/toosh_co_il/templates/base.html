@@ -4,12 +4,20 @@
     <title>{{ title }}</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://use.typekit.net/qps5fsd.css" />
     <link
       rel="shortcut icon"
       href="{{ url_for('static', filename='favicon.ico') }}"
     />
     <script src="https://unpkg.com/htmx.org@2.0.3"></script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body {
+        font-family: "narkiss-tam-condensed", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+      }
+    </style>
   </head>
   <body
     class="h-screen overflow-hidden bg-cover bg-[url('/static/background/background.png')]"
@@ -36,7 +44,9 @@
             alt="Toosh"
           />
         </div>
-        <div id="information-box"></div>
+        <div id="information-box" class="pl-4">
+          <p class="text-4xl">Hello</p>
+        </div>
       </div>
       <div id="content" class="flex p-2 space-x-2 overflow-y-scroll basis-4/5">
         {% block content %}{% endblock %}
