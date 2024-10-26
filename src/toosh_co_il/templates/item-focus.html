@@ -1,0 +1,15 @@
+<!--item focus-->
+<div id="sidebar" class="flex flex-col border-r-2 border-black basis-1/5">
+  <p>{{ info }}</p>
+</div>
+<div id="item-view" class="basis-4/5">
+  <nav>
+    <a href="#" hx-get="/main-window" hx-swap="innerHTML" hx-target="#content">
+      close
+    </a>
+  <img
+    class="border-black"
+    src="{{ url_for('static', filename=item + '/fullsize.webp') }}"
+    alt=""
+  />
+</div>
