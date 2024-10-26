@@ -1,45 +1,44 @@
+{% extends "base.html" %} {% block content %}
 <!--item focus-->
 <script>
-  async function loadProjectInfo() {
-    try {
-      const response = await fetch('{{ url_for("static", filename=item + "/info.json") }}');
-      if (!response.ok) throw new Error("Failed to load project info.");
+  // async function loadProjectInfo() {
+  //   try {
+  //     const response = await fetch(
+  //       '{{ url_for("static", filename=image + "/info.json") }}'
+  //     );
+  //     if (!response.ok) throw new Error("Failed to load project info.");
 
-      console.log("amazing!!! {{ item }}");
-      const data = await response.json();
-      
+  //     console.log("amazing!!! {{ item }}");
+  //     const data = await response.json();
 
-      const titleHeading = document.getElementById("title");
-      titleHeading.textContent = data.title;
+  //     const titleHeading = document.getElementById("title");
+  //     titleHeading.textContent = data.title;
 
-      const subtitleHeading = document.getElementById("subtitle");
-      subtitleHeading.textContent = data.subtitle;
+  //     const subtitleHeading = document.getElementById("subtitle");
+  //     subtitleHeading.textContent = data.subtitle;
 
-
-      const projectInfoDiv = document.getElementById("info-tab");
-      data.description.forEach(paragraphText => {
-        const paragraph = document.createElement('p');
-        paragraph.textContent = paragraphText;
-        projectInfoDiv.appendChild(paragraph);
-      });
-    } catch (error) {
-      console.log("not amazing :(");
-    }
-  }
-  loadProjectInfo();
+  //     const projectInfoDiv = document.getElementById("info-tab");
+  //     data.description.forEach((paragraphText) => {
+  //       const paragraph = document.createElement("p");
+  //       paragraph.textContent = paragraphText;
+  //       projectInfoDiv.appendChild(paragraph);
+  //     });
+  //   } catch (error) {
+  //     console.log("not amazing :(");
+  //   }
+  // }
 </script>
-<div id="info-tab" class="flex flex-col border-r-2 border-black basis-1/5">
-  <h1 id="title">unloaded</h1>
-  <h2 id="subtitle">unloaded</h2>
-</div>
-<div id="item-view" class="basis-4/5">
-  <nav>
-    <a href="#" hx-get="/main-window" hx-swap="innerHTML" hx-target="#content">
-      close
-    </a>
+<div class="flex flex-col h-full">
+  <button>X</button>
   <img
-    class="border-black"
-    src="{{ url_for('static', filename=item + '/fullsize.webp') }}"
+    class="basis-5/5"
+    src="{{ url_for('static', filename='posters/' + image) }}"
     alt=""
   />
+  <div id="info-tab" class="flex flex-col basis-1/5">
+    <h1 id="title">unloaded</h1>
+    <h2 id="subtitle">unloaded</h2>
+  </div>
 </div>
+
+{% endblock %}

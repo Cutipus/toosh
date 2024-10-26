@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
@@ -8,11 +8,9 @@ def index() -> str:
     return render_template("index.html", title="Toosh")
 
 
-@app.route("/item-focus")
-def item_focus() -> str:
-    item = request.args.get("item")
-    info = "a nice and big pic"
-    return render_template("item-focus.html", item=item, info=info)
+@app.route("/focus/<path:text>")
+def item_focus(text: str) -> str:
+    return render_template("item-focus.html", image=text)
 
 
 @app.route("/main-window")
