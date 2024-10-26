@@ -22,9 +22,45 @@
         >
           <h1 class="m-auto font-serif text-9xl">{{ heading }}</h1>
         </div>
-        <div>hello</div>
+        <div flex></div>
       </div>
-      <div class="bg-red-300 basis-4/5">Bottom</div>
+      <div class="flex p-2 space-x-2 bg-red-300 basis-4/5">
+        <div class="basis-1/4">
+          <img
+            class="border-2 border-black"
+            src="{{ url_for('static', filename='9squares-512.webp') }}"
+            alt=""
+          />
+        </div>
+        <div class="basis-1/4">
+          <img
+            class="border-2 border-black"
+            src="{{ url_for('static', filename='9squares-512.webp') }}"
+            alt=""
+          />
+        </div>
+        <div class="basis-1/4">
+          <img
+            class="border-2 border-black"
+            src="{{ url_for('static', filename='9squares-512.webp') }}"
+            alt=""
+          />
+        </div>
+        <div class="basis-1/4">
+          <img
+            class="border-2 border-black"
+            src="{{ url_for('static', filename='9squares-512.webp') }}"
+            alt=""
+          />
+        </div>
+        <div class="basis-1/4">
+          <img
+            class="border-2 border-black"
+            src="{{ url_for('static', filename='9squares-512.webp') }}"
+            alt=""
+          />
+        </div>
+      </div>
       {% block content %}{% endblock %}
     </div>
   </body>
