@@ -1,6 +1,36 @@
 <!--item focus-->
-<div id="sidebar" class="flex flex-col border-r-2 border-black basis-1/5">
-  <p>{{ info }}</p>
+<script>
+  async function loadProjectInfo() {
+    try {
+      const response = await fetch('{{ url_for("static", filename=item + "/info.json") }}');
+      if (!response.ok) throw new Error("Failed to load project info.");
+
+      console.log("amazing!!! {{ item }}");
+      const data = await response.json();
+      
+
+      const titleHeading = document.getElementById("title");
+      titleHeading.textContent = data.title;
+
+      const subtitleHeading = document.getElementById("subtitle");
+      subtitleHeading.textContent = data.subtitle;
+
+
+      const projectInfoDiv = document.getElementById("info-tab");
+      data.description.forEach(paragraphText => {
+        const paragraph = document.createElement('p');
+        paragraph.textContent = paragraphText;
+        projectInfoDiv.appendChild(paragraph);
+      });
+    } catch (error) {
+      console.log("not amazing :(");
+    }
+  }
+  loadProjectInfo();
+</script>
+<div id="info-tab" class="flex flex-col border-r-2 border-black basis-1/5">
+  <h1 id="title">unloaded</h1>
+  <h2 id="subtitle">unloaded</h2>
 </div>
 <div id="item-view" class="basis-4/5">
   <nav>
