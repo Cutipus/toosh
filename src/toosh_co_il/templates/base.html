@@ -14,6 +14,33 @@
   <body
     class="h-screen overflow-hidden bg-cover bg-[url('/static/background/background.png')]"
   >
-    {% block content %}{% endblock %}
+    <div
+      id="content"
+      class="max-h-screen mx-9 my-8 border-2 box-border border-black max-w-screen w-[calc(100%-4rem)] h-[calc(100%-4rem)] flex flex-row"
+    >
+      <!--main window-->
+      <div id="sidebar" class="flex flex-col border-r-2 border-black basis-1/5">
+        <div
+          id="titlebar"
+          class="flex flex-col items-center justify-center border-0 border-black"
+        >
+          <img
+            class="mix-blend-multiply"
+            src="{{ url_for('static', filename='logo.svg') }}"
+            alt="Toosh"
+          />
+          <!--TODO: fix relative margin issue -->
+          <img
+            class="mx-2 mix-blend-multiply"
+            src="{{ url_for('static', filename='logoline.svg') }}"
+            alt="Toosh"
+          />
+        </div>
+        <div id="information-box"></div>
+      </div>
+      <div id="content" class="flex p-2 space-x-2 overflow-y-scroll basis-4/5">
+        {% block content %}{% endblock %}
+      </div>
+    </div>
   </body>
 </html>
