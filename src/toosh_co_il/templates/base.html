@@ -6,18 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://use.typekit.net/qps5fsd.css" />
     <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
       rel="shortcut icon"
       href="{{ url_for('static', filename='favicon.ico') }}"
     />
     <script src="https://unpkg.com/htmx.org@2.0.3"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-      body {
-        font-family: "narkiss-tam", sans-serif;
-        font-weight: 400;
-        font-style: normal;
-      }
-    </style>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='dist/tailwind.css') }}"
+    />
   </head>
   <body
     class="h-screen overflow-hidden bg-cover bg-[url('/static/background/background.png')]"
@@ -46,7 +46,7 @@
         </div>
         <div id="information-box" class="pl-4 overflow-auto">
           <p
-            class="text-[30px]/[2rem] blur-[0.06rem] contrast-200 text-pink-600"
+            class="font-narkiss text-[30px]/[2rem] blur-[0.06rem] contrast-200 text-pink-600"
           >
             Hey there!! I'm <b>Itamar</b>, a freelance
             <b>Graphic/Motion Designer</b> from TLV. <br />
