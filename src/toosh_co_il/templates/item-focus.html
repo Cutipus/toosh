@@ -4,7 +4,7 @@
   // async function loadProjectInfo() {
   //   try {
   //     const response = await fetch(
-  //       '{{ url_for("static", filename=image + "/info.json") }}'
+  //       '{{ url_for("static", filename=project + "/info.json") }}'
   //     );
   //     if (!response.ok) throw new Error("Failed to load project info.");
 
@@ -29,10 +29,10 @@
   // }
 </script>
 <div class="flex flex-col h-full">
-  <button>X</button>
+  <a href="/"> Back </a>
   <img
     class="basis-5/5"
-    src="{{ url_for('static', filename='posters/' + image) }}"
+    src="{{ url_for('static', filename='projects/' + project + '/preview.webp') }}"
     alt=""
   />
   <div id="info-tab" class="flex flex-col basis-1/5">

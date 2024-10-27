@@ -1,2 +1,13 @@
-{% extends "base.html" %} {% block content %} {% include "gallery.html" %} {%
-endblock %}
+{% extends "base.html" %} {% block content %} {% for col in columns %}
+<div class="space-y-2 basis-1/4">
+  {% for projectname in col %}
+  <a href="/project/{{ projectname }}">
+    <img
+      class="border-black"
+      src="{{ url_for('static', filename='projects/' + projectname + '/preview.webp') }}"
+      alt="{{ projectname }}"
+    />
+  </a>
+  {% endfor %}
+</div>
+{% endfor %} {% endblock %}
