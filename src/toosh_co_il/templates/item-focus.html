@@ -1,32 +1,33 @@
 {% extends "base.html" %} {% block content %}
 <!--item focus-->
 <script>
-  // async function loadProjectInfo() {
-  //   try {
-  //     const response = await fetch(
-  //       '{{ url_for("static", filename=project + "/info.json") }}'
-  //     );
-  //     if (!response.ok) throw new Error("Failed to load project info.");
+  async function loadProjectInfo() {
+    try {
+      const response = await fetch(
+        "{{ url_for('static', filename='projects/' + project + '/metadata.json') }}"
+      );
+      if (!response.ok) throw new Error("Failed to load project info.");
 
-  //     console.log("amazing!!! {{ item }}");
-  //     const data = await response.json();
+      console.log("amazing!!! {{ item }}");
+      const data = await response.json();
 
-  //     const titleHeading = document.getElementById("title");
-  //     titleHeading.textContent = data.title;
+      const titleHeading = document.getElementById("title");
+      titleHeading.textContent = data.title;
 
-  //     const subtitleHeading = document.getElementById("subtitle");
-  //     subtitleHeading.textContent = data.subtitle;
+      const subtitleHeading = document.getElementById("subtitle");
+      subtitleHeading.textContent = data.subtitle;
 
-  //     const projectInfoDiv = document.getElementById("info-tab");
-  //     data.description.forEach((paragraphText) => {
-  //       const paragraph = document.createElement("p");
-  //       paragraph.textContent = paragraphText;
-  //       projectInfoDiv.appendChild(paragraph);
-  //     });
-  //   } catch (error) {
-  //     console.log("not amazing :(");
-  //   }
-  // }
+      const projectInfoDiv = document.getElementById("info-tab");
+      data.description.forEach((paragraphText) => {
+        const paragraph = document.createElement("p");
+        paragraph.textContent = paragraphText;
+        projectInfoDiv.appendChild(paragraph);
+      });
+    } catch (error) {
+      console.log("not amazing :(");
+    }
+  }
+  loadProjectInfo();
 </script>
 <div class="flex flex-col h-full">
   <a href="/"> Back </a>
