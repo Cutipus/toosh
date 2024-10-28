@@ -20,11 +20,12 @@
     />
   </head>
   <body
-    class="h-screen overflow-hidden bg-cover bg-[url('/static/background/background.png')]"
+    hx-boost="true"
+    class="flex flex-col p-8 h-screen bg-cover bg-[url('/static/background/background.png')]"
   >
     <div
       id="content"
-      class="max-h-screen mx-9 my-8 border-2 box-border border-black max-w-screen w-[calc(100%-4rem)] h-[calc(100%-4rem)] flex flex-row"
+      class="box-border flex flex-row flex-grow overflow-hidden border-2 border-black"
     >
       <!--main window-->
       <div id="sidebar" class="flex flex-col border-r-2 border-black basis-1/5">
