@@ -2,7 +2,6 @@
 module.exports = {
   content: [
     './src/toosh_co_il/templates/**/*.html',
-    '.src/tailwind/**/*.css',
   ],
   theme: {
     fontFamily: {
