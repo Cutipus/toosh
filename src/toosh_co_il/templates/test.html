@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>{{ title }}</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://use.typekit.net/qps5fsd.css" />
+    <link
+      rel="shortcut icon"
+      href="{{ url_for('static', filename='favicon.ico') }}"
+    />
+    <script src="https://unpkg.com/htmx.org@2.0.3"></script>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='dist/tailwind.css') }}"
+    />
+  </head>
+  <body
+    class="flex h-screen flex-col bg-[url('/static/background/background.png')] bg-cover p-8"
+  >
+    <div class="border-8 border-svg">Content2</div>
+  </body>
+</html>

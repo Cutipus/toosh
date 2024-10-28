@@ -27,3 +27,8 @@ def item_focus(project_title: str) -> str:
 @app.route("/main-window")
 def main_window() -> str:
     return render_template("main-window.html")
+
+
+@app.route("/test")
+def test_window() -> str:
+    return render_template("test.html")
