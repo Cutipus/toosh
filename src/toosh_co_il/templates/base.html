@@ -5,89 +5,58 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://use.typekit.net/qps5fsd.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="shortcut icon"
-      href="{{ url_for('static', filename='favicon.ico') }}"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" />
     <script src="https://unpkg.com/htmx.org@2.0.3"></script>
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='dist/tailwind.css') }}"
-    />
+    <link rel="stylesheet" href="{{ url_for('static', filename='dist/tailwind.css') }}" />
   </head>
-  <body
-    class="flex flex-col p-8 h-screen bg-cover bg-[url('/static/background/background.png')]"
-  >
-    <div
-      id="content"
-      class="box-border flex flex-row flex-grow overflow-hidden border-2 border-black"
-    >
-      <!--main window-->
-      <div id="sidebar" class="flex flex-col border-r-2 border-black basis-1/5">
-        <div
-          id="titlebar"
-          class="flex flex-col items-center justify-center border-0 border-black"
-        >
-          <img
-            class="mix-blend-multiply"
-            src="{{ url_for('static', filename='logo.svg') }}"
-            alt="Toosh"
-          />
-          <!--TODO: fix relative margin issue -->
-          <img
-            class="mx-2 mix-blend-multiply"
-            src="{{ url_for('static', filename='logoline.svg') }}"
-            alt="Toosh"
-          />
-        </div>
-        <div id="information-box" class="pl-4 overflow-auto">
-          <p
-            class="font-narkiss text-[30px]/[2rem] blur-[0.06rem] contrast-200 text-pink-600"
-          >
-            Hey there!! I'm <b>Itamar</b>, a freelance
-            <b>Graphic/Motion Designer</b> from TLV. <br />
-            Currently in my 4th year of Vissual Communication studies at Bezalel
-            Academy JLM. <br />
-            <br />
-            Mainly focusing on <b>Motion Design, Video making & Animation</b>,
-            but enjoy making and co-making all sorts of art and design. <br />
-            <br />
-            If what you see turns you on... Hit me up &cudarrr;
-          </p>
-          <div class="flex flex-row mt-10 justify-center-center">
-            <a href="#"
-              ><img
-                class="size-12 contrast-0"
-                src="{{ url_for('static', filename='external-icons/home_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg') }}"
-                alt="hi"
-            /></a>
-            <a href="#"
-              ><img
-                class="size-12 contrast-0"
-                src="{{ url_for('static', filename='external-icons/home_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg') }}"
-                alt="hi"
-            /></a>
-            <a href="#"
-              ><img
-                class="size-12 contrast-0"
-                src="{{ url_for('static', filename='external-icons/home_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg') }}"
-                alt="hi"
-            /></a>
-            <a href="#"
-              ><img
-                class="size-12 contrast-0"
-                src="{{ url_for('static', filename='external-icons/home_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg') }}"
-                alt="hi"
-            /></a>
+  <body class="bg-[url('{{ url_for('static', filename='background/'+'background.png') }}')] bg-cover">
+    <div class="h-dvh p-10">
+      <div class="flex h-full flex-row border-2 border-black">
+        <div id="sidebar" class="flex h-full basis-1/5 flex-col border-r-2 border-black">
+          <div id="titlebar" class="flex flex-col items-center justify-center border-0 border-black">
+            <img class="mix-blend-multiply" src="{{ url_for('static', filename='logo.svg') }}" alt="Toosh" />
+            <img class="mx-2 mix-blend-multiply" src="{{ url_for('static', filename='logoline.svg') }}" alt="Toosh" />
+          </div>
+          <div id="information-box" class="overflow-auto pl-4">
+            <p class="font-narkiss text-[30px]/[2rem] text-pink-600 blur-[0.06rem] contrast-200">
+              Hey there!! I'm <b>Itamar</b>, a freelance <b>Graphic/Motion Designer</b> from TLV. <br />
+              Currently in my 4th year of Vissual Communication studies at Bezalel Academy JLM. <br />
+              <br />
+              Mainly focusing on <b>Motion Design, Video making & Animation</b>, but enjoy making and co-making all
+              sorts of art and design. <br />
+              <br />
+              If what you see turns you on... Hit me up &cudarrr;
+            </p>
+            <div class="justify-center-center mt-10 flex flex-row">
+              <a href="#"
+                ><img
+                  class="size-12 contrast-0"
+                  src="{{ url_for('static', filename='external-icons/home_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg') }}"
+                  alt="hi"
+              /></a>
+              <a href="#"
+                ><img
+                  class="size-12 contrast-0"
+                  src="{{ url_for('static', filename='external-icons/home_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg') }}"
+                  alt="hi"
+              /></a>
+              <a href="#"
+                ><img
+                  class="size-12 contrast-0"
+                  src="{{ url_for('static', filename='external-icons/home_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg') }}"
+                  alt="hi"
+              /></a>
+              <a href="#"
+                ><img
+                  class="size-12 contrast-0"
+                  src="{{ url_for('static', filename='external-icons/home_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg') }}"
+                  alt="hi"
+              /></a>
+            </div>
           </div>
         </div>
-      </div>
-      <div id="content" class="flex p-2 space-x-2 overflow-y-scroll basis-4/5">
-        {% block content %}{% endblock %}
+        <div id="content" class="h-full basis-4/5">{% block content %}{% endblock %}</div>
       </div>
     </div>
   </body>
