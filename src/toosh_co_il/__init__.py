@@ -17,7 +17,7 @@ def index() -> str:
     return render_template("index.html", title="Toosh", columns=gallery_format)
 
 
-@app.route("/project/<path:project_title>")
+@app.route("/project/<project_title>")
 def item_focus(project_title: str) -> str:
     if project_title not in all_projects:
         abort(404, "I didn't work on any project like that")
