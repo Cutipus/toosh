@@ -4,11 +4,13 @@
     <title>{{ title }}</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://use.typekit.net/qps5fsd.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" />
-    <script src="https://unpkg.com/htmx.org@2.0.3"></script>
+
+    <script src="{{ url_for('static', filename='dist/htmx.min.js') }}"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='dist/tailwind.css') }}" />
+
+    <!--external fonts-->
+    <link rel="stylesheet" href="https://use.typekit.net/qps5fsd.css" />
   </head>
   <body class="bg-[url('{{ url_for('static', filename='background/'+'background.png') }}')] bg-cover">
     <div class="h-dvh p-10">
