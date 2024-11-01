@@ -56,3 +56,17 @@ def main_window() -> str:
 @app.route("/test")
 def test_window() -> str:
     return render_template("test.html")
+
+
+@app.route("/testcase-load")
+def wew() -> str:
+    return f"""
+    <img
+      id="testcase"
+      class="transition-opacity duration-1000 htmx-swapping:opacity-0"
+      src="{app.url_for('static', filename='projects/good-morning/preview.webp')}"
+      alt=""
+      hx-get="/testcase-load"
+      hx-swap="outerHTML swap:1s"
+    />
+    """
