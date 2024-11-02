@@ -1,4 +1,6 @@
-from typing import assert_never
+from dataclasses import dataclass
+from datetime import datetime
+from typing import TypeGuard, assert_never
 from flask import Flask, abort, render_template
 import json
 import pathlib
@@ -13,18 +15,44 @@ gallery_format: list[list[str]] = [
 ]
 
 
-def load_gallery() -> list[str]:
+@dataclass
+class Project:
+    title: str
+    subtitle: str
+    creation_date: datetime
+    description: list[str]
+
+
+def load_gallery() -> dict[str, Project]:
+    def is_str_list(val: list[object]) -> TypeGuard[list[str]]:
+        return all(isinstance(x, str) for x in val)
+
     assert app.static_folder is not None
     static_dir = pathlib.Path(app.static_folder)
     projects_dir = static_dir / "projects"
     assert projects_dir.is_dir()
 
-    projects: list[str] = []
-    for project in projects_dir.iterdir():
-        assert project.is_dir()
-        assert (project / "metadata.json").is_file()
-        assert (project / "preview.webp").is_file()
-        projects.append(project.name)
+    projects: dict[str, Project] = {}
+    for project_path in projects_dir.iterdir():
+        assert project_path.is_dir()
+        assert (project_path / "metadata.json").is_file()
+        assert (project_path / "preview.webp").is_file()
+
+        with (project_path / "metadata.json").open() as metadata_json_file:
+            metadata = json.load(metadata_json_file)
+
+            match metadata:
+                case {
+                    "title": str(title),
+                    "subtitle": str(subtitle),
+                    "creationDate": str(isotime),
+                    "description": list(description),  # type: ignore
+                }:
+                    assert is_str_list(description)  # type: ignore
+                    project_info = Project(title, subtitle, datetime.fromisoformat(isotime), description)
+                case anything_else:
+                    assert_never(anything_else)
+        projects[project_path.name] = project_info
 
     for column in gallery_format:
         for item in column:
@@ -34,7 +62,6 @@ def load_gallery() -> list[str]:
 
 
 all_projects = load_gallery()
-print(all_projects)
 
 
 @app.route("/")
@@ -47,24 +74,14 @@ def item_focus(project_title: str) -> str:
     if project_title not in all_projects:
         abort(404, "I didn't work on any project like that")
 
-    assert app.static_folder is not None
-    project_dir = pathlib.Path(app.static_folder) / "projects" / project_title
-    metadata_path = project_dir / "metadata.json"
-    with open(metadata_path) as metadata_json_file:
-        metadata = json.load(metadata_json_file)
-
-    match metadata:
-        case {"title": str(), "subtitle": str(), "description": list(ps)} if all(isinstance(p, str) for p in ps):  # type: ignore
-            print("Metadata normative")
-        case anything_else:
-            assert_never(anything_else)
+    project_info = all_projects[project_title]
 
     return render_template(
         "base.html.j2",
         page="item-focus.html.j2",
-        title=metadata["title"],
-        subtitle=metadata["subtitle"],
-        paragraphs=metadata["description"],
+        title=project_info.title,
+        subtitle=project_info.subtitle,
+        paragraphs=project_info.description,
         project=project_title,
     )
 
@@ -79,25 +96,13 @@ def project_fragment(project_name: str) -> str:
     if project_name not in all_projects:
         abort(404, "I didn't work on any project like that")
 
-    assert app.static_folder is not None
-    project_dir = pathlib.Path(app.static_folder) / "projects" / project_name
-    assert project_dir.is_dir()
-    metadata_path = project_dir / "metadata.json"
-    assert metadata_path.is_file()
-    with open(metadata_path) as metadata_json_file:
-        metadata = json.load(metadata_json_file)
-
-    match metadata:
-        case {"title": str(), "subtitle": str(), "description": list(ps)} if all(isinstance(p, str) for p in ps):  # type: ignore
-            print("Metadata normative")
-        case anything_else:
-            assert_never(anything_else)
+    project_info = all_projects[project_name]
 
     return render_template(
         "item-focus.html.j2",
-        title=metadata["title"],
-        subtitle=metadata["subtitle"],
-        paragraphs=metadata["description"],
+        title=project_info.title,
+        subtitle=project_info.subtitle,
+        paragraphs=project_info.description,
         project=project_name,
     )
 
