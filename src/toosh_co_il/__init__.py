@@ -53,13 +53,16 @@ def main_window() -> str:
     return render_template("main-window.html.j2")
 
 
-@app.route("/test")
+@app.route("/test/")
 def test_window() -> str:
-    return render_template("test.html.j2")
+    return render_template("test.html.j2", project_name="alefbeitgimel")
 
 
-@app.route("/testcase-load")
-def wew() -> str:
-    return render_template(
-        "test-loader.html.j2", url=app.url_for("static", filename="projects/good-morning/preview.webp")
-    )
+@app.route("/fragments/test/<testcase>")
+def test_fragment(testcase: str) -> str:
+    return render_template("test-fragment.html.j2", project_name=testcase)
+
+
+@app.route("/test/<testcase>")
+def test_case(testcase: str) -> str:
+    return render_template("test.html.j2", project_name=testcase)

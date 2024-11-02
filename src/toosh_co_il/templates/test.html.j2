@@ -14,8 +14,6 @@
           href="{{ url_for('static', filename='dist/tailwind.css') }}" />
   </head>
   <body class="h-screen flex-col bg-[url('/static/background/background.png')] bg-auto p-8">
-    {% with url=url_for('static', filename='projects/alefbeitgimel/preview.webp') %}
-      {% include "test-loader.html.j2" %}
-    {% endwith %}
+    {% include "test-fragment.html.j2" %}
   </body>
 </html>
