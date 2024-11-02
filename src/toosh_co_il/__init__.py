@@ -17,7 +17,7 @@ all_projects = {project for col in gallery_format for project in col}
 
 @app.route("/")
 def index() -> str:
-    return render_template("index.html.j2", title="Toosh", columns=gallery_format)
+    return render_template("base.html.j2", title="Toosh", columns=gallery_format)
 
 
 @app.route("/project/<project_title>")
