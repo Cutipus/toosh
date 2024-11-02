@@ -12,7 +12,29 @@ gallery_format: list[list[str]] = [
     ["sunshine", "goodgood", "hibbuk2", "pigumim"],
 ]
 
-all_projects = {project for col in gallery_format for project in col}
+
+def load_gallery() -> list[str]:
+    assert app.static_folder is not None
+    static_dir = pathlib.Path(app.static_folder)
+    projects_dir = static_dir / "projects"
+    assert projects_dir.is_dir()
+
+    projects: list[str] = []
+    for project in projects_dir.iterdir():
+        assert project.is_dir()
+        assert (project / "metadata.json").is_file()
+        assert (project / "preview.webp").is_file()
+        projects.append(project.name)
+
+    for column in gallery_format:
+        for item in column:
+            assert item in projects
+
+    return projects
+
+
+all_projects = load_gallery()
+print(all_projects)
 
 
 @app.route("/")
@@ -27,9 +49,7 @@ def item_focus(project_title: str) -> str:
 
     assert app.static_folder is not None
     project_dir = pathlib.Path(app.static_folder) / "projects" / project_title
-    assert project_dir.is_dir()
     metadata_path = project_dir / "metadata.json"
-    assert metadata_path.is_file()
     with open(metadata_path) as metadata_json_file:
         metadata = json.load(metadata_json_file)
 
