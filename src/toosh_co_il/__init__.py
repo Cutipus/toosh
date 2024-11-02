@@ -69,12 +69,12 @@ def index() -> str:
     return render_template("base.html.j2", title="Toosh", page="index.html.j2", columns=gallery_format)
 
 
-@app.route("/project/<project_title>")
-def item_focus(project_title: str) -> str:
-    if project_title not in all_projects:
+@app.route("/project/<project_name>")
+def item_focus(project_name: str) -> str:
+    if project_name not in all_projects:
         abort(404, "I didn't work on any project like that")
 
-    project_info = all_projects[project_title]
+    project_info = all_projects[project_name]
 
     return render_template(
         "base.html.j2",
@@ -82,7 +82,7 @@ def item_focus(project_title: str) -> str:
         title=project_info.title,
         subtitle=project_info.subtitle,
         paragraphs=project_info.description,
-        project=project_title,
+        project=project_name,
     )
 
 
