@@ -1,5 +1,9 @@
-<div class="flex h-full flex-col">
-  <a href="{{ url_for('index') }}">Back</a>
+<div id="self" class="flex h-full flex-col">
+  <a href="{{ url_for('index') }}"
+     hx-get="{{ url_for('index_fragment') }}"
+     hx-target="#self"
+     hx-swap="outerHTML"
+     hx-push-url="{{ url_for('index') }}">Back</a>
   <img class="w-36"
        width="144"
        height="144"

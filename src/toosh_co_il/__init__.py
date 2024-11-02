@@ -17,7 +17,7 @@ all_projects = {project for col in gallery_format for project in col}
 
 @app.route("/")
 def index() -> str:
-    return render_template("base.html.j2", page="index.html.j2", title="Toosh", columns=gallery_format)
+    return render_template("base.html.j2", title="Toosh", page="index.html.j2", columns=gallery_format)
 
 
 @app.route("/project/<project_title>")
@@ -47,6 +47,11 @@ def item_focus(project_title: str) -> str:
         paragraphs=metadata["description"],
         project=project_title,
     )
+
+
+@app.route("/fragments/index")
+def index_fragment() -> str:
+    return render_template("index.html.j2", columns=gallery_format)
 
 
 @app.route("/test/")
