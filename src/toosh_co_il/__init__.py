@@ -17,7 +17,7 @@ all_projects = {project for col in gallery_format for project in col}
 
 @app.route("/")
 def index() -> str:
-    return render_template("index.html", title="Toosh", columns=gallery_format)
+    return render_template("index.html.j2", title="Toosh", columns=gallery_format)
 
 
 @app.route("/project/<project_title>")
@@ -40,7 +40,7 @@ def item_focus(project_title: str) -> str:
             assert_never(anything_else)
 
     return render_template(
-        "item-focus.html",
+        "item-focus.html.j2",
         title=metadata["title"],
         subtitle=metadata["subtitle"],
         paragraphs=metadata["description"],
@@ -50,23 +50,16 @@ def item_focus(project_title: str) -> str:
 
 @app.route("/main-window")
 def main_window() -> str:
-    return render_template("main-window.html")
+    return render_template("main-window.html.j2")
 
 
 @app.route("/test")
 def test_window() -> str:
-    return render_template("test.html")
+    return render_template("test.html.j2")
 
 
 @app.route("/testcase-load")
 def wew() -> str:
-    return f"""
-    <img
-      id="testcase"
-      class="transition-opacity duration-1000 htmx-swapping:opacity-0"
-      src="{app.url_for('static', filename='projects/good-morning/preview.webp')}"
-      alt=""
-      hx-get="/testcase-load"
-      hx-swap="outerHTML swap:1s"
-    />
-    """
+    return render_template(
+        "test-loader.html.j2", url=app.url_for("static", filename="projects/good-morning/preview.webp")
+    )
