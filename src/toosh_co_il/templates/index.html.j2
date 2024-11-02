@@ -24,10 +24,10 @@
                    width="300"
                    height="400"
                    alt="{{ projectname }}"
-                   class="object-cover opacity-0 transition-opacity duration-500"
+                   class="object-cover hidden transition-opacity duration-500"
                    hx-trigger="load"
                    hx-swap="outerHTML"
-                   onload="this.style.opacity='1'; document.getElementById('loading-placeholder-{{ projectname }}').style.display='none';" />
+                   onload="this.style.display='block'; document.getElementById('loading-placeholder-{{ projectname }}').style.display='none';" />
             </div>
           </a>
         </div>
