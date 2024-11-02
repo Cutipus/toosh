@@ -3,6 +3,7 @@ from datetime import datetime
 from typing import TypeGuard, assert_never
 from flask import Flask, abort, render_template
 import json
+import PIL.Image
 import pathlib
 
 app = Flask(__name__)
@@ -16,14 +17,15 @@ gallery_format: list[list[str]] = [
 
 
 @dataclass
-class Project:
+class PreviewInfo:
     title: str
     subtitle: str
     creation_date: datetime
     description: list[str]
+    dimensions: tuple[int, int]
 
 
-def load_gallery() -> dict[str, Project]:
+def load_gallery() -> dict[str, PreviewInfo]:
     def is_str_list(val: list[object]) -> TypeGuard[list[str]]:
         return all(isinstance(x, str) for x in val)
 
@@ -32,16 +34,19 @@ def load_gallery() -> dict[str, Project]:
     projects_dir = static_dir / "projects"
     assert projects_dir.is_dir()
 
-    projects: dict[str, Project] = {}
+    projects: dict[str, PreviewInfo] = {}
     for project_path in projects_dir.iterdir():
         assert project_path.is_dir()
         assert (project_path / "metadata.json").is_file()
         assert (project_path / "preview.webp").is_file()
 
-        with (project_path / "metadata.json").open() as metadata_json_file:
-            metadata = json.load(metadata_json_file)
+        with (
+            (project_path / "metadata.json").open() as metadata_json_file,
+            PIL.Image.open(project_path / "preview.webp") as preview_file,
+        ):
+            dimensions = preview_file.width, preview_file.height
 
-            match metadata:
+            match json.load(metadata_json_file):
                 case {
                     "title": str(title),
                     "subtitle": str(subtitle),
@@ -49,9 +54,12 @@ def load_gallery() -> dict[str, Project]:
                     "description": list(description),  # type: ignore
                 }:
                     assert is_str_list(description)  # type: ignore
-                    project_info = Project(title, subtitle, datetime.fromisoformat(isotime), description)
+                    project_info = PreviewInfo(
+                        title, subtitle, datetime.fromisoformat(isotime), description, dimensions
+                    )
                 case anything_else:
                     assert_never(anything_else)
+
         projects[project_path.name] = project_info
 
     for column in gallery_format:

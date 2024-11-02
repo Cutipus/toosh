@@ -1,7 +1,7 @@
 [project]
 name = "toosh_co_il"
 version = "0.0.1"
-dependencies = ["flask"]
+dependencies = ["flask", "Pillow"]
 requires-python = ">=3.12"
 authors = [{ name = "Cutipus", email = "Cutipus@proton.me" }]
 description = "Backend for toosh.co.il website"
