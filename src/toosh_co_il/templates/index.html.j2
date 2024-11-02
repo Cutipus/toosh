@@ -1,9 +1,13 @@
-<div class="grid h-full grid-cols-4 gap-4 overflow-auto p-4">
+<div id="self" class="grid h-full grid-cols-4 gap-4 overflow-auto p-4">
   {% for col in columns %}
     <div class="space-y-4">
       {% for projectname in col %}
         <div>
-          <a href="{{ url_for('item_focus', project_title=projectname) }}">
+          <a href="{{ url_for('item_focus', project_title=projectname) }}"
+             hx-get="{{ url_for('project_fragment', project_name=projectname) }}"
+             hx-target="#self"
+             hx-swap="outerHTML"
+             hx-push-url="{{ url_for('item_focus', project_title=projectname) }}">
             <div class="relative overflow-hidden rounded border border-gray-300">
               <!-- SVG Placeholder while loading -->
               <div id="loading-placeholder-{{ projectname }}"

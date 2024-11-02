@@ -54,6 +54,34 @@ def index_fragment() -> str:
     return render_template("index.html.j2", columns=gallery_format)
 
 
+@app.route("/fragments/item-focus/<project_name>")
+def project_fragment(project_name: str) -> str:
+    if project_name not in all_projects:
+        abort(404, "I didn't work on any project like that")
+
+    assert app.static_folder is not None
+    project_dir = pathlib.Path(app.static_folder) / "projects" / project_name
+    assert project_dir.is_dir()
+    metadata_path = project_dir / "metadata.json"
+    assert metadata_path.is_file()
+    with open(metadata_path) as metadata_json_file:
+        metadata = json.load(metadata_json_file)
+
+    match metadata:
+        case {"title": str(), "subtitle": str(), "description": list(ps)} if all(isinstance(p, str) for p in ps):  # type: ignore
+            print("Metadata normative")
+        case anything_else:
+            assert_never(anything_else)
+
+    return render_template(
+        "item-focus.html.j2",
+        title=metadata["title"],
+        subtitle=metadata["subtitle"],
+        paragraphs=metadata["description"],
+        project=project_name,
+    )
+
+
 @app.route("/test/")
 def test_window() -> str:
     return render_template("test.html.j2", project_name="alefbeitgimel")
