@@ -1,23 +1,23 @@
 <div id="self" class="grid h-full grid-cols-4 gap-4 overflow-auto p-4">
   {% for col in columns %}
     <div class="flex flex-col space-y-4">
-      {% for projectname, size in col %}
+      {% for project_name, size in col %}
         <a
-          href="{{ url_for('item_focus', project_name=projectname) }}"
-          hx-get="{{ url_for('project_fragment', project_name=projectname) }}"
+          href="{{ url_for('item_focus', project_name=project_name) }}"
+          hx-get="{{ url_for('project_fragment', project_name=project_name) }}"
           hx-target="#self"
           hx-swap="outerHTML"
-          hx-push-url="{{ url_for('item_focus', project_name=projectname) }}"
+          hx-push-url="{{ url_for('item_focus', project_name=project_name) }}"
         >
           <div
             class="bg-svg"
             style="aspect-ratio: {{ size[0] }} / {{ size[1] }};"
           >
             <img
-              src="{{ url_for('static', filename='projects/' + projectname + '/preview.webp') }}"
+              src="{{ url_for('static', filename='projects/' + project_name + '/preview.webp') }}"
               width="300"
               height="400"
-              alt="{{ projectname }}"
+              alt="{{ project_name }}"
               class="size-full opacity-0 transition-opacity duration-500"
               onload="this.classList.remove('opacity-0');"
             />
