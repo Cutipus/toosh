@@ -17,9 +17,15 @@
       href="{{ url_for('static', filename='dist/tailwind.css') }}"
     />
   </head>
-  <body
-    class="h-screen flex-col bg-[url('/static/background/background.png')] bg-auto p-8"
-  >
+  <body class="h-screen flex-col bg-auto p-8">
+    <div class="bg-svg size-48">
+      <img
+        class="size-full opacity-0 transition-opacity duration-1000"
+        src="{{ url_for('static', filename='/projects/juice/preview.webp') }}"
+        onload="this.classList.remove('opacity-0');"
+        alt=""
+      />
+    </div>
     {% include "test-fragment.html.j2" %}
   </body>
 </html>
