@@ -71,10 +71,23 @@ def load_gallery() -> dict[str, PreviewInfo]:
 
 all_projects = load_gallery()
 
+enhanced_gallery_with_sizes: list[list[tuple[str, tuple[int, int]]]] = []
+
+for col in gallery_format:
+    enhanced_gallery_with_sizes.append([(name, all_projects[name].dimensions) for name in col])
+print(enhanced_gallery_with_sizes)
+
 
 @app.route("/")
 def index() -> str:
-    return render_template("base.html.j2", title="Toosh", page="index.html.j2", columns=gallery_format)
+    return render_template("base.html.j2", title="Toosh", page="index.html.j2", columns=enhanced_gallery_with_sizes)
+
+
+@app.route("/fragments/preview/<project_name>")
+def preview_fragment(project_name: str) -> str:
+    return render_template(
+        "preview-fragment.html.j2", project_name=project_name, size=all_projects[project_name].dimensions
+    )
 
 
 @app.route("/project/<project_name>")
@@ -96,7 +109,7 @@ def item_focus(project_name: str) -> str:
 
 @app.route("/fragments/index")
 def index_fragment() -> str:
-    return render_template("index.html.j2", columns=gallery_format)
+    return render_template("index.html.j2", columns=enhanced_gallery_with_sizes)
 
 
 @app.route("/fragments/item-focus/<project_name>")
