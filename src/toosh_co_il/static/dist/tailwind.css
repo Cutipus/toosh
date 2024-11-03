@@ -655,6 +655,10 @@ video {
   overflow: auto;
 }
 
+.overflow-clip {
+  overflow: clip;
+}
+
 .border-0 {
   border-width: 0px;
 }
