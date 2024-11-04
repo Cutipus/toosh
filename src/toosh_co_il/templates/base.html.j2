@@ -20,7 +20,7 @@
             <img class="mix-blend-multiply" width="360" height="120" src="{{ url_for('static', filename='logo.svg') }}" alt="Toosh" />
             <img class="mx-2 mix-blend-multiply" width="350" height="15" src="{{ url_for('static', filename='logoline.svg') }}" alt="Toosh" />
           </div>
-          <div id="information-box" class="overflow-auto pl-4">
+          <div id="information-box" class="flex-grow overflow-auto pl-4">
             <p class="text-black-600 font-narkiss text-[1.5em]/[1.7rem] blur-[0.04rem] contrast-200">
               Hey there!! I'm <b>Itamar</b>, a freelance <b>Graphic/Motion Designer</b> from TLV.
               <br />
@@ -29,6 +29,14 @@
               <br />
               Mainly focusing on <b>Motion Design, Video making & Animation</b>, but enjoy making and co-making all sorts of art and design.
               <br />
+            </p>
+          </div>
+          <nav class="ml-4 flex flex-grow flex-col-reverse">
+            <a class="indent-1 font-narkiss text-[1.5rem] font-bold blur-[0.04rem] contrast-200 hover:text-[2rem]" href="/">↳ Projects</a>
+            <a class="font-narkiss text-[1.5rem] font-bold blur-[0.04rem] contrast-200" href="/">Home</a>
+          </nav>
+          <footer class="mb-4 pl-4">
+            <p class="text-black-600 font-narkiss text-[1.5em]/[1.7rem] blur-[0.04rem] contrast-200">
               <br />
               If what you see turns you on... Hit me up ⤵
             </p>
@@ -43,7 +51,7 @@
                 />
               </a>
             </div>
-          </div>
+          </footer>
         </div>
         <div id="content" class="h-full basis-4/5 overflow-clip">{% include page %}</div>
       </div>

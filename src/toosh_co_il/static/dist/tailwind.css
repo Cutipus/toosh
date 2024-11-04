@@ -569,13 +569,122 @@ video {
   position: fixed;
 }
 
+.absolute {
+  position: absolute;
+}
+
+.relative {
+  position: relative;
+}
+
+.bottom-0 {
+  bottom: 0px;
+}
+
+.left-0 {
+  left: 0px;
+}
+
+.right-0 {
+  right: 0px;
+}
+
+.top-0 {
+  top: 0px;
+}
+
+.right-4 {
+  right: 1rem;
+}
+
+.right-8 {
+  right: 2rem;
+}
+
+.right-2 {
+  right: 0.5rem;
+}
+
+.right-3 {
+  right: 0.75rem;
+}
+
+.z-50 {
+  z-index: 50;
+}
+
+.z-10 {
+  z-index: 10;
+}
+
+.col-span-1 {
+  grid-column: span 1 / span 1;
+}
+
+.col-span-4 {
+  grid-column: span 4 / span 4;
+}
+
+.row-span-1 {
+  grid-row: span 1 / span 1;
+}
+
+.row-span-4 {
+  grid-row: span 4 / span 4;
+}
+
+.m-2 {
+  margin: 0.5rem;
+}
+
+.m-3 {
+  margin: 0.75rem;
+}
+
+.m-4 {
+  margin: 1rem;
+}
+
+.m-5 {
+  margin: 1.25rem;
+}
+
 .mx-2 {
   margin-left: 0.5rem;
   margin-right: 0.5rem;
 }
 
+.mx-4 {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
 .mt-10 {
   margin-top: 2.5rem;
+}
+
+.mt-1 {
+  margin-top: 0.25rem;
+}
+
+.mt-4 {
+  margin-top: 1rem;
+}
+
+.ml-2 {
+  margin-left: 0.5rem;
+}
+
+.ml-4 {
+  margin-left: 1rem;
+}
+
+.mt-8 {
+  margin-top: 2rem;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
 }
 
 .flex {
@@ -622,8 +731,141 @@ video {
   height: 100vh;
 }
 
+.h-3 {
+  height: 0.75rem;
+}
+
+.h-8 {
+  height: 2rem;
+}
+
+.h-14 {
+  height: 3.5rem;
+}
+
+.h-32 {
+  height: 8rem;
+}
+
 .w-36 {
   width: 9rem;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.w-auto {
+  width: auto;
+}
+
+.w-max {
+  width: -moz-max-content;
+  width: max-content;
+}
+
+.w-48 {
+  width: 12rem;
+}
+
+.w-1\/2 {
+  width: 50%;
+}
+
+.w-4\/5 {
+  width: 80%;
+}
+
+.w-3\/5 {
+  width: 60%;
+}
+
+.w-\[80\%\] {
+  width: 80%;
+}
+
+.w-\[calc\(80\%-8px\)\] {
+  width: calc(80% - 8px);
+}
+
+.w-\[calc\(80\%-10px\)\] {
+  width: calc(80% - 10px);
+}
+
+.w-\[calc\(80\%-1rem\)\] {
+  width: calc(80% - 1rem);
+}
+
+.w-\[calc\(80\%-4rem\)\] {
+  width: calc(80% - 4rem);
+}
+
+.w-\[calc\(80\%-2rem\)\] {
+  width: calc(80% - 2rem);
+}
+
+.w-\[calc\(80\%-3rem\)\] {
+  width: calc(80% - 3rem);
+}
+
+.w-\[calc\(80\%\)\] {
+  width: calc(80%);
+}
+
+.w-\[calc\(70\%\)\] {
+  width: calc(70%);
+}
+
+.w-\[calc\(85\%\)\] {
+  width: calc(85%);
+}
+
+.w-\[calc\(75\%\)\] {
+  width: calc(75%);
+}
+
+.w-\[calc\(78\%\)\] {
+  width: calc(78%);
+}
+
+.w-\[calc\(76\%\)\] {
+  width: calc(76%);
+}
+
+.w-\[calc\(77\%\)\] {
+  width: calc(77%);
+}
+
+.w-\[calc\(77\%\+4px\)\] {
+  width: calc(77% + 4px);
+}
+
+.w-\[calc\(77\%\+8px\)\] {
+  width: calc(77% + 8px);
+}
+
+.w-\[calc\(77\%\+9px\)\] {
+  width: calc(77% + 9px);
+}
+
+.w-\[calc\(77\%\+10px\)\] {
+  width: calc(77% + 10px);
+}
+
+.w-\[calc\(70\%\+10px\)\] {
+  width: calc(70% + 10px);
+}
+
+.w-\[calc\(80\%\+10px\)\] {
+  width: calc(80% + 10px);
+}
+
+.flex-none {
+  flex: none;
+}
+
+.flex-grow {
+  flex-grow: 1;
 }
 
 .basis-1\/5 {
@@ -638,8 +880,32 @@ video {
   cursor: pointer;
 }
 
+.grid-flow-row {
+  grid-auto-flow: row;
+}
+
+.grid-flow-col {
+  grid-auto-flow: column;
+}
+
 .grid-cols-4 {
   grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.grid-cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid-cols-1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+.grid-cols-5 {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.grid-rows-2 {
+  grid-template-rows: repeat(2, minmax(0, 1fr));
 }
 
 .flex-row {
@@ -648,6 +914,18 @@ video {
 
 .flex-col {
   flex-direction: column;
+}
+
+.flex-col-reverse {
+  flex-direction: column-reverse;
+}
+
+.content-center {
+  align-content: center;
+}
+
+.content-end {
+  align-content: flex-end;
 }
 
 .items-center {
@@ -672,6 +950,14 @@ video {
   margin-bottom: calc(1rem * var(--tw-space-y-reverse));
 }
 
+.self-center {
+  align-self: center;
+}
+
+.justify-self-center {
+  justify-self: center;
+}
+
 .overflow-auto {
   overflow: auto;
 }
@@ -684,6 +970,18 @@ video {
   border-width: 2px;
 }
 
+.border-2 {
+  border-width: 2px;
+}
+
+.border-b-2 {
+  border-bottom-width: 2px;
+}
+
+.border-b-4 {
+  border-bottom-width: 4px;
+}
+
 .border-black {
   --tw-border-opacity: 1;
   border-color: rgb(0 0 0 / var(--tw-border-opacity));
@@ -692,6 +990,11 @@ video {
 .bg-green-400 {
   --tw-bg-opacity: 1;
   background-color: rgb(74 222 128 / var(--tw-bg-opacity));
+}
+
+.bg-white {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
 .bg-auto {
@@ -719,8 +1022,75 @@ video {
   padding-bottom: 8px;
 }
 
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.py-0\.5 {
+  padding-top: 0.125rem;
+  padding-bottom: 0.125rem;
+}
+
+.py-8 {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
 .pl-4 {
   padding-left: 1rem;
+}
+
+.pr-8 {
+  padding-right: 2rem;
+}
+
+.pt-4 {
+  padding-top: 1rem;
+}
+
+.pt-8 {
+  padding-top: 2rem;
+}
+
+.pt-10 {
+  padding-top: 2.5rem;
+}
+
+.pr-4 {
+  padding-right: 1rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.indent-4 {
+  text-indent: 1rem;
+}
+
+.indent-3 {
+  text-indent: 0.75rem;
+}
+
+.indent-2 {
+  text-indent: 0.5rem;
+}
+
+.indent-6 {
+  text-indent: 1.5rem;
+}
+
+.indent-8 {
+  text-indent: 2rem;
+}
+
+.indent-1 {
+  text-indent: 0.25rem;
 }
 
 .font-narkiss {
@@ -730,6 +1100,29 @@ video {
 .text-\[1\.5em\]\/\[1\.7rem\] {
   font-size: 1.5em;
   line-height: 1.7rem;
+}
+
+.text-4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+
+.text-7xl {
+  font-size: 4.5rem;
+  line-height: 1;
+}
+
+.text-6xl {
+  font-size: 3.75rem;
+  line-height: 1;
+}
+
+.text-\[1\.5rem\] {
+  font-size: 1.5rem;
+}
+
+.font-bold {
+  font-weight: 700;
 }
 
 .opacity-0 {
@@ -799,6 +1192,20 @@ video {
   --tw-scale-x: 1.05;
   --tw-scale-y: 1.05;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.hover\:text-\[2rem\]:hover {
+  font-size: 2rem;
+}
+
+.hover\:text-2xl:hover {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+.hover\:text-6xl:hover {
+  font-size: 3.75rem;
+  line-height: 1;
 }
 
 .htmx-swapping\:opacity-0.htmx-swapping {
