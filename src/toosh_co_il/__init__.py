@@ -141,3 +141,24 @@ def test_fragment(testcase: str) -> str:
 @app.route("/test/<testcase>")
 def test_case(testcase: str) -> str:
     return render_template("test.html.j2", project_name=testcase)
+
+
+@app.route("/transtest")
+def transtest():
+    return render_template(
+        "base.html.j2",
+        page="transition-test.html.j2",
+    )
+
+
+@app.route("/transtest-end")
+def transtest_end():
+    return render_template(
+        "base.html.j2",
+        page="transition-end.html.j2",
+    )
+
+
+@app.route("/fragments/transtest-end")
+def transtest_end_fragment():
+    return render_template("transition-end.html.j2")

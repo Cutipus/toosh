@@ -9,7 +9,7 @@
           hx-swap="outerHTML"
           hx-push-url="{{ url_for('item_focus', project_name=project_name) }}"
         >
-          <div class="bg-svg" style="aspect-ratio: {{ size[0] }} / {{ size[1] }};">
+          <div class="bg-svg border-[2px] border-black" style="aspect-ratio: {{ size[0] }} / {{ size[1] }};">
             <img
               src="{{ url_for('static', filename='projects/' + project_name + '/preview.webp') }}"
               width="300"

@@ -12,16 +12,16 @@
     <!--external fonts-->
     <link rel="stylesheet" href="https://use.typekit.net/qps5fsd.css" />
   </head>
-  <body class="bg-cover" style="background-image: url('{{ url_for('static', filename='background/'+'background.png') }}')">
-    <div class="h-dvh p-10">
-      <div class="flex h-full flex-row border-2 border-black">
-        <div id="sidebar" class="flex h-full basis-1/5 flex-col border-r-2 border-black">
-          <div id="titlebar" class="flex flex-col items-center justify-center border-0 border-black">
+  <body class="bg-cover">
+    <div class="h-dvh">
+      <div class="flex h-full flex-row">
+        <div id="sidebar" class="flex h-full basis-1/5 flex-col">
+          <div id="titlebar" class="flex flex-col items-center justify-center py-[8px]">
             <img class="mix-blend-multiply" width="360" height="120" src="{{ url_for('static', filename='logo.svg') }}" alt="Toosh" />
             <img class="mx-2 mix-blend-multiply" width="350" height="15" src="{{ url_for('static', filename='logoline.svg') }}" alt="Toosh" />
           </div>
           <div id="information-box" class="overflow-auto pl-4">
-            <p class="font-narkiss text-[30px]/[2rem] text-pink-600 blur-[0.06rem] contrast-200">
+            <p class="text-black-600 font-narkiss text-[1.5em]/[1.7rem] blur-[0.04rem] contrast-200">
               Hey there!! I'm <b>Itamar</b>, a freelance <b>Graphic/Motion Designer</b> from TLV.
               <br />
               Currently in my 4th year of Vissual Communication studies at Bezalel Academy JLM.
