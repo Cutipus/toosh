@@ -10,7 +10,11 @@ module.exports = {
     fontFamily: {
       narkiss: ['"narkiss-tam"', 'sans-serif'],
     },
-    extend: {},
+    extend: {
+      gridTemplateColumns: {
+        'main': '1fr 4fr',
+      }
+    },
   },
   plugins: [
     plugin(function ({ addVariant }) {

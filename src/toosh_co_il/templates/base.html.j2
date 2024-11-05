@@ -13,48 +13,46 @@
     <link rel="stylesheet" href="https://use.typekit.net/qps5fsd.css" />
   </head>
   <body class="bg-cover">
-    <div class="h-dvh">
-      <div class="flex h-full flex-row">
-        <div id="sidebar" class="flex h-full basis-1/5 flex-col">
-          <div id="titlebar" class="flex flex-col items-center justify-center py-[8px]">
-            <img class="mix-blend-multiply" width="360" height="120" src="{{ url_for('static', filename='logo.svg') }}" alt="Toosh" />
-            <img class="mx-2 mix-blend-multiply" width="350" height="15" src="{{ url_for('static', filename='logoline.svg') }}" alt="Toosh" />
-          </div>
-          <div id="information-box" class="flex-grow overflow-auto pl-4">
-            <p class="text-black-600 font-narkiss text-[1.5em]/[1.7rem] blur-[0.04rem] contrast-200">
-              Hey there!! I'm <b>Itamar</b>, a freelance <b>Graphic/Motion Designer</b> from TLV.
-              <br />
-              Currently in my 4th year of Visual Communication studies at Bezalel Academy JLM.
-              <br />
-              <br />
-              Mainly focusing on <b>Motion Design, Video making & Animation</b>, but enjoy making and co-making all sorts of art and design.
-              <br />
-            </p>
-          </div>
-          <nav class="ml-4 flex flex-grow flex-col-reverse">
-            <a class="indent-1 font-narkiss text-[1.5rem] font-bold blur-[0.04rem] contrast-200 hover:text-[2rem]" href="/">↳ Projects</a>
-            <a class="font-narkiss text-[1.5rem] font-bold blur-[0.04rem] contrast-200" href="/">Home</a>
-          </nav>
-          <footer class="mb-4 pl-4">
-            <p class="text-black-600 font-narkiss text-[1.5em]/[1.7rem] blur-[0.04rem] contrast-200">
-              <br />
-              If what you see turns you on... Hit me up ⤵
-            </p>
-            <div class="justify-center-center mt-10 flex flex-row">
-              <a href="#">
-                <img
-                  class="size-12 contrast-0"
-                  width="12"
-                  height="12"
-                  src="{{ url_for('static', filename='external-icons/home_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg') }}"
-                  alt="hi"
-                />
-              </a>
-            </div>
-          </footer>
+    <div class="grid h-dvh grid-cols-main overflow-clip">
+      <div id="sidebar" class="flex h-full flex-col">
+        <div id="titlebar" class="flex flex-col items-center justify-center py-[8px]">
+          <img class="mix-blend-multiply" width="360" height="120" src="{{ url_for('static', filename='logo.svg') }}" alt="Toosh" />
+          <img class="mx-2 mix-blend-multiply" width="350" height="15" src="{{ url_for('static', filename='logoline.svg') }}" alt="Toosh" />
         </div>
-        <div id="content" class="h-full basis-4/5 overflow-clip">{% include page %}</div>
+        <div id="information-box" class="flex-grow overflow-auto pl-4">
+          <p class="text-black-600 font-narkiss text-[1.5em]/[1.7rem] blur-[0.04rem] contrast-200">
+            Hey there!! I'm <b>Itamar</b>, a freelance <b>Graphic/Motion Designer</b> from TLV.
+            <br />
+            Currently in my 4th year of Visual Communication studies at Bezalel Academy JLM.
+            <br />
+            <br />
+            Mainly focusing on <b>Motion Design, Video making & Animation</b>, but enjoy making and co-making all sorts of art and design.
+            <br />
+          </p>
+        </div>
+        <nav class="ml-4 flex flex-grow flex-col-reverse">
+          <a class="indent-1 font-narkiss text-[1.5rem] font-bold blur-[0.04rem] contrast-200 hover:text-[2rem]" href="/">↳ Projects</a>
+          <a class="font-narkiss text-[1.5rem] font-bold blur-[0.04rem] contrast-200" href="/">Home</a>
+        </nav>
+        <footer class="mb-4 pl-4">
+          <p class="text-black-600 font-narkiss text-[1.5em]/[1.7rem] blur-[0.04rem] contrast-200">
+            <br />
+            If what you see turns you on... Hit me up ⤵
+          </p>
+          <div class="justify-center-center mt-10 flex flex-row">
+            <a href="#">
+              <img
+                class="size-12 contrast-0"
+                width="12"
+                height="12"
+                src="{{ url_for('static', filename='external-icons/home_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg') }}"
+                alt="hi"
+              />
+            </a>
+          </div>
+        </footer>
       </div>
+      <div id="content" class="h-full overflow-hidden">{% include page %}</div>
     </div>
   </body>
 </html>
