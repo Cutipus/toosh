@@ -14,12 +14,12 @@
   </head>
   <body class="bg-cover">
     <div class="grid h-dvh grid-cols-main gap-3 overflow-clip pl-3">
-      <div id="sidebar" class="flex h-full flex-col py-4">
-        <div id="titlebar" class="flex flex-col items-center justify-center">
+      <div id="sidebar" class="flex h-full flex-col p-4">
+        <div id="titlebar" class="flex flex-col justify-center">
           <img class="mix-blend-multiply" width="360" height="120" src="{{ url_for('static', filename='logo.svg') }}" alt="Toosh" />
-          <img class="mx-2 mix-blend-multiply" width="350" height="15" src="{{ url_for('static', filename='logoline.svg') }}" alt="Toosh" />
+          <img class="mix-blend-multiply" width="360" height="15" src="{{ url_for('static', filename='logoline.svg') }}" alt="Toosh" />
         </div>
-        <div id="information-box" class="flex-grow overflow-auto pl-4">
+        <div id="information-box" class="flex-grow overflow-auto">
           <p class="text-black-600 font-narkiss text-[1.5em]/[1.7rem] blur-[0.04rem] contrast-200">
             Hey there!! I'm <b>Itamar</b>, a freelance <b>Graphic/Motion Designer</b> from TLV.
             <br />
@@ -30,16 +30,16 @@
             <br />
           </p>
         </div>
-        <nav class="ml-4 flex flex-grow flex-col-reverse">
+        <nav class="flex flex-grow flex-col-reverse">
           <a class="indent-1 font-narkiss text-[1.5rem] font-bold blur-[0.04rem] contrast-200 hover:text-[2rem]" href="/">↳ Projects</a>
           <a class="font-narkiss text-[1.5rem] font-bold blur-[0.04rem] contrast-200" href="/">Home</a>
         </nav>
-        <footer class="mb-4 pl-4">
+        <footer class="mb-4">
           <p class="text-black-600 font-narkiss text-[1.5em]/[1.7rem] blur-[0.04rem] contrast-200">
             <br />
             If what you see turns you on... Hit me up ⤵
           </p>
-          <div class="justify-center-center mt-10 flex flex-row">
+          <div class="justify-center-center flex flex-row">
             <a href="#">
               <img
                 class="size-12 contrast-0"
