@@ -605,6 +605,10 @@ video {
   height: 100%;
 }
 
+.h-16 {
+  height: 4rem;
+}
+
 .h-3 {
   height: 0.75rem;
 }
@@ -621,10 +625,6 @@ video {
   height: 100vh;
 }
 
-.w-36 {
-  width: 9rem;
-}
-
 .w-full {
   width: 100%;
 }
@@ -635,10 +635,6 @@ video {
 
 .flex-grow {
   flex-grow: 1;
-}
-
-.basis-1\/5 {
-  flex-basis: 20%;
 }
 
 .cursor-pointer {
@@ -842,8 +838,8 @@ video {
     flex-direction: row;
   }
 
-  .sm\:overflow-auto {
-    overflow: auto;
+  .sm\:overflow-y-auto {
+    overflow-y: auto;
   }
 }
 

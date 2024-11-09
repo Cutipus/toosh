@@ -112,22 +112,6 @@ def index_fragment() -> str:
     return render_template("index.html.j2", columns=enhanced_gallery_with_sizes)
 
 
-@app.route("/fragments/item-focus/<project_name>")
-def project_fragment(project_name: str) -> str:
-    if project_name not in all_projects:
-        abort(404, "I didn't work on any project like that")
-
-    project_info = all_projects[project_name]
-
-    return render_template(
-        "item-focus.html.j2",
-        title=project_info.title,
-        subtitle=project_info.subtitle,
-        paragraphs=project_info.description,
-        project=project_name,
-    )
-
-
 @app.route("/test/")
 def test_window() -> str:
     return render_template("test.html.j2", project_name="alefbeitgimel")
