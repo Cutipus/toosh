@@ -9,6 +9,24 @@
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" />
     <script src="{{ url_for('static', filename='dist/htmx.min.js') }}"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='dist/tailwind.css') }}" />
+    <script>
+      // modal code
+      document.addEventListener("click", (event) => {
+        const modal = document.getElementById("modal");
+        const modalUnderlay = document.getElementById("modal-underlay");
+        const modalClose = document.getElementById("modal-close");
+        const modalContent = document.getElementById("modal-content");
+
+        if (event.target !== modalUnderlay && event.target !== modalClose) return;
+
+        modal.classList.remove("animate-fade-in");
+        modal.classList.add("animate-fade-out");
+        modalContent.classList.remove("animate-zoom-in");
+        modalContent.classList.add("animate-zoom-out");
+
+        modal.addEventListener("animationend", modal.remove, { once: true });
+      });
+    </script>
     <!--external fonts-->
     <link rel="stylesheet" href="https://use.typekit.net/qps5fsd.css" />
   </head>

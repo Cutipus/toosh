@@ -12,17 +12,13 @@
     <!--external fonts-->
     <link rel="stylesheet" href="https://use.typekit.net/qps5fsd.css" />
     <script>
-      console.log("aaa");
       document.addEventListener("click", (event) => {
-        console.log("clickened");
         const modal = document.getElementById("modal");
         const modalUnderlay = document.getElementById("modal-underlay");
         const modalClose = document.getElementById("modal-close");
         const modalContent = document.getElementById("modal-content");
 
         if (event.target !== modalUnderlay && event.target !== modalClose) return;
-
-        console.log("ontarget");
 
         modal.classList.remove("animate-fade-in");
         modal.classList.add("animate-fade-out");
@@ -33,8 +29,13 @@
       });
     </script>
   </head>
-  <body>
-    <button class="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600" hx-get="/modal-fragment" hx-target="body" hx-swap="beforeend">
+  <body class="h-dvh">
+    <button
+      class="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
+      hx-get="/fragments/image-modal/alefbeitgimel"
+      hx-target="body"
+      hx-swap="beforeend"
+    >
       Open a Modal
     </button>
   </body>

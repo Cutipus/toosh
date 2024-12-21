@@ -83,30 +83,6 @@ def index() -> str:
     return render_template("base.html.j2", title="Toosh", page="index.html.j2", columns=enhanced_gallery_with_sizes)
 
 
-@app.route("/fragments/preview/<project_name>")
-def preview_fragment(project_name: str) -> str:
-    return render_template(
-        "preview-fragment.html.j2", project_name=project_name, size=all_projects[project_name].dimensions
-    )
-
-
-@app.route("/project/<project_name>")
-def item_focus(project_name: str) -> str:
-    if project_name not in all_projects:
-        abort(404, "I didn't work on any project like that")
-
-    project_info = all_projects[project_name]
-
-    return render_template(
-        "base.html.j2",
-        page="item-focus.html.j2",
-        title=project_info.title,
-        subtitle=project_info.subtitle,
-        paragraphs=project_info.description,
-        project=project_name,
-    )
-
-
 @app.route("/fragments/index")
 def index_fragment() -> str:
     return render_template("index.html.j2", columns=enhanced_gallery_with_sizes)
@@ -156,3 +132,13 @@ def modal_test():
 @app.route("/modal-fragment")
 def modal_frag():
     return render_template("modal-fragment.html.j2")
+
+
+@app.route("/fragments/image-modal/<project_name>")
+def image_modal_fragment(project_name: str):
+    if project_name not in all_projects:
+        abort(404)
+
+    return render_template(
+        "image-modal-fragment.html.j2", project_name=project_name, size=all_projects[project_name].dimensions
+    )

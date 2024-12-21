@@ -1,0 +1,15 @@
+<div id="modal" class="animate-fade-in fixed inset-0 z-50 flex h-dvh items-center justify-center bg-white">
+  <div class="absolute inset-0 z-10 cursor-pointer" id="modal-underlay"></div>
+  <div class="animate-zoom-in ppt-4 relative z-20 h-full bg-white p-4" id="modal-content">
+    <div class="bg-svg h-full" style="aspect-ratio: {{ size[0] }} / {{ size[1] }};">
+      <img
+        src="{{ url_for('static', filename='projects/' + project_name + '/preview.webp') }}"
+        width="300"
+        height="400"
+        alt="{{ project_name }}"
+        class="size-full opacity-0 transition-opacity duration-300"
+        onload="this.classList.remove('opacity-0');"
+      />
+    </div>
+  </div>
+</div>
