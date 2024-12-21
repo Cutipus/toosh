@@ -146,3 +146,13 @@ def transtest_end():
 @app.route("/fragments/transtest-end")
 def transtest_end_fragment():
     return render_template("transition-end.html.j2")
+
+
+@app.route("/modal")
+def modal_test():
+    return render_template("modal-test.html.j2")
+
+
+@app.route("/modal-fragment")
+def modal_frag():
+    return render_template("modal-fragment.html.j2")
