@@ -13,8 +13,8 @@
     <link rel="stylesheet" href="https://use.typekit.net/qps5fsd.css" />
   </head>
   <body>
-    <div class="flex h-dvh flex-col bg-gray-50 sm:flex-row">
-      <div id="sidebar" class="flex min-w-[18rem] flex-col p-4 sm:overflow-y-auto">
+    <div class="grid h-dvh grid-cols-5 overflow-clip bg-gray-50">
+      <div id="sidebar" class="flex h-full flex-col overflow-auto p-4">
         <div id="titlebar" class="flex flex-col justify-center gap-2">
           <img class="w-full mix-blend-multiply" width="360" height="120" src="{{ url_for('static', filename='logo.svg') }}" alt="Toosh" />
           <img class="h-3 w-full mix-blend-multiply" width="360" height="15" src="{{ url_for('static', filename='logoline.svg') }}" alt="Toosh" />
@@ -56,7 +56,7 @@
           <a class="font-narkiss text-[1.5rem] font-bold blur-[0.04rem] contrast-200" href="/">Home</a>
         </nav>
       </div>
-      <div id="content">{% include page %}</div>
+      <div id="content" class="col-span-4 h-full overflow-auto">{% include page %}</div>
     </div>
   </body>
 </html>
