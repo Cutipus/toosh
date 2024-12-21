@@ -2,7 +2,7 @@
   {% for col in columns %}
     <div class="flex flex-col space-y-4">
       {% for project_name, size in col %}
-        <div class="bg-svg  style="aspect-ratio: {{ size[0] }} / {{ size[1] }};">
+        <div class="bg-svg" style="aspect-ratio: {{ size[0] }} / {{ size[1] }};">
           <img
             src="{{ url_for('static', filename='projects/' + project_name + '/preview.webp') }}"
             width="300"
