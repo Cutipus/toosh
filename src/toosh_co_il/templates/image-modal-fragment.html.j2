@@ -1,6 +1,6 @@
 <div id="modal" class="fixed inset-0 z-50 flex h-dvh animate-fade-in items-center justify-center bg-white">
   <div class="absolute inset-0 z-10 cursor-pointer bg-gray-300" id="modal-underlay"></div>
-  <div class="ppt-4 relative z-20 h-full animate-zoom-in bg-white p-4" id="modal-content">
+  <div class="ppt-4 relative z-20 h-full animate-zoom-in p-4" id="modal-content">
     <div class="bg-svg h-full" style="aspect-ratio: {{ size[0] }} / {{ size[1] }};">
       <img
         src="{{ url_for('static', filename='projects/' + project_name + '/preview.webp') }}"
