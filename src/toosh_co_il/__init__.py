@@ -88,6 +88,21 @@ def index_fragment() -> str:
     return render_template("index.html.j2", columns=enhanced_gallery_with_sizes)
 
 
+@app.route("/fragments/image-modal/<project_name>")
+def image_modal_fragment(project_name: str):
+    if project_name not in all_projects:
+        abort(404)
+
+    return render_template(
+        "image-modal-fragment.html.j2", project_name=project_name, size=all_projects[project_name].dimensions
+    )
+
+
+@app.route("/projects")
+def projects():
+    return render_template("base.html.j2", title="Projects", page="index-projects.html.j2")
+
+
 @app.route("/test/")
 def test_window() -> str:
     return render_template("test.html.j2", project_name="alefbeitgimel")
@@ -132,13 +147,3 @@ def modal_test():
 @app.route("/modal-fragment")
 def modal_frag():
     return render_template("modal-fragment.html.j2")
-
-
-@app.route("/fragments/image-modal/<project_name>")
-def image_modal_fragment(project_name: str):
-    if project_name not in all_projects:
-        abort(404)
-
-    return render_template(
-        "image-modal-fragment.html.j2", project_name=project_name, size=all_projects[project_name].dimensions
-    )
