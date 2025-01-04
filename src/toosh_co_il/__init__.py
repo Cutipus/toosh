@@ -1,6 +1,5 @@
-import os
 import mimetypes
-from flask import Flask, abort, render_template, send_from_directory
+from flask import Flask, abort, render_template
 import PIL.Image
 import pathlib
 
