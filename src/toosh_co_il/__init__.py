@@ -1,4 +1,5 @@
-from flask import Flask, abort, render_template
+import os
+from flask import Flask, abort, render_template, send_from_directory
 import PIL.Image
 import pathlib
 
@@ -103,3 +104,12 @@ def modal_test():
 @app.route("/modal-fragment")
 def modal_frag():
     return render_template("modal-fragment.html.j2")
+
+
+@app.route("/static/projects/<path:filename>")
+def serve_image(filename: pathlib.Path):
+    assert app.static_folder is not None
+    try:
+        return send_from_directory(os.path.join(app.static_folder, "projects"), filename, mimetype="image/webp")
+    except FileNotFoundError:
+        abort(404)
