@@ -1,101 +1,57 @@
-from dataclasses import dataclass
-from datetime import datetime
-from typing import TypeGuard, assert_never
 from flask import Flask, abort, render_template
-import json
 import PIL.Image
 import pathlib
 
 app = Flask(__name__)
 
-gallery_format: list[list[str]] = [
+
+def load_gallery() -> dict[str, tuple[int, int]]:
+    assert app.static_folder is not None
+    static_dir = pathlib.Path(app.static_folder)
+    projects_dir = static_dir / "projects"
+    assert projects_dir.is_dir()
+    projects: dict[str, tuple[int, int]] = {}  # projectname -> (dimx, dimy)
+    for project_path in projects_dir.iterdir():
+        assert project_path.is_dir()
+        assert (project_path / "fullsize.webp").is_file()
+        assert (project_path / "preview.webp").is_file()
+        with PIL.Image.open(project_path / "preview.webp") as preview_file:
+            projects[project_path.name] = preview_file.width, preview_file.height
+    return projects
+
+
+projects_data = load_gallery()
+
+columns: list[list[str]] = [
     ["juice", "maskit", "pocahontas2"],
     ["pocahontas", "good-morning", "hibbuk1", "alefbeitgimel"],
     ["golden-margarita-bw", "smoke", "lifta"],
     ["sunshine", "goodgood", "hibbuk2", "pigumim"],
 ]
+for col in columns:
+    for project_name in col:
+        assert project_name in projects_data, f"project {project_name} declared but not actually in filesystem"
 
-
-@dataclass
-class PreviewInfo:
-    title: str
-    subtitle: str
-    creation_date: datetime
-    description: list[str]
-    dimensions: tuple[int, int]
-
-
-def load_gallery() -> dict[str, PreviewInfo]:
-    def is_str_list(val: list[object]) -> TypeGuard[list[str]]:
-        return all(isinstance(x, str) for x in val)
-
-    assert app.static_folder is not None
-    static_dir = pathlib.Path(app.static_folder)
-    projects_dir = static_dir / "projects"
-    assert projects_dir.is_dir()
-
-    projects: dict[str, PreviewInfo] = {}
-    for project_path in projects_dir.iterdir():
-        assert project_path.is_dir()
-        assert (project_path / "metadata.json").is_file()
-        assert (project_path / "preview.webp").is_file()
-
-        with (
-            (project_path / "metadata.json").open() as metadata_json_file,
-            PIL.Image.open(project_path / "preview.webp") as preview_file,
-        ):
-            dimensions = preview_file.width, preview_file.height
-
-            match json.load(metadata_json_file):
-                case {
-                    "title": str(title),
-                    "subtitle": str(subtitle),
-                    "creationDate": str(isotime),
-                    "description": list(description),  # type: ignore
-                }:
-                    assert is_str_list(description)  # type: ignore
-                    project_info = PreviewInfo(
-                        title, subtitle, datetime.fromisoformat(isotime), description, dimensions
-                    )
-                case anything_else:
-                    assert_never(anything_else)
-
-        projects[project_path.name] = project_info
-
-    for column in gallery_format:
-        for item in column:
-            assert item in projects
-
-    return projects
-
-
-all_projects = load_gallery()
-
-enhanced_gallery_with_sizes: list[list[tuple[str, tuple[int, int]]]] = []
-
-for col in gallery_format:
-    enhanced_gallery_with_sizes.append([(name, all_projects[name].dimensions) for name in col])
-print(enhanced_gallery_with_sizes)
+columns_with_dimensions = [[(name, projects_data[name]) for name in col] for col in columns]
 
 
 @app.route("/")
 def index() -> str:
-    return render_template("base.html.j2", title="Toosh", page="index.html.j2", columns=enhanced_gallery_with_sizes)
+    return render_template("base.html.j2", title="Toosh", page="index.html.j2", columns=columns_with_dimensions)
 
 
 @app.route("/fragments/index")
 def index_fragment() -> str:
-    return render_template("index.html.j2", columns=enhanced_gallery_with_sizes)
+    return render_template("index.html.j2", columns=columns_with_dimensions)
 
 
 @app.route("/fragments/image-modal/<project_name>")
 def image_modal_fragment(project_name: str):
-    if project_name not in all_projects:
+    project_name = project_name.lower()
+    if project_name not in projects_data:
         abort(404)
 
-    return render_template(
-        "image-modal-fragment.html.j2", project_name=project_name, size=all_projects[project_name].dimensions
-    )
+    return render_template("image-modal-fragment.html.j2", project_name=project_name, size=projects_data[project_name])
 
 
 @app.route("/projects")
