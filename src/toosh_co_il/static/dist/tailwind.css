@@ -617,6 +617,30 @@ video {
   margin-bottom: 5rem;
 }
 
+.mb-80 {
+  margin-bottom: 20rem;
+}
+
+.mb-60 {
+  margin-bottom: 15rem;
+}
+
+.mb-40 {
+  margin-bottom: 10rem;
+}
+
+.mt-10 {
+  margin-top: 2.5rem;
+}
+
+.mt-20 {
+  margin-top: 5rem;
+}
+
+.mb-10 {
+  margin-bottom: 2.5rem;
+}
+
 .flex {
   display: flex;
 }
@@ -747,6 +771,18 @@ video {
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+.snap-y {
+  scroll-snap-type: y var(--tw-scroll-snap-strictness);
+}
+
+.snap-start {
+  scroll-snap-align: start;
+}
+
+.snap-center {
+  scroll-snap-align: center;
 }
 
 .grid-cols-4 {
