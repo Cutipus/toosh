@@ -12,14 +12,13 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='dist/tailwind.css') }}" />
   </head>
   <body class="h-screen flex-col bg-auto p-8">
-    <div class="bg-svg size-48">
-      <img
-        class="size-full opacity-0 transition-opacity duration-1000"
-        src="{{ url_for('static', filename='/projects/juice/preview.webp') }}"
-        onload="this.classList.remove('opacity-0');"
-        alt=""
-      />
+    <div class="">
+      <div class="peer z-0 opacity-0 transition-opacity ease-in-out hover:opacity-100">
+        <h2 class="text-8xl">Other Title Maybe Description</h2>
+      </div>
+      <div class="relative -top-24 -z-10 opacity-100 transition-opacity ease-in-out peer-hover:opacity-0">
+        <h2 class="text-8xl">Title</h2>
+      </div>
     </div>
-    {% include "test-fragment.html.j2" %}
   </body>
 </html>
