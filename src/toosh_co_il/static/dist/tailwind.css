@@ -957,6 +957,10 @@ video {
   padding-bottom: 10rem;
 }
 
+.pt-4 {
+  padding-top: 1rem;
+}
+
 .indent-1 {
   text-indent: 0.25rem;
 }
