@@ -8,7 +8,8 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
-      narkiss: ['"narkiss-tam"', 'sans-serif'],
+      narkiss: ['"divenire-mono"', 'serif']
+      // narkiss: ['"narkiss-tam"', 'sans-serif'],
     },
     extend: {
       animation: {
