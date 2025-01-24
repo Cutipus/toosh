@@ -27,6 +27,32 @@
         modal.addEventListener("animationend", modal.remove, { once: true });
       });
     </script>
+    <script>
+      // nav colors
+      document.addEventListener("htmx:pushedIntoHistory", updateActiveLink);
+      document.addEventListener("htmx:load", updateActiveLink);
+
+      function updateActiveLink() {
+        const currentPath = window.location.pathname;
+
+        // Remove the active class from all nav links
+        document
+          .getElementById("navbar")
+          .querySelectorAll("a")
+          .forEach((link) => {
+            link.classList.remove("text-red-500");
+          });
+
+        // Add the active class to the link that matches the current path
+        const activeLink = document.querySelector(`a[data-path="${currentPath}"]`);
+        if (activeLink) {
+          activeLink.classList.add("text-red-500");
+        }
+      }
+
+      // Initial call to set the active link when the page loads
+      updateActiveLink();
+    </script>
     <!--external fonts-->
     <link rel="stylesheet" href="https://use.typekit.net/qps5fsd.css" />
   </head>
@@ -54,19 +80,21 @@
 
         <hr class="mb-4 mt-4 h-1 w-1/3 bg-black" />
 
-        <nav class="flex flex-grow flex-col">
+        <nav id="navbar" class="flex flex-grow flex-col">
           <a
             class="cursor-pointer font-narkiss text-[1.2rem] font-bold blur-[0.04rem] contrast-200"
+            data-path="{{ url_for('index_fullpage') }}"
             hx-target="#content"
-            hx-swap="innerHTML swap:75ms"
+            hx-swap="innerHTML swap:30ms"
             hx-get="{{ url_for('index_fragment') }}"
             hx-push-url="{{ url_for('index_fullpage') }}"
             >Home</a
           >
           <a
             class="cursor-pointer indent-1 font-narkiss text-[1.2rem] font-bold blur-[0.04rem] contrast-200"
+            data-path="{{ url_for('projects_fullpage') }}"
             hx-target="#content"
-            hx-swap="innerHTML swap:75ms"
+            hx-swap="innerHTML swap:30ms"
             hx-get="{{ url_for('projects_fragment') }}"
             hx-push-url="{{ url_for('projects_fullpage') }}"
             >↳ Projects</a
@@ -103,7 +131,7 @@
       </div>
       <div
         id="content"
-        class="col-span-4 h-full overflow-auto pt-4 transition-opacity duration-75 htmx-swapping:opacity-0"
+        class="col-span-4 h-full overflow-auto pt-4 transition-opacity duration-[20] htmx-swapping:opacity-0"
       >
         {% include page %}
       </div>

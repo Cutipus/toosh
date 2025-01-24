@@ -954,6 +954,16 @@ video {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
+.text-red-600 {
+  --tw-text-opacity: 1;
+  color: rgb(220 38 38 / var(--tw-text-opacity));
+}
+
+.text-red-500 {
+  --tw-text-opacity: 1;
+  color: rgb(239 68 68 / var(--tw-text-opacity));
+}
+
 .opacity-0 {
   opacity: 0;
 }
@@ -1018,6 +1028,10 @@ video {
   transition-duration: 75ms;
 }
 
+.duration-\[20\] {
+  transition-duration: 20;
+}
+
 .ease-in-out {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -1038,6 +1052,32 @@ video {
 
 .peer:hover ~ .peer-hover\:opacity-0 {
   opacity: 0;
+}
+
+.htmx-settling\:opacity-0.htmx-settling {
+  opacity: 0;
+}
+
+.htmx-settling .htmx-settling\:opacity-0 {
+  opacity: 0;
+}
+
+.htmx-request\:text-red-800.htmx-request {
+  --tw-text-opacity: 1;
+  color: rgb(153 27 27 / var(--tw-text-opacity));
+}
+
+.htmx-request\:opacity-50.htmx-request {
+  opacity: 0.5;
+}
+
+.htmx-request .htmx-request\:text-red-800 {
+  --tw-text-opacity: 1;
+  color: rgb(153 27 27 / var(--tw-text-opacity));
+}
+
+.htmx-request .htmx-request\:opacity-50 {
+  opacity: 0.5;
 }
 
 .htmx-swapping\:opacity-0.htmx-swapping {
