@@ -40,13 +40,13 @@
           .getElementById("navbar")
           .querySelectorAll("a")
           .forEach((link) => {
-            link.classList.remove("text-red-500");
+            link.classList.remove("active-link");
           });
 
         // Add the active class to the link that matches the current path
         const activeLink = document.querySelector(`a[data-path="${currentPath}"]`);
         if (activeLink) {
-          activeLink.classList.add("text-red-500");
+          activeLink.classList.add("active-link");
         }
       }
 
@@ -97,7 +97,7 @@
             hx-swap="innerHTML swap:30ms"
             hx-get="{{ url_for('projects_fragment') }}"
             hx-push-url="{{ url_for('projects_fullpage') }}"
-            >↳ Projects</a
+            >Projects</a
           >
         </nav>
 

@@ -16,4 +16,12 @@
         background-position: center;
         background-repeat: no-repeat;
     }
+
+    .active-link {
+        color: red;
+    }
+    .active-link::before {
+        content: "->"
+        /* content: "↳" */
+    }
 }
