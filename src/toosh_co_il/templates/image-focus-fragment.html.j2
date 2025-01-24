@@ -1,0 +1,20 @@
+<div
+  hx-trigger="click"
+  hx-get="{{ url_for('index_fragment') }}"
+  hx-push-url="{{ url_for('index_fullpage') }}"
+  hx-target="#content"
+  hx-swap="innerHTML"
+  class="fixed left-0 top-0 z-30 h-full w-full cursor-pointer"
+></div>
+<div class="flex h-full animate-zoom-in items-center justify-center p-4">
+  <div class="bg-svg relative z-50 h-full" style="aspect-ratio: {{ size[0] }} / {{ size[1] }};">
+    <img
+      src="{{ url_for('static', filename='projects/' + project_name + '/fullsize.webp') }}"
+      width="{{ size[0] }}"
+      height="{{ size[1] }}"
+      alt="{{ project_name }}"
+      class="size-full opacity-0 transition-opacity duration-300"
+      onload="this.classList.remove('opacity-0');"
+    />
+  </div>
+</div>

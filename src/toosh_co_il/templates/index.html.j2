@@ -4,9 +4,10 @@
       {% for project_name, size in col %}
         <div
           class="bg-svg cursor-pointer"
-          hx-get="{{ url_for('image_modal_fragment', project_name=project_name) }}"
+          hx-get="{{ url_for('image_focus_fragment', project_name=project_name) }}"
+          hx-push-url="{{ url_for('image_focus_fullpage', project_name=project_name) }}"
           hx-target="#content"
-          hx-swap="beforeend"
+          hx-swap="innerHTML"
           style="aspect-ratio: {{ size[0] }} / {{ size[1] }};"
         >
           <img

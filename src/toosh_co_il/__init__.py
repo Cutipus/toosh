@@ -49,6 +49,28 @@ def index_fragment() -> str:
     return render_template("index.html.j2", columns=columns_with_dimensions)
 
 
+@app.route("/fragments/image-focus/<project_name>")
+def image_focus_fragment(project_name: str):
+    project_name = project_name.lower()
+    if project_name not in projects_data:
+        abort(404)
+    return render_template("image-focus-fragment.html.j2", project_name=project_name, size=projects_data[project_name])
+
+
+@app.route("/image-focus/<project_name>")
+def image_focus_fullpage(project_name: str):
+    project_name = project_name.lower()
+    if project_name not in projects_data:
+        abort(404)
+    return render_template(
+        "base.html.j2",
+        title="Toosh",
+        page="image-focus-fragment.html.j2",
+        project_name=project_name,
+        size=projects_data[project_name],
+    )
+
+
 @app.route("/fragments/image-modal/<project_name>")
 def image_modal_fragment(project_name: str):
     project_name = project_name.lower()
