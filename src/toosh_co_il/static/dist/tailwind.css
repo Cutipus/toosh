@@ -1024,10 +1024,6 @@ video {
   transition-duration: 100ms;
 }
 
-.duration-1000 {
-  transition-duration: 1000ms;
-}
-
 .duration-300 {
   transition-duration: 300ms;
 }
@@ -1061,14 +1057,6 @@ video {
 }
 
 .peer:hover ~ .peer-hover\:opacity-0 {
-  opacity: 0;
-}
-
-.htmx-swapping\:opacity-0.htmx-swapping {
-  opacity: 0;
-}
-
-.htmx-swapping .htmx-swapping\:opacity-0 {
   opacity: 0;
 }
 
