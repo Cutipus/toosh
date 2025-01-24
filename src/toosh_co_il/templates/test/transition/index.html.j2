@@ -1,83 +1,12 @@
-<script>
-  function startTransition(event) {
-    const targetDiv = event.currentTarget;
-    const content = document.getElementById("content");
-
-    // initial pos & size
-    const rect = targetDiv.getBoundingClientRect();
-    const initialTop = rect.top;
-    const initialLeft = rect.left;
-    const initialWidth = rect.width;
-    const initialHeight = rect.height;
-
-    // start transition
-    targetDiv.style.position = "fixed";
-    targetDiv.style.top = `${initialTop}px`;
-    targetDiv.style.left = `${initialLeft}px`;
-    targetDiv.style.width = `${initialWidth}px`;
-    targetDiv.style.height = `${initialHeight}px`;
-    targetDiv.style.transition = "all 0.5s ease";
-
-    // fade all else
-    Array.from(content.children).forEach((child) => {
-      if (child !== targetDiv.parentElement) {
-        console.log("wew");
-
-        child.classList.add("opacity-0", "transition-opacity", "duration-500");
-      }
-    });
-  }
-</script>
-<div class="grid size-full grid-cols-4 gap-5 p-4">
-  <div id="testcase" class="flex size-full items-center justify-center">
-    <div
-      class="aspect-square size-32 cursor-pointer bg-green-400 transition-all duration-100 ease-in-out hover:scale-105"
+<div class="size-full p-4">
+  <nav>
+    <button
       hx-get="{{ url_for('test_transition_end_fragment') }}"
-      hx-swap="innerHTML swap:2s"
+      hx-swap="innerHTML swap:0.2s"
       hx-target="#content"
       hx-push-url="{{ url_for('test_transition_end_fullpage') }}"
-      id="target"
-      onclick="startTransition(event);"
-    ></div>
-  </div>
-  <div class="duration 500 flex size-full items-center justify-center opacity-0 opacity-100 transition-opacity">
-    <a href="/">
-      <div class="size-32 bg-green-400"></div>
-    </a>
-  </div>
-  <div class="flex size-full items-center justify-center">
-    <a href="/">
-      <div class="size-32 bg-green-400"></div>
-    </a>
-  </div>
-  <div class="flex size-full items-center justify-center">
-    <a href="/">
-      <div class="size-32 bg-green-400"></div>
-    </a>
-  </div>
-  <div class="flex size-full items-center justify-center">
-    <a href="/">
-      <div class="size-32 bg-green-400"></div>
-    </a>
-  </div>
-  <div class="flex size-full items-center justify-center">
-    <a href="/">
-      <div class="size-32 bg-green-400"></div>
-    </a>
-  </div>
-  <div class="flex size-full items-center justify-center">
-    <a href="/">
-      <div class="size-32 bg-green-400"></div>
-    </a>
-  </div>
-  <div class="flex size-full items-center justify-center">
-    <a href="/">
-      <div class="size-32 bg-green-400"></div>
-    </a>
-  </div>
-  <div class="flex size-full items-center justify-center">
-    <a href="/">
-      <div class="size-32 bg-green-400"></div>
-    </a>
-  </div>
+    >
+      Hello
+    </button>
+  </nav>
 </div>
