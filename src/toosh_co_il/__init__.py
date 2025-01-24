@@ -58,8 +58,13 @@ def image_modal_fragment(project_name: str):
 
 
 @app.route("/projects")
-def projects():
-    return render_template("base.html.j2", title="Projects", page="index-projects.html.j2")
+def projects_fullpage():
+    return render_template("base.html.j2", title="Projects", page="projects.html.j2")
+
+
+@app.route("/fragments/projects")
+def projects_fragment() -> str:
+    return render_template("projects.html.j2")
 
 
 # Tests
