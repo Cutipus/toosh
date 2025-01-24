@@ -32,10 +32,10 @@
   <div id="testcase" class="flex size-full items-center justify-center">
     <div
       class="aspect-square size-32 cursor-pointer bg-green-400 transition-all duration-100 ease-in-out hover:scale-105"
-      hx-get="{{ url_for('transtest_end_fragment') }}"
+      hx-get="{{ url_for('test_transition_end_fragment') }}"
       hx-swap="innerHTML swap:2s"
       hx-target="#content"
-      hx-push-url="{{ url_for('transtest_end') }}"
+      hx-push-url="{{ url_for('test_transition_end_fullpage') }}"
       id="target"
       onclick="startTransition(event);"
     ></div>

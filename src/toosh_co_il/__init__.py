@@ -38,8 +38,9 @@ for col in columns:
 columns_with_dimensions = [[(name, projects_data[name]) for name in col] for col in columns]
 
 
+# Standard Routes
 @app.route("/")
-def index() -> str:
+def index_fullpage() -> str:
     return render_template("base.html.j2", title="Toosh", page="index.html.j2", columns=columns_with_dimensions)
 
 
@@ -53,7 +54,6 @@ def image_modal_fragment(project_name: str):
     project_name = project_name.lower()
     if project_name not in projects_data:
         abort(404)
-
     return render_template("image-modal-fragment.html.j2", project_name=project_name, size=projects_data[project_name])
 
 
@@ -62,47 +62,38 @@ def projects():
     return render_template("base.html.j2", title="Projects", page="index-projects.html.j2")
 
 
-@app.route("/test/")
-def test_window() -> str:
-    return render_template("test.html.j2", project_name="alefbeitgimel")
-
-
-@app.route("/fragments/test/<testcase>")
-def test_fragment(testcase: str) -> str:
-    return render_template("test-fragment.html.j2", project_name=testcase)
-
-
-@app.route("/test/<testcase>")
-def test_case(testcase: str) -> str:
-    return render_template("test.html.j2", project_name=testcase)
-
-
-@app.route("/transtest")
-def transtest():
+# Tests
+@app.route("/test/transition")
+def test_transition():
     return render_template(
         "base.html.j2",
-        page="transition-test.html.j2",
+        page="test/transition/index.html.j2",
     )
 
 
-@app.route("/transtest-end")
-def transtest_end():
+@app.route("/test/transition/end")
+def test_transition_end_fullpage():
     return render_template(
         "base.html.j2",
-        page="transition-end.html.j2",
+        page="test/transition/end.html.j2",
     )
 
 
-@app.route("/fragments/transtest-end")
-def transtest_end_fragment():
-    return render_template("transition-end.html.j2")
+@app.route("/test/transition/fragments/end")
+def test_transition_end_fragment():
+    return render_template("test/transition/end.html.j2")
 
 
-@app.route("/modal")
-def modal_test():
-    return render_template("modal-test.html.j2")
+@app.route("/test/modal")
+def test_modal():
+    return render_template("test/modal/index.html.j2")
 
 
-@app.route("/modal-fragment")
-def modal_frag():
-    return render_template("modal-fragment.html.j2")
+@app.route("/test/modal/fragment")
+def test_modal_fragment():
+    return render_template("test/modal/modal.html.j2")
+
+
+@app.route("/test/title-swap")
+def test_title_fade_out_and_replace():
+    return render_template("test/title-swap/index.html.j2")
