@@ -116,3 +116,13 @@ def test_modal_fragment():
 @app.route("/test/title-swap")
 def test_title_fade_out_and_replace():
     return render_template("test/title-swap/index.html.j2")
+
+
+@app.route("/revamp")
+def revamp_index():
+    return render_template("revamp/index.html.j2")
+
+
+@app.route("/revamp/base")
+def revamp_base():
+    return render_template("revamp/index.html.j2")

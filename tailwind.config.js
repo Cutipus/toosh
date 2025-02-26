@@ -3,6 +3,7 @@ const plugin = require('tailwindcss/plugin')
 
 
 module.exports = {
+  darkMode: 'class',
   content: [
     './src/toosh_co_il/templates/**/*.html.j2',
   ],
