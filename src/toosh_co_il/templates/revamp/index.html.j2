@@ -1,18 +1,43 @@
-<section id="about-text" class="mt-3 flex flex-col gap-4 pr-4">
-  <p id="typewriter" class="typewriter text-black-600 font-narkiss text-big blur-[0.04rem] contrast-200">
-    Hey there!! I'm <b>Itamar</b>, a freelance <b>Graphic/Motion Designer</b> from TLV.
-  </p>
-  <p class="typewriter text-black-600 font-narkiss text-big blur-[0.04rem] contrast-200">
-    Currently in my 4th year of Visual Communication studies at Bezalel Academy JLM.
-  </p>
-  <p class="text-black-600 font-narkiss text-big blur-[0.04rem] contrast-200">
-    Mainly focusing on <b>Motion Design, Video making & Animation</b>, but enjoy making and co-making all sorts of art and design.
-  </p>
-</section>
+<div class="flex h-full flex-col">
+  <section id="about-text" class="mt-3 flex flex-shrink-0 flex-grow basis-auto flex-col gap-4 pr-4">
+    <p id="typewriter" class="typewriter text-black-600 font-narkiss text-big blur-[0.04rem] contrast-200">
+      Hey there!! I'm <b>Itamar</b>, a freelance <b>Graphic/Motion Designer</b> from TLV.
+    </p>
+    <p class="typewriter text-black-600 font-narkiss text-big blur-[0.04rem] contrast-200">
+      Currently in my 4th year of Visual Communication studies at Bezalel Academy JLM.
+    </p>
+    <p class="text-black-600 font-narkiss text-big blur-[0.04rem] contrast-200">
+      Mainly focusing on <b>Motion Design, Video making & Animation</b>, but enjoy making and co-making all sorts of art and
+      design.
+    </p>
+  </section>
 
-<section id="contact-info" class="mt-3">
-  <p class="text-black-600 font-narkiss text-[1.2em]/[1.7rem] blur-[0.04rem] contrast-200">
-    If what you see turns you on...<br />
-    Hit me up ⤵
-  </p>
-</section>
+  <section id="contact-info">
+    <p class="text-black-600 text-center font-narkiss text-[1.2em]/[1.7rem] blur-[0.04rem] contrast-200">
+      If what you see turns you on...<br />
+      Hit me up ⤵
+    </p>
+  </section>
+</div>
+
+<script>
+  // typewriter effect
+  document.addEventListener("DOMContentLoaded", async () => {
+    const typewritten = document.getElementById("typewriter");
+
+    async function type(element) {
+      const fullHtml = element.innerHTML.trim();
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(fullHtml, "text/html");
+      const fullText = doc.body.textContent;
+
+      for (let i = 0; i <= fullText.length; i++) {
+        const currentText = fullText.slice(0, i);
+        element.innerHTML = fullHtml.replace(fullText, currentText);
+        await new Promise((resolve, reject) => setTimeout(resolve, 100));
+      }
+    }
+
+    await type(typewritten);
+  });
+</script>

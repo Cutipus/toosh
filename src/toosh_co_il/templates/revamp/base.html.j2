@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html class="h-full">
   <head>
     <title>revamp</title>
     <meta charset="UTF-8" />
@@ -9,7 +9,7 @@
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" />
     <script src="{{ url_for('static', filename='dist/htmx.min.js') }}"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='dist/tailwind.css') }}" />
-    <script>
+    <script defer>
       // nav colors
       document.addEventListener("DOMContentLoaded", updateActiveLink);
       document.addEventListener("htmx:pushedIntoHistory", updateActiveLink);
@@ -33,63 +33,44 @@
         }
       }
     </script>
-    <script>
-      // typewriter effect
-      document.addEventListener("DOMContentLoaded", async () => {
-        const typewritten = document.getElementById("typewriter");
-
-        async function type(element) {
-          const fullHtml = element.innerHTML.trim();
-          const parser = new DOMParser();
-          const doc = parser.parseFromString(fullHtml, "text/html");
-          const fullText = doc.body.textContent;
-
-          for (let i = 0; i <= fullText.length; i++) {
-            const currentText = fullText.slice(0, i);
-            element.innerHTML = fullHtml.replace(fullText, currentText);
-            await new Promise((resolve, reject) => setTimeout(resolve, 100));
-          }
-        }
-
-        await type(typewritten);
-      });
-    </script>
     <!--external fonts-->
     <link rel="stylesheet" href="https://use.typekit.net/qps5fsd.css" />
   </head>
-  <body class="max-w-[90rem] px-16 py-6 md:mx-auto">
-    <nav id="navi" class="flex w-full justify-center gap-20">
-      <a
-        class="cursor-pointer rounded-xl border-2 border-black bg-white p-1 px-4 font-narkiss text-big text-gray-950 blur-[0.04rem] contrast-200 dark:bg-black dark:text-white"
-        data-path="{{ url_for('revamp_index') }}"
-        hx-target="#main"
-        hx-get="{{ url_for('revamp_index_fragment') }}"
-        hx-push-url="{{ url_for('revamp_index') }}"
-        hx-swap="innerHTML swap:30ms"
-        >🏠</a
-      >
-      <a
-        class="cursor-pointer rounded-xl border-2 border-black bg-white p-1 font-narkiss text-big text-gray-950 blur-[0.04rem] contrast-200 dark:bg-black dark:text-white"
-        data-path="{{ url_for('revamp_designs') }}"
-        hx-target="#main"
-        hx-get="{{ url_for('revamp_designs_fragment') }}"
-        hx-push-url="{{ url_for('revamp_designs') }}"
-        hx-swap="innerHTML swap:30ms"
-        >design work</a
-      >
-      <a
-        class="cursor-pointer rounded-xl border-2 border-black bg-white p-1 font-narkiss text-big text-gray-950 blur-[0.04rem] contrast-200 dark:bg-black dark:text-white"
-        data-path="{{ url_for('revamp_projects') }}"
-        hx-target="#main"
-        hx-get="{{ url_for('revamp_projects_fragment') }}"
-        hx-push-url="{{ url_for('revamp_projects') }}"
-        hx-swap="innerHTML swap:30ms"
-        >projects</a
-      >
-    </nav>
-    <main id="main">{% include page %}</main>
+  <body class="flex h-full max-w-[90rem] flex-col px-16 py-6 md:mx-auto">
+    <header>
+      <nav id="navi" class="flex w-full flex-row justify-center gap-20">
+        <a
+          class="cursor-pointer rounded-xl border-2 border-black bg-white p-1 px-4 font-narkiss text-big text-gray-950 blur-[0.04rem] contrast-200 dark:bg-black dark:text-white"
+          data-path="{{ url_for('revamp_index') }}"
+          hx-target="#main"
+          hx-get="{{ url_for('revamp_index_fragment') }}"
+          hx-push-url="{{ url_for('revamp_index') }}"
+          hx-swap="innerHTML"
+          >🏠</a
+        >
+        <a
+          class="cursor-pointer rounded-xl border-2 border-black bg-white p-1 font-narkiss text-big text-gray-950 blur-[0.04rem] contrast-200 dark:bg-black dark:text-white"
+          data-path="{{ url_for('revamp_designs') }}"
+          hx-target="#main"
+          hx-get="{{ url_for('revamp_designs_fragment') }}"
+          hx-push-url="{{ url_for('revamp_designs') }}"
+          hx-swap="innerHTML"
+          >design work</a
+        >
+        <a
+          class="cursor-pointer rounded-xl border-2 border-black bg-white p-1 font-narkiss text-big text-gray-950 blur-[0.04rem] contrast-200 dark:bg-black dark:text-white"
+          data-path="{{ url_for('revamp_projects') }}"
+          hx-target="#main"
+          hx-get="{{ url_for('revamp_projects_fragment') }}"
+          hx-push-url="{{ url_for('revamp_projects') }}"
+          hx-swap="innerHTML"
+          >projects</a
+        >
+      </nav>
+    </header>
+    <main id="main" class="flex-shrink-0 flex-grow basis-auto">{% include page %}</main>
     <footer>
-      <nav id="footer-navi" class="justify-center-center flex flex-row gap-4 pt-4">
+      <nav id="footer-navi" class="justify-center-center flex flex-row justify-center gap-20">
         <a href="#">
           <img
             class="size-12 contrast-0"
