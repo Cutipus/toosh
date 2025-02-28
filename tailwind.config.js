@@ -8,18 +8,29 @@ module.exports = {
     './src/toosh_co_il/templates/**/*.html.j2',
   ],
   theme: {
+    fontSize: {
+      big: ['2.4rem', {lineHeight: '3rem'}],
+    },
     fontFamily: {
-      narkiss: ['"divenire-mono"', 'serif']
+      narkiss: ['"divenire-mono"', 'serif'],
       // narkiss: ['"narkiss-tam"', 'sans-serif'],
     },
     extend: {
       animation: {
+        'typing': 'typing 2s steps(20)',
         'fade-in': 'fadeIn 150ms ease-in',
         'fade-out': 'fadeOut 150ms ease-out',
         'zoom-in': 'zoomIn 150ms ease-in',
         'zoom-out': 'zoomOut 150ms ease-out',
       },
       keyframes: {
+        typing: {
+          '0%': {
+            width: '0%',
+            visibility: 'hidden',
+          },
+          '100%': { width: '100%' },
+        },
         fadeIn: {
           '0%': { opacity: '0' },
           '100%': { opacity: '1' },
@@ -49,6 +60,9 @@ module.exports = {
       addVariant('htmx-swapping', ['&.htmx-swapping', '.htmx-swapping &'])
       addVariant('htmx-added', ['&.htmx-added', '.htmx-added &'])
     }),
+  ],
+  safelist: [
+    'inverse',
   ],
 }
 

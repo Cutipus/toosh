@@ -1,6 +1,6 @@
 {
     "singleAttributePerLine": false,
-    "printWidth": 120,
+    "printWidth": 130,
     "plugins": ["prettier-plugin-jinja-template", "prettier-plugin-tailwindcss"],
     "overrides": [
         {

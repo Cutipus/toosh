@@ -1,0 +1,114 @@
+<!doctype html>
+<html>
+  <head>
+    <title>revamp</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Toosh website" />
+    <meta name="keywords" content="Toosh" />
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" />
+    <script src="{{ url_for('static', filename='dist/htmx.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dist/tailwind.css') }}" />
+    <script>
+      // nav colors
+      document.addEventListener("DOMContentLoaded", updateActiveLink);
+      document.addEventListener("htmx:pushedIntoHistory", updateActiveLink);
+      document.addEventListener("htmx:load", updateActiveLink);
+
+      function updateActiveLink() {
+        const currentPath = window.location.pathname;
+
+        // Remove the active class from all nav links
+        document
+          .getElementById("navi")
+          .querySelectorAll("a")
+          .forEach((link) => {
+            link.classList.remove("invert");
+          });
+
+        // Add the active class to the link that matches the current path
+        const activeLinkIsCurrentLink = document.querySelector(`a[data-path="${currentPath}"]`);
+        if (activeLinkIsCurrentLink) {
+          activeLinkIsCurrentLink.classList.add("invert");
+        }
+      }
+    </script>
+    <script>
+      // typewriter effect
+      document.addEventListener("DOMContentLoaded", async () => {
+        const typewritten = document.getElementById("typewriter");
+
+        async function type(element) {
+          const fullHtml = element.innerHTML.trim();
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(fullHtml, "text/html");
+          const fullText = doc.body.textContent;
+
+          for (let i = 0; i <= fullText.length; i++) {
+            const currentText = fullText.slice(0, i);
+            element.innerHTML = fullHtml.replace(fullText, currentText);
+            await new Promise((resolve, reject) => setTimeout(resolve, 100));
+          }
+        }
+
+        await type(typewritten);
+      });
+    </script>
+    <!--external fonts-->
+    <link rel="stylesheet" href="https://use.typekit.net/qps5fsd.css" />
+  </head>
+  <body class="max-w-[90rem] px-16 py-6 md:mx-auto">
+    <nav id="navi" class="flex w-full justify-center gap-20">
+      <a
+        class="cursor-pointer rounded-xl border-2 border-black bg-white p-1 px-4 font-narkiss text-big text-gray-950 blur-[0.04rem] contrast-200 dark:bg-black dark:text-white"
+        data-path="{{ url_for('revamp_index') }}"
+        hx-target="#main"
+        hx-get="{{ url_for('revamp_index_fragment') }}"
+        hx-push-url="{{ url_for('revamp_index') }}"
+        hx-swap="innerHTML swap:30ms"
+        >🏠</a
+      >
+      <a
+        class="cursor-pointer rounded-xl border-2 border-black bg-white p-1 font-narkiss text-big text-gray-950 blur-[0.04rem] contrast-200 dark:bg-black dark:text-white"
+        data-path="{{ url_for('revamp_designs') }}"
+        hx-target="#main"
+        hx-get="{{ url_for('revamp_designs_fragment') }}"
+        hx-push-url="{{ url_for('revamp_designs') }}"
+        hx-swap="innerHTML swap:30ms"
+        >design work</a
+      >
+      <a
+        class="cursor-pointer rounded-xl border-2 border-black bg-white p-1 font-narkiss text-big text-gray-950 blur-[0.04rem] contrast-200 dark:bg-black dark:text-white"
+        data-path="{{ url_for('revamp_projects') }}"
+        hx-target="#main"
+        hx-get="{{ url_for('revamp_projects_fragment') }}"
+        hx-push-url="{{ url_for('revamp_projects') }}"
+        hx-swap="innerHTML swap:30ms"
+        >projects</a
+      >
+    </nav>
+    <main id="main">{% include page %}</main>
+    <footer>
+      <nav id="footer-navi" class="justify-center-center flex flex-row gap-4 pt-4">
+        <a href="#">
+          <img
+            class="size-12 contrast-0"
+            width="12"
+            height="12"
+            src="{{ url_for('static', filename='external-icons/instagram-assets/Instagram_Glyph_Black.svg') }}"
+            alt="instagram"
+          />
+        </a>
+        <a href="#">
+          <img
+            class="size-12 contrast-0"
+            width="12"
+            height="12"
+            src="{{ url_for('static', filename='external-icons/facebook-assets/Facebook_Logo_Secondary.png') }}"
+            alt="facebook"
+          />
+        </a>
+      </nav>
+    </footer>
+  </body>
+</html>

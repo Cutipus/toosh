@@ -118,11 +118,32 @@ def test_title_fade_out_and_replace():
     return render_template("test/title-swap/index.html.j2")
 
 
+# Revamp links
 @app.route("/revamp")
 def revamp_index():
+    return render_template("revamp/base.html.j2", page="revamp/index.html.j2")
+
+
+@app.route("/revamp/fragments/index")
+def revamp_index_fragment():
     return render_template("revamp/index.html.j2")
 
 
-@app.route("/revamp/base")
-def revamp_base():
-    return render_template("revamp/index.html.j2")
+@app.route("/revamp/designs")
+def revamp_designs():
+    return render_template("revamp/base.html.j2", page="revamp/designs.html.j2")
+
+
+@app.route("/revamp/fragments/designs")
+def revamp_designs_fragment():
+    return render_template("revamp/designs.html.j2")
+
+
+@app.route("/revamp/projects")
+def revamp_projects():
+    return render_template("revamp/base.html.j2", page="revamp/projects.html.j2")
+
+
+@app.route("/revamp/fragments/projects")
+def revamp_projects_fragment():
+    return render_template("revamp/projects.html.j2")
