@@ -17,20 +17,12 @@ module.exports = {
     },
     extend: {
       animation: {
-        'typing': 'typing 2s steps(20)',
         'fade-in': 'fadeIn 150ms ease-in',
         'fade-out': 'fadeOut 150ms ease-out',
         'zoom-in': 'zoomIn 150ms ease-in',
         'zoom-out': 'zoomOut 150ms ease-out',
       },
       keyframes: {
-        typing: {
-          '0%': {
-            width: '0%',
-            visibility: 'hidden',
-          },
-          '100%': { width: '100%' },
-        },
         fadeIn: {
           '0%': { opacity: '0' },
           '100%': { opacity: '1' },

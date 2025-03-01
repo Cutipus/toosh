@@ -570,6 +570,28 @@ video {
   /* content: "↳" */
 }
 
+.blinking-cursor::after {
+  content: '';
+  display: inline-block;
+  width: 2px;
+  /* Adjust width for cursor thickness */
+  height: 1em;
+  /* Align with text height */
+  background-color: black;
+  /* Cursor color */
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
 .static {
   position: static;
 }
