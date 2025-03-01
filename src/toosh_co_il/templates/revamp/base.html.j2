@@ -41,9 +41,9 @@
   </head>
   <body class="flex size-full flex-col gap-20 px-16 py-6">
     <header>
-      <nav id="navi" class="flex w-full flex-row justify-center gap-8">
+      <nav id="navi" class="flex w-full flex-row justify-center gap-4">
         <a
-          class="text-small cursor-pointer rounded-lg border-[1px] border-black bg-white p-1 px-4 font-narkiss text-gray-950 blur-[0.04rem] contrast-200 dark:bg-black dark:text-white"
+          class="cursor-pointer rounded-lg border-[1px] border-black bg-white p-1 px-4 font-narkiss text-small text-gray-950 blur-[0.04rem] contrast-200 dark:bg-black dark:text-white"
           data-path="{{ url_for('revamp_index') }}"
           hx-target="#main"
           hx-get="{{ url_for('revamp_index_fragment') }}"
@@ -52,7 +52,7 @@
           >about</a
         >
         <a
-          class="text-small cursor-pointer rounded-lg border-[1px] border-black bg-white p-1 px-4 font-narkiss text-gray-950 blur-[0.04rem] contrast-200 dark:bg-black dark:text-white"
+          class="cursor-pointer rounded-lg border-[1px] border-black bg-white p-1 px-4 font-narkiss text-small text-gray-950 blur-[0.04rem] contrast-200 dark:bg-black dark:text-white"
           data-path="{{ url_for('revamp_designs') }}"
           hx-target="#main"
           hx-get="{{ url_for('revamp_designs_fragment') }}"
@@ -61,7 +61,7 @@
           >design work</a
         >
         <a
-          class="text-small cursor-pointer rounded-lg border-[1px] border-black bg-white p-1 px-4 font-narkiss text-gray-950 blur-[0.04rem] contrast-200 dark:bg-black dark:text-white"
+          class="cursor-pointer rounded-lg border-[1px] border-black bg-white p-1 px-4 font-narkiss text-small text-gray-950 blur-[0.04rem] contrast-200 dark:bg-black dark:text-white"
           data-path="{{ url_for('revamp_projects') }}"
           hx-target="#main"
           hx-get="{{ url_for('revamp_projects_fragment') }}"
@@ -73,7 +73,7 @@
     </header>
     <main id="main" class="flex-shrink-0 flex-grow basis-auto">{% include page %}</main>
     <footer>
-      <p class="text-small font-narkiss"><b>contact me:</b> tooshdsgn@gmail.com | @Instagram</p>
+      <p class="font-narkiss text-small"><b>contact me:</b> tooshdsgn@gmail.com | @Instagram</p>
     </footer>
   </body>
 </html>

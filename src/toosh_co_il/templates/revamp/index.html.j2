@@ -1,7 +1,7 @@
 <div class="flex h-full w-9/12 flex-col gap-20">
   <div class="h-1/5"></div>
   <section id="about-text" class="mt-3 flex flex-col pr-4">
-    <h1 class="text-medium font-narkiss underline">toosh.dsgn</h1>
+    <h1 class="font-narkiss text-medium underline">toosh.dsgn</h1>
     <p id="hi" class="blinking-cursor text-black-600 mt-2 font-narkiss text-big uppercase blur-[0.04rem] contrast-200">
       I'm <b>Itamar</b>, a freelance <b>Graphic/Motion Designer</b> from TLV.
     </p>
@@ -49,14 +49,7 @@
   }
 
   function animate(elem, gen) {
-    let lastTimestamp;
-
     function step(timestamp) {
-      if (lastTimestamp == undefined) {
-        lastTimestamp = timestamp;
-      }
-      const delta = lastTimestamp - timestamp;
-      lastTimestamp = timestamp;
       res = gen.next();
       if (!res.done) {
         elem.innerHTML = res.value;
