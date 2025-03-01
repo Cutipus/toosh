@@ -1,9 +1,9 @@
 <div class="flex h-full flex-col">
   <section id="about-text" class="mt-3 flex flex-shrink-0 flex-grow basis-auto flex-col gap-4 pr-4">
-    <p id="typewriter" class="typewriter text-black-600 font-narkiss text-big blur-[0.04rem] contrast-200">
+    <p id="hi" class="text-black-600 font-narkiss text-big blur-[0.04rem] contrast-200">
       Hey there!! I'm <b>Itamar</b>, a freelance <b>Graphic/Motion Designer</b> from TLV.
     </p>
-    <p class="typewriter text-black-600 font-narkiss text-big blur-[0.04rem] contrast-200">
+    <p class="text-black-600 font-narkiss text-big blur-[0.04rem] contrast-200">
       Currently in my 4th year of Visual Communication studies at Bezalel Academy JLM.
     </p>
     <p class="text-black-600 font-narkiss text-big blur-[0.04rem] contrast-200">
@@ -21,23 +21,57 @@
 </div>
 
 <script>
-  // typewriter effect
-  document.addEventListener("DOMContentLoaded", async () => {
-    const typewritten = document.getElementById("typewriter");
+  document.addEventListener("DOMContentLoaded", () => {
+    const elem = document.getElementById("about-text");
+    const preservedInner = elem.innerHTML;
+    elem.innerHTML = "";
+    animate(elem, parseNode(preservedInner));
+  });
 
-    async function type(element) {
-      const fullHtml = element.innerHTML.trim();
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(fullHtml, "text/html");
-      const fullText = doc.body.textContent;
+  function parseNode(html) {
+    const tempDiv = document.createElement("div");
+    tempDiv.innerHTML = html;
 
-      for (let i = 0; i <= fullText.length; i++) {
-        const currentText = fullText.slice(0, i);
-        element.innerHTML = fullHtml.replace(fullText, currentText);
-        await new Promise((resolve, reject) => setTimeout(resolve, 100));
+    let out = document.createElement("p");
+    return processChildNodes(tempDiv, out);
+  }
+
+  function* processChildNodes(tempy, out) {
+    for (const node of tempy.childNodes) {
+      if (node.nodeType === Node.TEXT_NODE) {
+        for (const char of node.textContent) {
+          out.append(char);
+          yield out.innerHTML;
+        }
+      } else if (node.nodeType === Node.ELEMENT_NODE) {
+        const newElement = document.createElement(node.tagName.toLowerCase());
+        for (const { name, value } of node.attributes) {
+          newElement.setAttribute(name, value);
+        }
+        out.appendChild(newElement);
+        for (const processed of processChildNodes(node, newElement)) {
+          yield out.innerHTML;
+        }
+      }
+    }
+  }
+
+  function animate(elem, gen) {
+    let lastTimestamp;
+
+    function step(timestamp) {
+      if (lastTimestamp == undefined) {
+        lastTimestamp = timestamp;
+      }
+      const delta = lastTimestamp - timestamp;
+      lastTimestamp = timestamp;
+      res = gen.next();
+      if (!res.done) {
+        elem.innerHTML = res.value;
+        requestAnimationFrame(step);
       }
     }
 
-    await type(typewritten);
-  });
+    requestAnimationFrame(step);
+  }
 </script>
