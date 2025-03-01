@@ -9,10 +9,12 @@ module.exports = {
   ],
   theme: {
     fontSize: {
-      big: ['2.4rem', {lineHeight: '3rem'}],
+      big: ['3.6rem', {lineHeight: '4rem'}],
+      medium: ['2rem'],
+      small: ['1.4rem']
     },
     fontFamily: {
-      narkiss: ['"divenire-mono"', 'serif'],
+      narkiss: ['"miriam-libre"', 'sans-serif'],
       // narkiss: ['"narkiss-tam"', 'sans-serif'],
     },
     extend: {

@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="h-full">
+<html class="size-full">
   <head>
     <title>revamp</title>
     <meta charset="UTF-8" />
@@ -35,21 +35,24 @@
     </script>
     <!--external fonts-->
     <link rel="stylesheet" href="https://use.typekit.net/qps5fsd.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Miriam+Libre:wght@400..700&display=swap" rel="stylesheet" />
   </head>
-  <body class="flex h-full max-w-[90rem] flex-col px-16 py-6 md:mx-auto">
+  <body class="flex size-full flex-col gap-20 px-16 py-6">
     <header>
-      <nav id="navi" class="flex w-full flex-row justify-center gap-20">
+      <nav id="navi" class="flex w-full flex-row justify-center gap-8">
         <a
-          class="cursor-pointer rounded-xl border-2 border-black bg-white p-1 px-4 font-narkiss text-big text-gray-950 blur-[0.04rem] contrast-200 dark:bg-black dark:text-white"
+          class="text-small cursor-pointer rounded-lg border-[1px] border-black bg-white p-1 px-4 font-narkiss text-gray-950 blur-[0.04rem] contrast-200 dark:bg-black dark:text-white"
           data-path="{{ url_for('revamp_index') }}"
           hx-target="#main"
           hx-get="{{ url_for('revamp_index_fragment') }}"
           hx-push-url="{{ url_for('revamp_index') }}"
           hx-swap="innerHTML"
-          >🏠</a
+          >about</a
         >
         <a
-          class="cursor-pointer rounded-xl border-2 border-black bg-white p-1 font-narkiss text-big text-gray-950 blur-[0.04rem] contrast-200 dark:bg-black dark:text-white"
+          class="text-small cursor-pointer rounded-lg border-[1px] border-black bg-white p-1 px-4 font-narkiss text-gray-950 blur-[0.04rem] contrast-200 dark:bg-black dark:text-white"
           data-path="{{ url_for('revamp_designs') }}"
           hx-target="#main"
           hx-get="{{ url_for('revamp_designs_fragment') }}"
@@ -58,7 +61,7 @@
           >design work</a
         >
         <a
-          class="cursor-pointer rounded-xl border-2 border-black bg-white p-1 font-narkiss text-big text-gray-950 blur-[0.04rem] contrast-200 dark:bg-black dark:text-white"
+          class="text-small cursor-pointer rounded-lg border-[1px] border-black bg-white p-1 px-4 font-narkiss text-gray-950 blur-[0.04rem] contrast-200 dark:bg-black dark:text-white"
           data-path="{{ url_for('revamp_projects') }}"
           hx-target="#main"
           hx-get="{{ url_for('revamp_projects_fragment') }}"
@@ -70,26 +73,7 @@
     </header>
     <main id="main" class="flex-shrink-0 flex-grow basis-auto">{% include page %}</main>
     <footer>
-      <nav id="footer-navi" class="justify-center-center flex flex-row justify-center gap-20">
-        <a href="#">
-          <img
-            class="size-12 contrast-0"
-            width="12"
-            height="12"
-            src="{{ url_for('static', filename='external-icons/instagram-assets/Instagram_Glyph_Black.svg') }}"
-            alt="instagram"
-          />
-        </a>
-        <a href="#">
-          <img
-            class="size-12 contrast-0"
-            width="12"
-            height="12"
-            src="{{ url_for('static', filename='external-icons/facebook-assets/Facebook_Logo_Secondary.png') }}"
-            alt="email"
-          />
-        </a>
-      </nav>
+      <p class="text-small font-narkiss"><b>contact me:</b> tooshdsgn@gmail.com | @Instagram</p>
     </footer>
   </body>
 </html>
