@@ -131,12 +131,12 @@ def revamp_index_fragment():
 
 @app.route("/revamp/designs")
 def revamp_designs():
-    return render_template("revamp/base.html.j2", page="revamp/designs.html.j2")
+    return render_template("revamp/base.html.j2", page="revamp/designs.html.j2", columns=columns_with_dimensions)
 
 
 @app.route("/revamp/fragments/designs")
 def revamp_designs_fragment():
-    return render_template("revamp/designs.html.j2")
+    return render_template("revamp/designs.html.j2", columns=columns_with_dimensions)
 
 
 @app.route("/revamp/projects")
@@ -147,3 +147,24 @@ def revamp_projects():
 @app.route("/revamp/fragments/projects")
 def revamp_projects_fragment():
     return render_template("revamp/projects.html.j2")
+
+
+@app.route("/revamp/image-focus/<project_name>")
+def revamp_image_focus_fragment(project_name: str):
+    project_name = project_name.lower()
+    if project_name not in projects_data:
+        abort(404)
+    return render_template("image-focus.html.j2", project_name=project_name, size=projects_data[project_name])
+
+
+@app.route("/revamp/fragments/image-focus/<project_name>")
+def revamp_image_focus_fullpage(project_name: str):
+    project_name = project_name.lower()
+    if project_name not in projects_data:
+        abort(404)
+    return render_template(
+        "revamp/base.html.j2",
+        page="image-focus.html.j2",
+        project_name=project_name,
+        size=projects_data[project_name],
+    )

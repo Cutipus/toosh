@@ -1,0 +1,59 @@
+<div id="designs-grid" class="grid h-full gap-4 overflow-auto px-4 pb-4 pt-8 md:grid-cols-4">
+  {% for col in columns %}
+    <div class="flex flex-col space-y-4">
+      {% for project_name, size in col %}
+        <div
+          class="bg-svg cursor-pointer"
+          data-project-name="{{ project_name }}"
+          data-size-width="{{ size[0] }}"
+          data-size-height="{{ size[1] }}"
+          style="aspect-ratio: {{ size[0] }} / {{ size[1] }};"
+        >
+          <img
+            src="{{ url_for('static', filename='projects/' + project_name + '/preview.webp') }}"
+            width="{{ size[0] }}"
+            height="{{ size[1] }}"
+            alt="{{ project_name }}"
+            class="size-full opacity-0 transition-opacity duration-300"
+            onload="this.classList.remove('opacity-0');"
+          />
+        </div>
+      {% endfor %}
+    </div>
+  {% endfor %}
+</div>
+
+<div id="modal" class="fixed left-0 top-0 z-40 hidden h-full w-full overflow-auto bg-black/80">
+  <div class="mt-1/2 border-gray-30 relative mx-auto w-4/5 max-w-4xl -translate-y-1/2 transform border bg-white">
+    <img id="modal-image" src="" alt="" class="block h-auto w-full" />
+  </div>
+  <div id="modal-overlay" class="fixed left-0 top-0 z-[-1] h-full w-full"></div>
+</div>
+
+<!-- <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const imageGrid = document.getElementById("designs-grid");
+    const modal = document.getElementById("modal");
+    const modalImage = document.getElementById("modal-image");
+    const modalOverlay = document.getElementById("modal-overlay");
+
+    imageGrid.addEventListener("click", (event) => {
+      console.log("click");
+
+      const target = event.target.closest(".bg-svg");
+
+      if (target) {
+        const projectName = target.dataset.projectName;
+        const sizeWidth = target.dataset.sizeWidth;
+        const sizeHeight = target.dataset.sizeWidth;
+
+        const imageUrl = `/static/projects/${projectName}/fullsize.webp`;
+        modalImage.src = imageUrl;
+        modalImage.alt = projectName;
+
+        modalImage.style.aspectRatio = `${sizeWidth} / ${sizeHeight}`;
+        modalImage.classList.remove("hidden");
+      }
+    });
+  });
+</script> -->
