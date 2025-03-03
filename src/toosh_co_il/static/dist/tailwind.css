@@ -575,7 +575,7 @@ video {
   display: inline-block;
   width: 3px;
   /* Adjust width for cursor thickness */
-  height: 0.9em;
+  height: 0.85em;
   /* Align with text height */
   background-color: black;
   /* Cursor color */

@@ -90,6 +90,47 @@
     });
   }
 
+  function untypewriter(elem, interval, flux = 0) {
+    return new Promise((resolve) => {
+      const originalInterval = interval;
+      const children = Array.from(elem.childNodes);
+      children.reverse();
+      let index = 0;
+      var lastUpdateTimestamp;
+      function step(timestamp) {
+        if (index >= children.length) {
+          resolve();
+          return;
+        }
+
+        const fluctuation = getRandomIntInclusive(0, flux);
+        interval += fluctuation;
+
+        var charsToReveal;
+        if (!lastUpdateTimestamp) {
+          charsToReveal = 1;
+        } else {
+          const elapsedTime = Math.floor(timestamp - lastUpdateTimestamp);
+          charsToReveal = Math.floor(elapsedTime / interval); // num of chars to untransparent this frame
+        }
+
+        if (charsToReveal > 0) {
+          lastUpdateTimestamp = timestamp;
+        }
+
+        while (charsToReveal > 0 && index < children.length) {
+          children[index].classList.add("text-transparent");
+          charsToReveal--;
+          index++;
+        }
+        interval = originalInterval;
+        requestAnimationFrame(step);
+      }
+
+      requestAnimationFrame(step);
+    });
+  }
+
   function bolden(elem, interval, flux = 0) {
     return new Promise((resolve) => {
       const originalInterval = interval;
@@ -139,10 +180,12 @@
     const paragraph2 = document.getElementById("p2");
     wrapCharactersInPTagWithSpans(paragraph);
     wrapCharactersInPTagWithSpans(paragraph2);
-    await typewriter(paragraph, 30, 200);
-    await bolden(paragraph, 10, 20);
+    await typewriter(paragraph, 8, 80);
+    await bolden(paragraph, 8, 20);
     paragraph.lastChild.classList.remove("blinking-cursor");
-    await typewriter(paragraph2, 30, 200);
-    await bolden(paragraph2, 10, 20);
+    await typewriter(paragraph2, 8, 80);
+    await bolden(paragraph2, 8, 20);
+    paragraph2.lastChild.classList.remove("blinking-cursor");
+    await untypewriter(paragraph2, 8, 80);
   });
 </script>
