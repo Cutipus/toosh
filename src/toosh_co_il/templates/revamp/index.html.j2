@@ -218,7 +218,7 @@
     });
   }
 
-  document.addEventListener("DOMContentLoaded", async () => {
+  async function animate() {
     const logotext = document.getElementById("dsgn");
     const paragraph = document.getElementById("p1");
     const paragraph2 = document.getElementById("p2");
@@ -233,5 +233,7 @@
     paragraph.lastChild.classList.remove("blinking-cursor");
     await typewriter(paragraph2, 8, 80);
     await bolden(paragraph2, 8, 20);
-  });
+  }
+
+  document.addEventListener("htmx:load", animate, { once: true });
 </script>
