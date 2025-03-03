@@ -2,10 +2,10 @@
   <div class="h-1/5"></div>
   <section id="about-text" class="mt-3 flex flex-col pr-4">
     <h1 class="font-narkiss text-medium underline">toosh.dsgn</h1>
-    <p id="hi" class="blinking-cursor text-black-600 mt-2 font-narkiss text-big uppercase blur-[0.04rem] contrast-200">
+    <p id="p1" class="text-black-600 mt-2 font-narkiss text-big uppercase blur-[0.04rem] contrast-200">
       I'm <b>Itamar</b>, a freelance <b>Graphic/Motion Designer</b> from TLV.
     </p>
-    <p class="blinking-cursor text-black-600 mt-20 font-narkiss text-big uppercase blur-[0.04rem] contrast-200">
+    <p id="p2" class="text-black-600 mt-20 font-narkiss text-big uppercase blur-[0.04rem] contrast-200">
       Mainly focusing on <b>Motion Design, Video making & Animation</b>, but enjoy making and co-making all sorts of art and
       design.
     </p>
@@ -13,50 +13,136 @@
 </div>
 
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const elem = document.getElementById("about-text");
-    const preservedInner = elem.innerHTML;
-    elem.innerHTML = "";
-    animate(elem, parseNode(preservedInner));
-  });
-
-  function parseNode(html) {
-    const tempDiv = document.createElement("div");
-    tempDiv.innerHTML = html;
-
-    let out = document.createElement("p");
-    return processChildNodes(tempDiv, out);
+  function getRandomIntInclusive(min, max) {
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random#getting_a_random_integer_between_two_values_inclusive
+    const minCeiled = Math.ceil(min);
+    const maxFloored = Math.floor(max);
+    return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled); // The maximum is inclusive and the minimum is inclusive
   }
 
-  function* processChildNodes(tempy, out) {
-    for (const node of tempy.childNodes) {
-      if (node.nodeType === Node.TEXT_NODE) {
-        for (const char of node.textContent) {
-          out.append(char);
-          yield out.innerHTML;
-        }
-      } else if (node.nodeType === Node.ELEMENT_NODE) {
-        const newElement = document.createElement(node.tagName.toLowerCase());
-        for (const { name, value } of node.attributes) {
-          newElement.setAttribute(name, value);
-        }
-        out.appendChild(newElement);
-        for (const processed of processChildNodes(node, newElement)) {
-          yield out.innerHTML;
-        }
+  function createCharSpan(char, bold) {
+    const elem = document.createElement("span");
+    elem.classList.add("text-transparent");
+    elem.dataset.bold = bold;
+    elem.textContent = char;
+    return elem;
+  }
+
+  function wrapCharactersInPTagWithSpans(pTag) {
+    for (bTag of pTag.querySelectorAll("b")) {
+      for (char of bTag.textContent) {
+        pTag.insertBefore(createCharSpan(char, true), bTag);
       }
+      bTag.remove();
     }
+    const childNodes = Array.from(pTag.childNodes);
+    childNodes.forEach((node) => {
+      if (node.nodeType === Node.TEXT_NODE) {
+        for (char of node.textContent) {
+          pTag.insertBefore(createCharSpan(char, false), node);
+        }
+        node.remove();
+      }
+    });
   }
 
-  function animate(elem, gen) {
-    function step(timestamp) {
-      res = gen.next();
-      if (!res.done) {
-        elem.innerHTML = res.value;
+  function typewriter(elem, interval, flux = 0) {
+    return new Promise((resolve) => {
+      const originalInterval = interval;
+      const children = Array.from(elem.childNodes);
+      let index = 0;
+      var lastUpdateTimestamp;
+      function step(timestamp) {
+        if (index >= children.length) {
+          resolve();
+          return;
+        }
+
+        const fluctuation = getRandomIntInclusive(0, flux);
+        interval += fluctuation;
+
+        var charsToReveal;
+        if (!lastUpdateTimestamp) {
+          charsToReveal = 1;
+        } else {
+          const elapsedTime = Math.floor(timestamp - lastUpdateTimestamp);
+          charsToReveal = Math.floor(elapsedTime / interval); // num of chars to untransparent this frame
+        }
+
+        if (charsToReveal > 0) {
+          lastUpdateTimestamp = timestamp;
+        }
+
+        while (charsToReveal > 0 && index < children.length) {
+          children[index].classList.remove("text-transparent");
+          children[index].classList.add("blinking-cursor");
+          if (index > 0) {
+            children[index - 1].classList.remove("blinking-cursor");
+          }
+          charsToReveal--;
+          index++;
+        }
+        interval = originalInterval;
         requestAnimationFrame(step);
       }
-    }
 
-    requestAnimationFrame(step);
+      requestAnimationFrame(step);
+    });
   }
+
+  function bolden(elem, interval, flux = 0) {
+    return new Promise((resolve) => {
+      const originalInterval = interval;
+      const children = Array.from(elem.childNodes);
+      let index = 0;
+      var lastUpdateTimestamp;
+      function step(timestamp) {
+        if (index >= children.length) {
+          resolve();
+          return;
+        }
+
+        const fluctuation = getRandomIntInclusive(0, flux);
+        interval += fluctuation;
+
+        var charsToBolden;
+        if (!lastUpdateTimestamp) {
+          charsToBolden = 1;
+        } else {
+          const elapsedTime = Math.floor(timestamp - lastUpdateTimestamp);
+          charsToBolden = Math.floor(elapsedTime / interval); // num of chars to untransparent this frame
+        }
+
+        if (charsToBolden > 0) {
+          lastUpdateTimestamp = timestamp;
+        }
+
+        while (charsToBolden > 0 && index < children.length) {
+          if (children[index].dataset.bold != "true") {
+            index++;
+            continue;
+          }
+          children[index].classList.add("font-bold");
+          charsToBolden--;
+          index++;
+        }
+        interval = originalInterval;
+        requestAnimationFrame(step);
+      }
+
+      requestAnimationFrame(step);
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", async () => {
+    const paragraph = document.getElementById("p1");
+    const paragraph2 = document.getElementById("p2");
+    wrapCharactersInPTagWithSpans(paragraph);
+    wrapCharactersInPTagWithSpans(paragraph2);
+    await typewriter(paragraph, 30, 200);
+    await bolden(paragraph, 10, 20);
+    paragraph.lastChild.classList.remove("blinking-cursor");
+    await typewriter(paragraph2, 30, 200);
+    await bolden(paragraph2, 10, 20);
+  });
 </script>

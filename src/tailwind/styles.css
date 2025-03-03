@@ -28,8 +28,8 @@
     .blinking-cursor::after {
         content: '';
         display: inline-block;
-        width: 2px; /* Adjust width for cursor thickness */
-        height: 0.8em; /* Align with text height */
+        width: 3px; /* Adjust width for cursor thickness */
+        height: 0.9em; /* Align with text height */
         background-color: black; /* Cursor color */
         animation: blink 1s step-end infinite;
     }

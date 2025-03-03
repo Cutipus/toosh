@@ -118,6 +118,11 @@ def test_title_fade_out_and_replace():
     return render_template("test/title-swap/index.html.j2")
 
 
+@app.route("/test/text-effect")
+def test_text_effect():
+    return render_template("test/text-effects/some.html.j2")
+
+
 # Revamp links
 @app.route("/revamp")
 def revamp_index():
