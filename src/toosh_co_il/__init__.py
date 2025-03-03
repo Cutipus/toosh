@@ -118,9 +118,14 @@ def test_title_fade_out_and_replace():
     return render_template("test/title-swap/index.html.j2")
 
 
-@app.route("/test/text-effect")
+@app.route("/test/text-effects/typewriter")
 def test_text_effect():
     return render_template("test/text-effects/some.html.j2")
+
+
+@app.route("/test/text-effects/underline")
+def test_underline_effect():
+    return render_template("test/text-effects/underline.html.j2")
 
 
 # Revamp links

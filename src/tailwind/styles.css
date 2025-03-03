@@ -25,6 +25,7 @@
         content: "->"
         /* content: "↳" */
     }
+
     .blinking-cursor::after {
         content: '';
         display: inline-block;
@@ -33,13 +34,40 @@
         background-color: black; /* Cursor color */
         animation: blink 1s step-end infinite;
     }
-    
+
     @keyframes blink {
         0%, 100% {
             opacity: 1;
         }
         50% {
             opacity: 0;
+        }
+    }
+
+    .underline-effect {
+        position: relative;
+        display: inline-block;
+    }
+
+    .underline-effect::after { 
+        content: '';
+        position: absolute;
+        right: 0;
+        bottom: -10px;
+        width: 0;
+        height: 8px;
+        background-color: black;
+        animation: stretch 1s ease-in-out forwards;
+    }
+
+    @keyframes stretch {
+        from {
+            width: 0;
+            right: 0;
+        }
+        to {
+            width: 100%;
+            right: 0;
         }
     }
 }

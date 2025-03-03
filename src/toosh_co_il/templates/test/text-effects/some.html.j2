@@ -5,8 +5,9 @@
     <title>Span Wrap Example</title>
   </head>
   <body>
-    <p id="myParagraph">hello <b>World</b>! aasdahskdjhaskdh <b>psyche</b> aqweasdasd</p>
-    <p id="myParagraph2">hello <b>World</b>! aasdahskdjhaskdh <b>psyche</b> aqweasdasd</p>
+    <p id="pp" class="text-big">toosh.dsgn</p>
+    <!-- <p id="myParagraph">hello <b>World</b>! aasdahskdjhaskdh <b>psyche</b> aqweasdasd</p>
+    <p id="myParagraph2">hello <b>World</b>! aasdahskdjhaskdh <b>psyche</b> aqweasdasd</p> -->
 
     <script>
       function getRandomIntInclusive(min, max) {
@@ -42,7 +43,7 @@
         });
       }
 
-      function typewriter(elem, interval, flux = 0) {
+      function typewriter(elem, interval, flux = 0, blinkingCursor = true) {
         return new Promise((resolve) => {
           const originalInterval = interval;
           const children = Array.from(elem.childNodes);
@@ -61,8 +62,8 @@
             if (!lastUpdateTimestamp) {
               charsToReveal = 1;
             } else {
-              const elapsedTime = Math.floor((timestamp - lastUpdateTimestamp));
-              charsToReveal = Math.floor(elapsedTime / interval);  // num of chars to untransparent this frame
+              const elapsedTime = Math.floor(timestamp - lastUpdateTimestamp);
+              charsToReveal = Math.floor(elapsedTime / interval); // num of chars to untransparent this frame
             }
 
             if (charsToReveal > 0) {
@@ -70,13 +71,15 @@
             }
 
             while (charsToReveal > 0 && index < children.length) {
-                children[index].classList.remove("text-transparent");
+              children[index].classList.remove("text-transparent");
+              if (blinkingCursor) {
                 children[index].classList.add("blinking-cursor");
                 if (index > 0) {
                   children[index - 1].classList.remove("blinking-cursor");
                 }
-                charsToReveal--;
-                index++;
+              }
+              charsToReveal--;
+              index++;
             }
             interval = originalInterval;
             requestAnimationFrame(step);
@@ -86,7 +89,88 @@
         });
       }
 
-      
+      function untypewriter(elem, interval, flux = 0) {
+        return new Promise((resolve) => {
+          const originalInterval = interval;
+          const children = Array.from(elem.childNodes);
+          children.reverse();
+          let index = 0;
+          var lastUpdateTimestamp;
+          function step(timestamp) {
+            if (index >= children.length) {
+              resolve();
+              return;
+            }
+
+            const fluctuation = getRandomIntInclusive(0, flux);
+            interval += fluctuation;
+
+            var charsToReveal;
+            if (!lastUpdateTimestamp) {
+              charsToReveal = 1;
+            } else {
+              const elapsedTime = Math.floor(timestamp - lastUpdateTimestamp);
+              charsToReveal = Math.floor(elapsedTime / interval); // num of chars to untransparent this frame
+            }
+
+            if (charsToReveal > 0) {
+              lastUpdateTimestamp = timestamp;
+            }
+
+            while (charsToReveal > 0 && index < children.length) {
+              children[index].classList.add("text-transparent");
+              charsToReveal--;
+              index++;
+            }
+            interval = originalInterval;
+            requestAnimationFrame(step);
+          }
+
+          requestAnimationFrame(step);
+        });
+      }
+
+      function underliner(elem, interval, flux = 0) {
+        return new Promise((resolve) => {
+          const originalInterval = interval;
+          const children = Array.from(elem.childNodes);
+          let index = 0;
+          var lastUpdateTimestamp;
+          function step(timestamp) {
+            if (index >= children.length) {
+              resolve();
+              return;
+            }
+
+            const fluctuation = getRandomIntInclusive(0, flux);
+            interval += fluctuation;
+
+            var charsToReveal;
+            if (!lastUpdateTimestamp) {
+              charsToReveal = 1;
+            } else {
+              const elapsedTime = Math.floor(timestamp - lastUpdateTimestamp);
+              charsToReveal = Math.floor(elapsedTime / interval); // num of chars to untransparent this frame
+            }
+
+            if (charsToReveal > 0) {
+              lastUpdateTimestamp = timestamp;
+            }
+
+            while (charsToReveal > 0 && index < children.length) {
+              children[index].classList.add("underline");
+              children[index].classList.add("decoration-black");
+              charsToReveal--;
+              index++;
+            }
+            interval = originalInterval;
+            requestAnimationFrame(step);
+          }
+
+          requestAnimationFrame(step);
+        });
+      }
+
       function bolden(elem, interval, flux = 0) {
         return new Promise((resolve) => {
           const originalInterval = interval;
@@ -106,8 +190,8 @@
             if (!lastUpdateTimestamp) {
               charsToBolden = 1;
             } else {
-              const elapsedTime = Math.floor((timestamp - lastUpdateTimestamp));
-              charsToBolden = Math.floor(elapsedTime / interval);  // num of chars to untransparent this frame
+              const elapsedTime = Math.floor(timestamp - lastUpdateTimestamp);
+              charsToBolden = Math.floor(elapsedTime / interval); // num of chars to untransparent this frame
             }
 
             if (charsToBolden > 0) {
@@ -115,13 +199,13 @@
             }
 
             while (charsToBolden > 0 && index < children.length) {
-                if (children[index].dataset.bold != "true") {
-                  index++;
-                  continue;
-                }
-                children[index].classList.add("font-bold");
-                charsToBolden--;
+              if (children[index].dataset.bold != "true") {
                 index++;
+                continue;
+              }
+              children[index].classList.add("font-bold");
+              charsToBolden--;
+              index++;
             }
             interval = originalInterval;
             requestAnimationFrame(step);
@@ -132,16 +216,20 @@
       }
 
       document.addEventListener("DOMContentLoaded", async () => {
-        const paragraph = document.getElementById("myParagraph");
-        const paragraph2 = document.getElementById("myParagraph2");
-        wrapCharactersInPTagWithSpans(paragraph);
-        wrapCharactersInPTagWithSpans(paragraph2)
-        await typewriter(paragraph, 30, 200);
-        await bolden(paragraph, 10, 20);
-        paragraph.lastChild.classList.remove("blinking-cursor");
-        await typewriter(paragraph2, 30, 200);
-        await bolden(paragraph2, 10, 20);
+        const p = document.getElementById("pp");
+        wrapCharactersInPTagWithSpans(p);
+        await underliner(p, 16);
+        await typewriter(p, 30, 0, false);
+        // const paragraph = document.getElementById("myParagraph");
+        // const paragraph2 = document.getElementById("myParagraph2");
+        // wrapCharactersInPTagWithSpans(paragraph);
+        // wrapCharactersInPTagWithSpans(paragraph2)
+        // await typewriter(paragraph, 30, 200);
+        // await bolden(paragraph, 10, 20);
+        // paragraph.lastChild.classList.remove("blinking-cursor");
+        // await typewriter(paragraph2, 30, 200);
+        // await bolden(paragraph2, 10, 20);
       });
     </script>
-    
+  </body>
 </html>

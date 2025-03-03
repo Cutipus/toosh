@@ -1,7 +1,7 @@
 <div class="flex h-full w-9/12 flex-col gap-20">
   <div class="h-1/5"></div>
   <section id="about-text" class="mt-3 flex flex-col pr-4">
-    <h1 class="font-narkiss text-medium underline">toosh.dsgn</h1>
+    <h1 id="dsgn" class="font-narkiss text-medium">toosh.dsgn</h1>
     <p id="p1" class="text-black-600 mt-2 font-narkiss text-big uppercase blur-[0.04rem] contrast-200">
       I'm <b>Itamar</b>, a freelance <b>Graphic/Motion Designer</b> from TLV.
     </p>
@@ -46,7 +46,7 @@
     });
   }
 
-  function typewriter(elem, interval, flux = 0) {
+  function typewriter(elem, interval, flux = 0, blinkingCursor = true) {
     return new Promise((resolve) => {
       const originalInterval = interval;
       const children = Array.from(elem.childNodes);
@@ -75,9 +75,11 @@
 
         while (charsToReveal > 0 && index < children.length) {
           children[index].classList.remove("text-transparent");
-          children[index].classList.add("blinking-cursor");
-          if (index > 0) {
-            children[index - 1].classList.remove("blinking-cursor");
+          if (blinkingCursor) {
+            children[index].classList.add("blinking-cursor");
+            if (index > 0) {
+              children[index - 1].classList.remove("blinking-cursor");
+            }
           }
           charsToReveal--;
           index++;
@@ -120,6 +122,47 @@
 
         while (charsToReveal > 0 && index < children.length) {
           children[index].classList.add("text-transparent");
+          charsToReveal--;
+          index++;
+        }
+        interval = originalInterval;
+        requestAnimationFrame(step);
+      }
+
+      requestAnimationFrame(step);
+    });
+  }
+
+  function underliner(elem, interval, flux = 0) {
+    return new Promise((resolve) => {
+      const originalInterval = interval;
+      const children = Array.from(elem.childNodes);
+      let index = 0;
+      var lastUpdateTimestamp;
+      function step(timestamp) {
+        if (index >= children.length) {
+          resolve();
+          return;
+        }
+
+        const fluctuation = getRandomIntInclusive(0, flux);
+        interval += fluctuation;
+
+        var charsToReveal;
+        if (!lastUpdateTimestamp) {
+          charsToReveal = 1;
+        } else {
+          const elapsedTime = Math.floor(timestamp - lastUpdateTimestamp);
+          charsToReveal = Math.floor(elapsedTime / interval); // num of chars to untransparent this frame
+        }
+
+        if (charsToReveal > 0) {
+          lastUpdateTimestamp = timestamp;
+        }
+
+        while (charsToReveal > 0 && index < children.length) {
+          children[index].classList.add("underline");
+          children[index].classList.add("decoration-black");
           charsToReveal--;
           index++;
         }
@@ -176,16 +219,19 @@
   }
 
   document.addEventListener("DOMContentLoaded", async () => {
+    const logotext = document.getElementById("dsgn");
     const paragraph = document.getElementById("p1");
     const paragraph2 = document.getElementById("p2");
+    wrapCharactersInPTagWithSpans(logotext);
     wrapCharactersInPTagWithSpans(paragraph);
     wrapCharactersInPTagWithSpans(paragraph2);
+    await underliner(logotext, 16);
+    await typewriter(logotext, 30, 0, false);
+    logotext.lastChild.classList.remove("blinking-cursor");
     await typewriter(paragraph, 8, 80);
     await bolden(paragraph, 8, 20);
     paragraph.lastChild.classList.remove("blinking-cursor");
     await typewriter(paragraph2, 8, 80);
     await bolden(paragraph2, 8, 20);
-    paragraph2.lastChild.classList.remove("blinking-cursor");
-    await untypewriter(paragraph2, 8, 80);
   });
 </script>
