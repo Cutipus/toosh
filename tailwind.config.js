@@ -11,7 +11,9 @@ module.exports = {
     fontSize: {
       big: ['3.6rem', {lineHeight: '4rem'}],
       medium: ['2rem'],
-      small: ['1.4rem']
+      "medium-small": ['1.6rem'],
+      small: ['1.4rem'],
+      "very-small": ['1rem'],
     },
     fontFamily: {
       narkiss: ['"miriam-libre"', 'sans-serif'],

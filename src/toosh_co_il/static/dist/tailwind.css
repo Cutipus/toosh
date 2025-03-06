@@ -661,11 +661,6 @@ video {
   margin-right: auto;
 }
 
-.my-6 {
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
-}
-
 .mb-20 {
   margin-bottom: 5rem;
 }
@@ -686,20 +681,12 @@ video {
   margin-top: 0.5rem;
 }
 
-.mt-20 {
-  margin-top: 5rem;
-}
-
 .mt-3 {
   margin-top: 0.75rem;
 }
 
 .mt-4 {
   margin-top: 1rem;
-}
-
-.mb-6 {
-  margin-bottom: 1.5rem;
 }
 
 .mt-6 {
@@ -739,10 +726,6 @@ video {
 
 .h-1 {
   height: 0.25rem;
-}
-
-.h-1\/5 {
-  height: 20%;
 }
 
 .h-\[89\%\] {
@@ -785,10 +768,6 @@ video {
   width: 80%;
 }
 
-.w-9\/12 {
-  width: 75%;
-}
-
 .w-full {
   width: 100%;
 }
@@ -811,6 +790,14 @@ video {
 
 .basis-auto {
   flex-basis: auto;
+}
+
+.basis-full {
+  flex-basis: 100%;
+}
+
+.basis-32 {
+  flex-basis: 8rem;
 }
 
 .-translate-y-1\/2 {
@@ -918,10 +905,6 @@ video {
   gap: 0.5rem;
 }
 
-.gap-20 {
-  gap: 5rem;
-}
-
 .gap-4 {
   gap: 1rem;
 }
@@ -936,16 +919,8 @@ video {
   overflow: auto;
 }
 
-.overflow-hidden {
-  overflow: hidden;
-}
-
 .overflow-clip {
   overflow: clip;
-}
-
-.overflow-scroll {
-  overflow: scroll;
 }
 
 .rounded {
@@ -1031,11 +1006,6 @@ video {
   padding: 2rem;
 }
 
-.px-16 {
-  padding-left: 4rem;
-  padding-right: 4rem;
-}
-
 .px-4 {
   padding-left: 1rem;
   padding-right: 1rem;
@@ -1049,11 +1019,6 @@ video {
 .py-6 {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
-}
-
-.py-20 {
-  padding-top: 5rem;
-  padding-bottom: 5rem;
 }
 
 .pb-4 {
@@ -1078,10 +1043,6 @@ video {
 
 .pt-8 {
   padding-top: 2rem;
-}
-
-.pb-6 {
-  padding-bottom: 1.5rem;
 }
 
 .indent-1 {
@@ -1111,12 +1072,16 @@ video {
   line-height: 4rem;
 }
 
-.text-medium {
-  font-size: 2rem;
+.text-medium-small {
+  font-size: 1.6rem;
 }
 
 .text-small {
   font-size: 1.4rem;
+}
+
+.text-very-small {
+  font-size: 1rem;
 }
 
 .font-bold {
@@ -1245,5 +1210,54 @@ video {
 @media (min-width: 768px) {
   .md\:grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .md\:px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:mt-20 {
+    margin-top: 5rem;
+  }
+
+  .lg\:w-9\/12 {
+    width: 75%;
+  }
+
+  .lg\:flex-grow {
+    flex-grow: 1;
+  }
+
+  .lg\:basis-48 {
+    flex-basis: 12rem;
+  }
+
+  .lg\:basis-full {
+    flex-basis: 100%;
+  }
+
+  .lg\:gap-4 {
+    gap: 1rem;
+  }
+
+  .lg\:px-16 {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+
+  .lg\:text-big {
+    font-size: 3.6rem;
+    line-height: 4rem;
+  }
+
+  .lg\:text-medium {
+    font-size: 2rem;
+  }
+
+  .lg\:text-small {
+    font-size: 1.4rem;
   }
 }
