@@ -41,15 +41,16 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Miriam+Libre:wght@400..700&display=swap" rel="stylesheet" />
   </head>
-  <body class="flex size-full flex-col gap-20 px-16 py-6">
+  <body class="flex size-full flex-col gap-20 overflow-auto px-16">
     <header>
-      <nav id="navi" class="flex w-full flex-row justify-center gap-4">
+      <nav id="navi" class="mt-6 flex w-full flex-row justify-center gap-4">
         <a
           class="cursor-pointer rounded-lg border-[1px] border-black bg-white p-1 px-4 font-narkiss text-small text-gray-950 blur-[0.04rem] contrast-200 dark:bg-black dark:text-white"
           data-path="{{ url_for('revamp_index') }}"
           hx-target="#main"
           hx-get="{{ url_for('revamp_index_fragment') }}"
           hx-push-url="{{ url_for('revamp_index') }}"
+          href="{{ url_for('revamp_index') }}"
           hx-swap="innerHTML"
           >about</a
         >
@@ -59,6 +60,7 @@
           hx-target="#main"
           hx-get="{{ url_for('revamp_designs_fragment') }}"
           hx-push-url="{{ url_for('revamp_designs') }}"
+          href="{{ url_for('revamp_designs') }}"
           hx-swap="innerHTML"
           >design work</a
         >
@@ -68,13 +70,14 @@
           hx-target="#main"
           hx-get="{{ url_for('revamp_projects_fragment') }}"
           hx-push-url="{{ url_for('revamp_projects') }}"
+          href="{{ url_for('revamp_projects') }}"
           hx-swap="innerHTML"
           >projects</a
         >
       </nav>
     </header>
     <main id="main" class="flex-shrink-0 flex-grow basis-auto">{% include page %}</main>
-    <footer>
+    <footer class="pb-6">
       <p class="font-narkiss text-small"><b>contact me:</b> tooshdsgn@gmail.com | @Instagram</p>
     </footer>
   </body>
