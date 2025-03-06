@@ -1,33 +1,33 @@
-<div class="mb-2 mt-0 flex h-full max-w-[1300px] flex-col lg:mb-8">
-  <div class="max-h-0 flex-grow basis-full lg:max-h-full"></div>
-  <h1 id="dsgn" class="text-very-small font-narkiss underline lg:text-medium">toosh.dsgn</h1>
-  <p id="p1" class="text-black-600 text-medium-small mt-2 font-narkiss uppercase blur-[0.04rem] contrast-200 lg:text-big">
+<div class="mb-2 mt-0 flex max-w-[1300px] flex-col lg:mb-8">
+  <div class="lg:h-full"></div>
+  <h1 id="dsgn" class="font-narkiss text-very-small underline lg:text-medium">toosh.dsgn</h1>
+  <p id="p1" class="text-black-600 mt-2 font-narkiss text-medium-small uppercase blur-[0.04rem] contrast-200 lg:text-big">
     I'm <b>Itamar</b>, a freelance <b>Graphic/Motion Designer</b> from TLV.
   </p>
   <p
     id="p2"
-    class="text-black-600 text-medium-small mt-10 font-narkiss uppercase blur-[0.04rem] contrast-200 lg:mt-20 lg:text-big"
+    class="text-black-600 mt-4 font-narkiss text-medium-small uppercase blur-[0.04rem] contrast-200 lg:mt-20 lg:text-big"
   >
     Mainly focusing on <b>Motion Design, Video making & Animation</b>, but enjoy making and co-making all sorts of art and design.
   </p>
 </div>
 
 <script>
-  // document.addEventListener("DOMContentLoaded", async () => {
-  //   const logotext = document.getElementById("dsgn");
-  //   logotext.classList.remove("underline");
-  //   const paragraph = document.getElementById("p1");
-  //   const paragraph2 = document.getElementById("p2");
-  //   wrapCharactersWithSpans(logotext);
-  //   wrapCharactersWithSpans(paragraph);
-  //   wrapCharactersWithSpans(paragraph2);
-  //   await underliner(logotext, 16);
-  //   await typewriter(logotext, 30, 0, false);
-  //   logotext.lastChild.classList.remove("blinking-cursor");
-  //   await typewriter(paragraph, 8, 80);
-  //   await bolden(paragraph, 8, 20);
-  //   paragraph.lastChild.classList.remove("blinking-cursor");
-  //   await typewriter(paragraph2, 8, 80);
-  //   await bolden(paragraph2, 8, 20);
-  // });
+  document.addEventListener("DOMContentLoaded", async () => {
+    const logotext = document.getElementById("dsgn");
+    logotext.classList.remove("underline");
+    const paragraph = document.getElementById("p1");
+    const paragraph2 = document.getElementById("p2");
+    wrapCharactersWithSpans(logotext);
+    wrapCharactersWithSpans(paragraph);
+    wrapCharactersWithSpans(paragraph2);
+    await underliner(logotext, 16);
+    await typewriter(logotext, 30, 0, false);
+    logotext.lastChild.classList.remove("blinking-cursor");
+    await typewriter(paragraph, 8, 80);
+    await bolden(paragraph, 8, 20);
+    paragraph.lastChild.classList.remove("blinking-cursor");
+    await typewriter(paragraph2, 8, 80);
+    await bolden(paragraph2, 8, 20);
+  });
 </script>

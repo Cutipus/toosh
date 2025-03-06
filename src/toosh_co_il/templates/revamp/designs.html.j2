@@ -1,28 +1,26 @@
-<div class="flex flex-shrink-0 flex-grow basis-auto">
-  <div id="designs-grid" class="grid flex-grow grid-cols-1 gap-4 overflow-auto px-44 pb-4 pt-8 lg:grid-cols-4 lg:px-4">
-    {% for col in columns %}
-      <div class="flex flex-col space-y-4">
-        {% for project_name, size in col %}
-          <div
-            class="bg-svg"
-            data-project-name="{{ project_name }}"
-            data-size-width="{{ size[0] }}"
-            data-size-height="{{ size[1] }}"
-            style="aspect-ratio: {{ size[0] }} / {{ size[1] }};"
-          >
-            <img
-              src="{{ url_for('static', filename='projects/' + project_name + '/preview.webp') }}"
-              width="{{ size[0] }}"
-              height="{{ size[1] }}"
-              alt="{{ project_name }}"
-              class="size-full opacity-0 transition-opacity duration-300"
-              onload="this.classList.remove('opacity-0');"
-            />
-          </div>
-        {% endfor %}
-      </div>
-    {% endfor %}
-  </div>
+<div id="designs-grid" class="grid grid-cols-1 gap-4 px-10 pb-4 pt-8 lg:grid-cols-4 lg:px-4">
+  {% for col in columns %}
+    <div class="flex flex-col space-y-4">
+      {% for project_name, size in col %}
+        <div
+          class="bg-svg"
+          data-project-name="{{ project_name }}"
+          data-size-width="{{ size[0] }}"
+          data-size-height="{{ size[1] }}"
+          style="aspect-ratio: {{ size[0] }} / {{ size[1] }};"
+        >
+          <img
+            src="{{ url_for('static', filename='projects/' + project_name + '/preview.webp') }}"
+            width="{{ size[0] }}"
+            height="{{ size[1] }}"
+            alt="{{ project_name }}"
+            class="size-full opacity-0 transition-opacity duration-300"
+            onload="this.classList.remove('opacity-0');"
+          />
+        </div>
+      {% endfor %}
+    </div>
+  {% endfor %}
 </div>
 
 <div id="modal" class="fixed left-0 top-0 z-40 hidden h-full w-full overflow-auto bg-black/80">

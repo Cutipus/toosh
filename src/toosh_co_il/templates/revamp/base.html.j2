@@ -41,7 +41,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Miriam+Libre:wght@400..700&display=swap" rel="stylesheet" />
   </head>
-  <body class="flex size-full min-h-screen snap-y snap-mandatory flex-col gap-2 overflow-y-scroll px-8 py-6 lg:gap-4 lg:px-16">
+  <body class="flex min-h-screen flex-col gap-2 overflow-x-clip px-8 py-6 lg:gap-4 lg:px-16">
     <header>
       <nav id="navi" class="flex w-full flex-row justify-center gap-4">
         <a
@@ -76,7 +76,7 @@
         >
       </nav>
     </header>
-    <main id="main" class="flex-shrink-0 flex-grow basis-auto">{% include page %}</main>
+    <main id="main" class="flex flex-grow basis-auto">{% include page %}</main>
     <footer class="">
       <p class="font-narkiss text-very-small lg:text-small"><b>contact me:</b> tooshdsgn@gmail.com | @Instagram</p>
     </footer>
