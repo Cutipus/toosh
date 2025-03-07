@@ -1,6 +1,6 @@
 <div class="mb-2 mt-0 flex max-w-[1300px] flex-col pt-8 lg:mb-8">
   <section id="hello" class="lg:h-full">
-    <p id="hellop" class="text-gigantic hidden font-narkiss"><b>Hello there!!</b></p>
+    <p id="hellop" class="hidden font-narkiss text-gigantic"><b>Hello there!!</b></p>
   </section>
   <section id="about">
     <h1 id="dsgn" class="font-narkiss text-very-small font-bold underline lg:text-medium">toosh.dsgn</h1>
@@ -44,7 +44,7 @@
     await typewriter(paragraph, 8, 80);
     await bolden(paragraph, 8, 20);
     paragraph.lastChild.classList.remove("blinking-cursor");
-    await typewriter(paragraph2, 8, 80);
-    await bolden(paragraph2, 8, 20);
+    await typewriterWords(paragraph2, 10);
+    await boldenWords(paragraph2, 8);
   });
 </script>

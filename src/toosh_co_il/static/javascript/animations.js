@@ -235,6 +235,10 @@ function typewriterWords(elem, interval) {
         }
         currentChar.classList.remove("text-transparent");
         index++;
+        if (index >= children.length) {
+          resolve();
+          return;
+        }
       }
 
       requestAnimationFrame(step);
@@ -276,6 +280,10 @@ function boldenWords(elem, interval) {
           }
         }
         index++;
+        if (index >= children.length) {
+          resolve();
+          return;
+        }
       }
 
       requestAnimationFrame(step);
