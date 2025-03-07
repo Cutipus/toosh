@@ -233,6 +233,7 @@ function typewriterWords(elem, interval) {
           }
           currentChar = children[index];
         }
+        currentChar.classList.remove("text-transparent");
         index++;
       }
 
