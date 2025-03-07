@@ -9,6 +9,7 @@ module.exports = {
   ],
   theme: {
     fontSize: {
+      gigantic: ['25rem', {lineHeight: '20rem'}],
       big: ['3.6rem', {lineHeight: '4rem'}],
       medium: ['2rem'],
       "medium-small": ['1.6rem'],

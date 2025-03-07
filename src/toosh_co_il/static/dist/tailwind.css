@@ -1111,6 +1111,11 @@ video {
   line-height: 4rem;
 }
 
+.text-gigantic {
+  font-size: 25rem;
+  line-height: 20rem;
+}
+
 .text-medium {
   font-size: 2rem;
 }

@@ -1,26 +1,43 @@
-<div class="mb-2 mt-0 flex max-w-[1300px] flex-col lg:mb-8">
-  <div class="lg:h-full"></div>
-  <h1 id="dsgn" class="font-narkiss text-very-small underline lg:text-medium">toosh.dsgn</h1>
-  <p id="p1" class="text-black-600 mt-2 font-narkiss text-medium-small uppercase blur-[0.04rem] contrast-200 lg:text-big">
-    I'm <b>Itamar</b>, a freelance <b>Graphic/Motion Designer</b> from TLV.
-  </p>
-  <p
-    id="p2"
-    class="text-black-600 mt-4 font-narkiss text-medium-small uppercase blur-[0.04rem] contrast-200 lg:mt-20 lg:text-big"
-  >
-    Mainly focusing on <b>Motion Design, Video making & Animation</b>, but enjoy making and co-making all sorts of art and design.
-  </p>
+<div class="mb-2 mt-0 flex max-w-[1300px] flex-col pt-8 lg:mb-8">
+  <section id="hello" class="lg:h-full">
+    <p id="hellop" class="text-gigantic hidden font-narkiss"><b>Hello there!!</b></p>
+  </section>
+  <section id="about">
+    <h1 id="dsgn" class="font-narkiss text-very-small font-bold underline lg:text-medium">toosh.dsgn</h1>
+    <p id="p1" class="text-black-600 mt-2 font-narkiss text-medium-small uppercase blur-[0.04rem] contrast-200 lg:text-big">
+      I'm <b>Itamar</b>, a freelance <b>Graphic/Motion Designer</b> from TLV.
+    </p>
+    <p
+      id="p2"
+      class="text-black-600 mt-4 font-narkiss text-medium-small uppercase blur-[0.04rem] contrast-200 lg:mt-20 lg:text-big"
+    >
+      Mainly focusing on <b>Motion Design, Video making & Animation</b>, but enjoy making and co-making all sorts of art and
+      design.
+    </p>
+  </section>
 </div>
 
 <script>
   document.addEventListener("DOMContentLoaded", async () => {
+    const helloDiv = document.getElementById("hello");
+    const aboutDiv = document.getElementById("about");
+    const hellothere = document.getElementById("hellop");
     const logotext = document.getElementById("dsgn");
-    logotext.classList.remove("underline");
     const paragraph = document.getElementById("p1");
     const paragraph2 = document.getElementById("p2");
+    aboutDiv.classList.add("hidden");
+    logotext.classList.remove("underline");
+    wrapCharactersWithSpans(hellothere);
     wrapCharactersWithSpans(logotext);
     wrapCharactersWithSpans(paragraph);
     wrapCharactersWithSpans(paragraph2);
+
+    hellothere.classList.remove("hidden");
+    await typewriter(hellothere, 80, 0, false);
+    await bolden(hellothere, 80);
+    await untypewriter(hellothere, 60);
+    hellothere.classList.add("hidden");
+    aboutDiv.classList.remove("hidden");
     await underliner(logotext, 16);
     await typewriter(logotext, 30, 0, false);
     logotext.lastChild.classList.remove("blinking-cursor");
