@@ -242,3 +242,44 @@ function typewriterWords(elem, interval) {
     requestAnimationFrame(step);
   });
 }
+
+function boldenWords(elem, interval) {
+  return new Promise((resolve) => {
+    const children = Array.from(elem.childNodes);
+    let index = 0;
+    let lastUpdateTimestamp;
+    let wordsToBolden;
+
+    function step(timestamp) {
+      if (lastUpdateTimestamp === undefined) {
+        wordsToBolden = 1;
+      } else {
+        const elapsedTime = Math.floor(timestamp - lastUpdateTimestamp);
+        wordsToBolden = Math.floor(elapsedTime / interval);
+      }
+
+      if (wordsToBolden > 0) {
+        lastUpdateTimestamp = timestamp;
+      }
+
+      for (; wordsToBolden > 0; wordsToBolden--) {
+        let boldenedWord = false;
+        while (! (children[index].textContent === " " && boldenedWord)) {
+          if (children[index].dataset.bold === "true") {
+            boldenedWord = true;
+            children[index].classList.add("font-bold");
+          }
+          index++;
+          if (index >= children.length) {
+            resolve();
+            return;
+          }
+        }
+        index++;
+      }
+
+      requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  });
+}

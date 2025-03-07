@@ -7,16 +7,21 @@
   <body>
     <p id="p1" class="text-big">Hello world! Hi Hi Hi Hello</p>
     <p id="p2" class="text-big">Hello world! Hi Hi Hi Hello</p>
+    <p id="p3" class="text-big">Hello <b>world!</b> Hi <b>hello world hi hi hi hi hi </b> <b>Hi</b>Hi Hello</p>
     <script src="{{ url_for('static', filename='javascript/animations.js') }}"></script>
     <script>
       document.addEventListener("DOMContentLoaded", async () => {
         const p1 = document.getElementById("p1");
         const p2 = document.getElementById("p2");
+        const p3 = document.getElementById("p3");
         wrapCharactersWithSpans(p1);
         wrapCharactersWithSpans(p2);
+        wrapCharactersWithSpans(p3);
 
-        await typewriter(p1, 25);
-        await typewriterWords(p2, 100);
+        // await typewriter(p1, 25);
+        // await typewriterWords(p2, 100);
+        await typewriter(p3, 6);
+        await boldenWords(p3, 60);
       });
     </script>
   </body>
