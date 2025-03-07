@@ -36,7 +36,7 @@ function typewriter(elem, interval, flux = 0, blinkingCursor = true) {
     const originalInterval = interval;
     const children = Array.from(elem.childNodes);
     let index = 0;
-    var lastUpdateTimestamp;
+    let lastUpdateTimestamp;
     function step(timestamp) {
       if (index >= children.length) {
         resolve();
@@ -174,7 +174,7 @@ function bolden(elem, interval, flux = 0) {
       const fluctuation = getRandomIntInclusive(0, flux);
       interval += fluctuation;
 
-      var charsToBolden;
+      let charsToBolden;
       if (!lastUpdateTimestamp) {
         charsToBolden = 1;
       } else {
@@ -199,6 +199,45 @@ function bolden(elem, interval, flux = 0) {
       requestAnimationFrame(step);
     }
 
+    requestAnimationFrame(step);
+  });
+}
+
+function typewriterWords(elem, interval) {
+  return new Promise((resolve) => {
+    const children = Array.from(elem.childNodes);
+    let index = 0;
+    let lastUpdateTimestamp;
+    let wordsToReveal;
+
+    function step(timestamp) {
+      if (lastUpdateTimestamp === undefined) {
+        wordsToReveal = 1;
+      } else {
+        const elapsedTime = Math.floor(timestamp - lastUpdateTimestamp);
+        wordsToReveal = Math.floor(elapsedTime / interval);
+      }
+
+      if (wordsToReveal > 0) {
+        lastUpdateTimestamp = timestamp;
+      }
+
+      for (; wordsToReveal > 0; wordsToReveal--) {
+        let currentChar = children[index];
+        while (currentChar.textContent != " ") {
+          currentChar.classList.remove("text-transparent");
+          index++;
+          if (index >= children.length) {
+            resolve();
+            return;
+          }
+          currentChar = children[index];
+        }
+        index++;
+      }
+
+      requestAnimationFrame(step);
+    }
     requestAnimationFrame(step);
   });
 }
