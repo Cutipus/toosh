@@ -1,0 +1,18 @@
+<svg width="0" height="0" xmlns="http://www.w3.org/2000/svg"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <defs>
+        <filter id="displace-big" filterUnits="userSpaceOnUse">
+            <feTurbulence type="turbulence" baseFrequency="0.1 0.1" numOctaves="9" seed="16"
+                result="turbulence" />
+            <feDisplacementMap in="SourceGraphic" in2="turbulence" scale="4" xChannelSelector="R"
+                yChannelSelector="G" />
+        </filter>
+        <filter id="displace-small" filterUnits="userSpaceOnUse">
+            <feTurbulence type="turbulence" baseFrequency="0.9" numOctaves="2"
+                seed="16"
+                result="turbulence" />
+            <feDisplacementMap in="SourceGraphic" in2="turbulence" scale="2.4" xChannelSelector="R"
+                yChannelSelector="G" />
+        </filter>
+    </defs>
+</svg>

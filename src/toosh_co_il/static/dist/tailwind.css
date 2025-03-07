@@ -554,6 +554,14 @@ video {
   display: none;
 }
 
+.displace-big {
+  filter: url("/static/filters.svg#displace-big");
+}
+
+.displace-small {
+  filter: url("/static/filters.svg#displace-small");
+}
+
 .bg-svg {
   background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCAyNCAyNCI+CiAgPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMTAiIHN0cm9rZT0iI2FhYSIgc3Ryb2tlLXdpZHRoPSI0Ij48L2NpcmNsZT4KICA8cGF0aCBmaWxsPSIjNTU1IiBkPSJNNCAxMmE4IDggMCAwMTgtOHY0YTQgNCAwIDAwLTQgNEg0eiI+CiAgICA8YW5pbWF0ZVRyYW5zZm9ybSBhdHRyaWJ1dGVOYW1lPSJ0cmFuc2Zvcm0iIHR5cGU9InJvdGF0ZSIgZnJvbT0iMCAxMiAxMiIgdG89IjM2MCAxMiAxMiIgZHVyPSIxcyIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiIC8+CiAgPC9wYXRoPgo8L3N2Zz4K");
   background-size: 20px;

@@ -128,6 +128,11 @@ def test_underline_effect():
     return render_template("test/text-effects/underline.html.j2")
 
 
+@app.route("/test/text-effects/displacement")
+def test_displacement_effect():
+    return render_template("test/text-effects/displacement.html.j2")
+
+
 @app.route("/test/scrolling")
 def test_scrolling():
     return render_template("test/scrolling/basic.html.j2")
