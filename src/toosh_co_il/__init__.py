@@ -40,45 +40,96 @@ columns_with_dimensions = [[(name, projects_data[name]) for name in col] for col
 
 # Standard Routes
 @app.route("/")
-def index_fullpage() -> str:
-    return render_template("base.html.j2", title="Toosh", page="index.html.j2", columns=columns_with_dimensions)
+def revamp_index():
+    return render_template("revamp/base.html.j2", page="revamp/index.html.j2")
 
 
 @app.route("/fragments/index")
-def index_fragment() -> str:
-    return render_template("index.html.j2", columns=columns_with_dimensions)
+def revamp_index_fragment():
+    return render_template("revamp/index.html.j2")
 
 
-@app.route("/fragments/image-focus/<project_name>")
-def image_focus_fragment(project_name: str):
+@app.route("/designs")
+def revamp_designs():
+    return render_template("revamp/base.html.j2", page="revamp/designs.html.j2", columns=columns_with_dimensions)
+
+
+@app.route("/fragments/designs")
+def revamp_designs_fragment():
+    return render_template("revamp/designs.html.j2", columns=columns_with_dimensions)
+
+
+@app.route("/projects")
+def revamp_projects():
+    return render_template("revamp/base.html.j2", page="revamp/projects.html.j2")
+
+
+@app.route("/fragments/projects")
+def revamp_projects_fragment():
+    return render_template("revamp/projects.html.j2")
+
+
+@app.route("/image-focus/<project_name>")
+def revamp_image_focus_fragment(project_name: str):
     project_name = project_name.lower()
     if project_name not in projects_data:
         abort(404)
     return render_template("image-focus.html.j2", project_name=project_name, size=projects_data[project_name])
 
 
-@app.route("/image-focus/<project_name>")
-def image_focus_fullpage(project_name: str):
+@app.route("/fragments/image-focus/<project_name>")
+def revamp_image_focus_fullpage(project_name: str):
     project_name = project_name.lower()
     if project_name not in projects_data:
         abort(404)
     return render_template(
-        "base.html.j2",
-        title="Toosh",
+        "revamp/base.html.j2",
         page="image-focus.html.j2",
         project_name=project_name,
         size=projects_data[project_name],
     )
 
 
-@app.route("/projects")
-def projects_fullpage():
-    return render_template("base.html.j2", title="Projects", page="projects.html.j2")
+# @app.route("/")
+# def index_fullpage() -> str:
+#     return render_template("base.html.j2", title="Toosh", page="index.html.j2", columns=columns_with_dimensions)
 
 
-@app.route("/fragments/projects")
-def projects_fragment() -> str:
-    return render_template("projects.html.j2")
+# @app.route("/fragments/index")
+# def index_fragment() -> str:
+#     return render_template("index.html.j2", columns=columns_with_dimensions)
+
+
+# @app.route("/fragments/image-focus/<project_name>")
+# def image_focus_fragment(project_name: str):
+#     project_name = project_name.lower()
+#     if project_name not in projects_data:
+#         abort(404)
+#     return render_template("image-focus.html.j2", project_name=project_name, size=projects_data[project_name])
+
+
+# @app.route("/image-focus/<project_name>")
+# def image_focus_fullpage(project_name: str):
+#     project_name = project_name.lower()
+#     if project_name not in projects_data:
+#         abort(404)
+#     return render_template(
+#         "base.html.j2",
+#         title="Toosh",
+#         page="image-focus.html.j2",
+#         project_name=project_name,
+#         size=projects_data[project_name],
+#     )
+
+
+# @app.route("/projects")
+# def projects_fullpage():
+#     return render_template("base.html.j2", title="Projects", page="projects.html.j2")
+
+
+# @app.route("/fragments/projects")
+# def projects_fragment() -> str:
+#     return render_template("projects.html.j2")
 
 
 # Tests
@@ -139,52 +190,3 @@ def test_scrolling():
 
 
 # Revamp links
-@app.route("/revamp")
-def revamp_index():
-    return render_template("revamp/base.html.j2", page="revamp/index.html.j2")
-
-
-@app.route("/revamp/fragments/index")
-def revamp_index_fragment():
-    return render_template("revamp/index.html.j2")
-
-
-@app.route("/revamp/designs")
-def revamp_designs():
-    return render_template("revamp/base.html.j2", page="revamp/designs.html.j2", columns=columns_with_dimensions)
-
-
-@app.route("/revamp/fragments/designs")
-def revamp_designs_fragment():
-    return render_template("revamp/designs.html.j2", columns=columns_with_dimensions)
-
-
-@app.route("/revamp/projects")
-def revamp_projects():
-    return render_template("revamp/base.html.j2", page="revamp/projects.html.j2")
-
-
-@app.route("/revamp/fragments/projects")
-def revamp_projects_fragment():
-    return render_template("revamp/projects.html.j2")
-
-
-@app.route("/revamp/image-focus/<project_name>")
-def revamp_image_focus_fragment(project_name: str):
-    project_name = project_name.lower()
-    if project_name not in projects_data:
-        abort(404)
-    return render_template("image-focus.html.j2", project_name=project_name, size=projects_data[project_name])
-
-
-@app.route("/revamp/fragments/image-focus/<project_name>")
-def revamp_image_focus_fullpage(project_name: str):
-    project_name = project_name.lower()
-    if project_name not in projects_data:
-        abort(404)
-    return render_template(
-        "revamp/base.html.j2",
-        page="image-focus.html.j2",
-        project_name=project_name,
-        size=projects_data[project_name],
-    )
