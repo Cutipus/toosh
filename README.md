@@ -51,11 +51,15 @@ User=myname
 Group=www-data
 WorkingDirectory=/home/myname/sitename
 Environment="Path=/home/myname/sitename/.venv/bin"
-ExecStart=/home/myname/sitename/.venv/bin/gunicorn --workers 3 --bind unix:/home/myname/sitename/sitename.sock -m 007 --reload src.wsgi:app
+ExecStart=/home/myname/sitename/.venv/bin/gunicorn --workers 3 --bind unix:/home/myname/sitename/sitename.sock -m 007 src.wsgi:app
 
 [Install]
 WantedBy=multi-user.target
 ```
+
+## Auto restart systemd with git hooks
+edit `/myname/sitename/.git/hooks/post-update` and add the following line:
+`sudo systemctl restart sitename`
 
 ## Start it!
 `sudo systemctl enable sitename`
