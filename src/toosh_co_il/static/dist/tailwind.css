@@ -971,6 +971,10 @@ video {
   border-radius: 0.5rem;
 }
 
+.rounded-xl {
+  border-radius: 0.75rem;
+}
+
 .border {
   border-width: 1px;
 }
@@ -1268,9 +1272,19 @@ video {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
-  .md\:px-4 {
-    padding-left: 1rem;
-    padding-right: 1rem;
+  .md\:px-2 {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  .md\:px-0 {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  .md\:px-1 {
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
   }
 }
 
