@@ -9,7 +9,7 @@ Lets put it in `/home/myname/sitename`
 ## Set the virtual env
 `python3 -m venv .venv`
 `source .venv/bin/activate`
-`python3 -m pip install -e .`
+`python3 -m pip install .`
 The `-e` is necessary so that live updates will automagically be reloaded on the server.
 This way, whenever you push to the VPS, it automatically updates the package.
 `python3 -m pip install uvicorn`
@@ -58,8 +58,13 @@ WantedBy=multi-user.target
 ```
 
 ## Auto restart systemd with git hooks
-edit `/myname/sitename/.git/hooks/post-update` and add the following line:
-`sudo systemctl restart sitename`
+edit `/myname/sitename/.git/hooks/post-update` and add the following lines:
+```git-hook
+cd /home/myname/sitename
+source .venv/bin/activate
+pip install --no-cache-dir
+sudo systemctl restart sitename
+```
 
 ## Start it!
 `sudo systemctl enable sitename`
