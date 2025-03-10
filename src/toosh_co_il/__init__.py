@@ -1,5 +1,6 @@
 import mimetypes
-from flask import Flask, abort, render_template
+import time
+from flask import Flask, abort, make_response, render_template
 import PIL.Image
 import pathlib
 
@@ -46,7 +47,12 @@ def revamp_index():
 
 @app.route("/fragments/index")
 def revamp_index_fragment():
-    return render_template("revamp/index.html.j2")
+    html = render_template("revamp/index.html.j2")
+    response = make_response(html)
+    cache_duration = 360
+    response.headers["Cache-Control"] = f"public, max-age={cache_duration}"
+    response.headers["Expires"] = str(int(time.time() + cache_duration))
+    return response
 
 
 @app.route("/designs")
@@ -56,7 +62,12 @@ def revamp_designs():
 
 @app.route("/fragments/designs")
 def revamp_designs_fragment():
-    return render_template("revamp/designs.html.j2", columns=columns_with_dimensions)
+    html = render_template("revamp/designs.html.j2", columns=columns_with_dimensions)
+    response = make_response(html)
+    cache_duration = 360
+    response.headers["Cache-Control"] = f"public, max-age={cache_duration}"
+    response.headers["Expires"] = str(int(time.time() + cache_duration))
+    return response
 
 
 @app.route("/projects")
@@ -66,7 +77,12 @@ def revamp_projects():
 
 @app.route("/fragments/projects")
 def revamp_projects_fragment():
-    return render_template("revamp/projects.html.j2")
+    html = render_template("revamp/projects.html.j2")
+    response = make_response(html)
+    cache_duration = 360
+    response.headers["Cache-Control"] = f"public, max-age={cache_duration}"
+    response.headers["Expires"] = str(int(time.time() + cache_duration))
+    return response
 
 
 @app.route("/image-focus/<project_name>")
@@ -151,7 +167,9 @@ def test_transition_end_fullpage():
 
 @app.route("/test/transition/fragments/end")
 def test_transition_end_fragment():
-    return render_template("test/transition/end.html.j2")
+    return render_template(
+        "test/transition/end.html.j2",
+    )
 
 
 @app.route("/test/modal")
