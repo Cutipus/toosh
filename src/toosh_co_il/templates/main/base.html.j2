@@ -8,9 +8,9 @@
     <meta name="keywords" content="Toosh" />
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" />
     <script src="{{ url_for('static', filename='dist/htmx.min.js') }}"></script>
-    <link rel="prefetch" href="{{ url_for('revamp_designs_fragment') }}" />
-    <link rel="prefetch" href="{{ url_for('revamp_index_fragment') }}" />
-    <link rel="prefetch" href="{{ url_for('revamp_projects_fragment') }}" />
+    <link rel="prefetch" href="{{ url_for('designs_fragment') }}" />
+    <link rel="prefetch" href="{{ url_for('index_fragment') }}" />
+    <link rel="prefetch" href="{{ url_for('projects_fragment') }}" />
     <link rel="stylesheet" href="{{ url_for('static', filename='dist/tailwind.css') }}" />
     <script defer>
       // nav colors
@@ -49,31 +49,31 @@
       <nav id="navi" class="flex w-full flex-row justify-center gap-4">
         <a
           class="cursor-pointer rounded-xl border-[1px] border-black bg-white p-1 font-narkiss text-very-small text-gray-950 blur-[0.04rem] contrast-200 dark:bg-black dark:text-white lg:text-small"
-          data-path="{{ url_for('revamp_index') }}"
+          data-path="{{ url_for('index') }}"
           hx-target="#main"
-          hx-get="{{ url_for('revamp_index_fragment') }}"
-          hx-push-url="{{ url_for('revamp_index') }}"
-          href="{{ url_for('revamp_index') }}"
+          hx-get="{{ url_for('index_fragment') }}"
+          hx-push-url="{{ url_for('index') }}"
+          href="{{ url_for('index') }}"
           hx-swap="innerHTML"
           >about</a
         >
         <a
           class="cursor-pointer rounded-xl border-[1px] border-black bg-white p-1 font-narkiss text-very-small text-gray-950 blur-[0.04rem] contrast-200 dark:bg-black dark:text-white lg:text-small"
-          data-path="{{ url_for('revamp_designs') }}"
+          data-path="{{ url_for('designs') }}"
           hx-target="#main"
-          hx-get="{{ url_for('revamp_designs_fragment') }}"
-          hx-push-url="{{ url_for('revamp_designs') }}"
-          href="{{ url_for('revamp_designs') }}"
+          hx-get="{{ url_for('designs_fragment') }}"
+          hx-push-url="{{ url_for('designs') }}"
+          href="{{ url_for('designs') }}"
           hx-swap="innerHTML"
           >design work</a
         >
         <a
           class="cursor-pointer rounded-xl border-[1px] border-black bg-white p-1 font-narkiss text-very-small text-gray-950 blur-[0.04rem] contrast-200 dark:bg-black dark:text-white lg:text-small"
-          data-path="{{ url_for('revamp_projects') }}"
+          data-path="{{ url_for('projects') }}"
           hx-target="#main"
-          hx-get="{{ url_for('revamp_projects_fragment') }}"
-          hx-push-url="{{ url_for('revamp_projects') }}"
-          href="{{ url_for('revamp_projects') }}"
+          hx-get="{{ url_for('projects_fragment') }}"
+          hx-push-url="{{ url_for('projects') }}"
+          href="{{ url_for('projects') }}"
           hx-swap="innerHTML"
           >projects</a
         >
