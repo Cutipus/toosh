@@ -59,7 +59,7 @@ module.exports = {
     }),
   ],
   safelist: [
-    'inverse',
+    'invert',
     "text-transparent",
   ],
 };

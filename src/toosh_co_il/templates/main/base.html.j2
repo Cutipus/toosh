@@ -1,45 +1,28 @@
 <!doctype html>
 <html lang="en">
-  <!-- Hello! -->
   <head>
+    <!-- Basic settings -->
     <title>Toosh</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Toosh website" />
     <meta name="keywords" content="Toosh" />
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" />
-    <script src="{{ url_for('static', filename='dist/htmx.min.js') }}"></script>
+
+    <!-- Styling -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='dist/tailwind.css') }}" />
+
+    <!-- Prefetch fragments -->
     <link rel="prefetch" href="{{ url_for('designs_fragment') }}" />
     <link rel="prefetch" href="{{ url_for('index_fragment') }}" />
     <link rel="prefetch" href="{{ url_for('projects_fragment') }}" />
-    <link rel="stylesheet" href="{{ url_for('static', filename='dist/tailwind.css') }}" />
-    <script defer>
-      // nav colors
-      document.addEventListener("DOMContentLoaded", updateActiveLink);
-      document.addEventListener("htmx:pushedIntoHistory", updateActiveLink);
-      document.addEventListener("htmx:load", updateActiveLink);
 
-      function updateActiveLink() {
-        const currentPath = window.location.pathname;
-
-        // Remove the active class from all nav links
-        document
-          .getElementById("navi")
-          .querySelectorAll("a")
-          .forEach((link) => {
-            link.classList.remove("invert");
-          });
-
-        // Add the active class to the link that matches the current path
-        const activeLinkIsCurrentLink = document.querySelector(`a[data-path="${currentPath}"]`);
-        if (activeLinkIsCurrentLink) {
-          activeLinkIsCurrentLink.classList.add("invert");
-        }
-      }
-    </script>
+    <!-- Scripts -->
+    <script src="{{ url_for('static', filename='dist/htmx.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='javascript/nav-links-colors.js') }}"></script>
     <script src="{{ url_for('static', filename='javascript/animations.js') }}"></script>
 
-    <!--external fonts-->
+    <!-- External fonts -->
     <link rel="stylesheet" href="https://use.typekit.net/qps5fsd.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
