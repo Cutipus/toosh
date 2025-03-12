@@ -16,11 +16,8 @@ function updateActiveLink() {
       link.classList.remove("invert");
     });
 
-  console.log(document.getElementById("navi"));
-  
   // Add the active class to the link that matches the current path
   const activeLinkIsCurrentLink = document.querySelector(`a[data-path="${currentPath}"]`);
-  console.log(activeLinkIsCurrentLink);
   
   if (activeLinkIsCurrentLink) {
     activeLinkIsCurrentLink.classList.add("invert");
