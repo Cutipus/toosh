@@ -1283,6 +1283,11 @@ video {
   .lg\:text-small {
     font-size: 1.4rem;
   }
+
+  .lg\:text-gigantic {
+    font-size: 25rem;
+    line-height: 20rem;
+  }
 }
 
 @media (min-width: 1280px) {
