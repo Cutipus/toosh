@@ -24,38 +24,8 @@
   {% endfor %}
 </div>
 
-<div id="modal" class="fixed left-0 top-0 z-40 hidden h-full w-full overflow-auto bg-black/80">
-  <div class="mt-1/2 border-gray-30 relative mx-auto w-4/5 max-w-4xl -translate-y-1/2 transform border bg-white">
-    <img id="modal-image" src="" alt="" class="block h-auto w-full" />
-  </div>
-  <div id="modal-overlay" class="fixed left-0 top-0 z-[-1] h-full w-full"></div>
+<div id="modal" class="hidden flex-grow bg-black/80 p-4">
+  <img id="modal-image" src="" alt="" class="mx-auto" />
 </div>
 
-<!-- <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const imageGrid = document.getElementById("designs-grid");
-    const modal = document.getElementById("modal");
-    const modalImage = document.getElementById("modal-image");
-    const modalOverlay = document.getElementById("modal-overlay");
-
-    imageGrid.addEventListener("click", (event) => {
-      console.log("click");
-
-      const target = event.target.closest(".bg-svg");
-
-      if (target) {
-        const projectName = target.dataset.projectName;
-        const sizeWidth = target.dataset.sizeWidth;
-        const sizeHeight = target.dataset.sizeWidth;
-
-        const imageUrl = `/static/projects/${projectName}/fullsize.webp`;
-        modalImage.src = imageUrl;
-        modalImage.alt = projectName;
-
-        modalImage.style.aspectRatio = `${sizeWidth} / ${sizeHeight}`;
-        modalImage.classList.remove("hidden");
-      }
-    });
-  });
-</script> -->
 <!-- Fragment end -->
