@@ -1,0 +1,18 @@
+<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dist/tailwind.css') }}" />
+    <title>Span Wrap Example</title>
+  </head>
+  <body>
+    <p id="p1" class="font-narkiss text-big">Hello world! Hi Hi Hi Hello</p>
+    <script src="{{ url_for('static', filename='javascript/animations.js') }}"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", async () => {
+        const p1 = document.getElementById("p1");
+        wrapCharactersWithSpans(p1, false);
+        paintingBold(p1);
+      });
+    </script>
+  </body>
+</html>

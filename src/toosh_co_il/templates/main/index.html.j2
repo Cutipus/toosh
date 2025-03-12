@@ -28,10 +28,10 @@
     const paragraph2 = document.getElementById("p2");
     aboutDiv.classList.add("hidden");
     logotext.classList.remove("underline");
-    wrapCharactersWithSpans(hellothere);
-    wrapCharactersWithSpans(logotext);
-    wrapCharactersWithSpans(paragraph);
-    wrapCharactersWithSpans(paragraph2);
+    wrapCharactersWithSpans(hellothere, true);
+    wrapCharactersWithSpans(logotext, true);
+    wrapCharactersWithSpans(paragraph, true);
+    wrapCharactersWithSpans(paragraph2, true);
 
     hellothere.classList.remove("hidden");
     await typewriter(hellothere, 80, 0, false);

@@ -202,6 +202,11 @@ def test_displacement_effect():
     return render_template("test/text-effects/displacement.html.j2")
 
 
+@app.route("/test/text-effects/hoverbold")
+def test_hoverbold():
+    return render_template("test/text-effects/hoverbold.html.j2")
+
+
 @app.route("/test/newlink")
 def test_newlink():
     return render_template("test/text-effects/displacement.html.j2")

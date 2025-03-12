@@ -5,18 +5,18 @@ function getRandomIntInclusive(min, max) {
   return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled); // The maximum is inclusive and the minimum is inclusive
 }
 
-function createCharSpan(char, bold) {
+function createCharSpan(char, bold, transparent) {
   const elem = document.createElement("span");
-  elem.classList.add("text-transparent");
+  if (transparent) elem.classList.add("text-transparent");
   elem.dataset.bold = bold;
   elem.textContent = char;
   return elem;
 }
 
-function wrapCharactersWithSpans(pTag) {
+function wrapCharactersWithSpans(pTag, transparent) {
   for (bTag of pTag.querySelectorAll("b")) {
     for (char of bTag.textContent) {
-      pTag.insertBefore(createCharSpan(char, true), bTag);
+      pTag.insertBefore(createCharSpan(char, true, transparent), bTag);
     }
     bTag.remove();
   }
@@ -24,7 +24,7 @@ function wrapCharactersWithSpans(pTag) {
   childNodes.forEach((node) => {
     if (node.nodeType === Node.TEXT_NODE) {
       for (char of node.textContent) {
-        pTag.insertBefore(createCharSpan(char, false), node);
+        pTag.insertBefore(createCharSpan(char, false, transparent), node);
       }
       node.remove();
     }
@@ -268,7 +268,7 @@ function boldenWords(elem, interval) {
 
       for (; wordsToBolden > 0; wordsToBolden--) {
         let boldenedWord = false;
-        while (! (children[index].textContent === " " && boldenedWord)) {
+        while (!(children[index].textContent === " " && boldenedWord)) {
           if (children[index].dataset.bold === "true") {
             boldenedWord = true;
             children[index].classList.add("font-bold");
@@ -290,4 +290,18 @@ function boldenWords(elem, interval) {
     }
     requestAnimationFrame(step);
   });
+}
+
+function paintingBold(element) {
+  for (const span of element.children) {
+    console.log(span);
+
+    span.addEventListener("mouseover", (event) => {
+      if (span.classList.contains("font-bold")) {
+        span.classList.remove("font-bold");
+      } else {
+        span.classList.add("font-bold");
+      }
+    });
+  }
 }
