@@ -26,19 +26,19 @@
     const logotext = document.getElementById("dsgn");
     const paragraph = document.getElementById("p1");
     const paragraph2 = document.getElementById("p2");
-    aboutDiv.classList.add("hidden");
+    // aboutDiv.classList.add("hidden");
     logotext.classList.remove("underline");
-    wrapCharactersWithSpans(hellothere, true);
+    // wrapCharactersWithSpans(hellothere, true);
     wrapCharactersWithSpans(logotext, true);
     wrapCharactersWithSpans(paragraph, true);
     wrapCharactersWithSpans(paragraph2, true);
 
-    hellothere.classList.remove("hidden");
-    await typewriter(hellothere, 80, 0, false);
-    await bolden(hellothere, 80);
-    await untypewriter(hellothere, 60);
-    hellothere.classList.add("hidden");
-    aboutDiv.classList.remove("hidden");
+    // hellothere.classList.remove("hidden");
+    // await typewriter(hellothere, 80, 0, false);
+    // await bolden(hellothere, 80);
+    // await untypewriter(hellothere, 60);
+    // hellothere.classList.add("hidden");
+    // aboutDiv.classList.remove("hidden");
     await underliner(logotext, 16);
     await typewriter(logotext, 30, 0, false);
     logotext.lastChild.classList.remove("blinking-cursor");
@@ -47,8 +47,8 @@
     paragraph.lastChild.classList.remove("blinking-cursor");
     await typewriterWords(paragraph2, 10);
     await boldenWords(paragraph2, 8);
-    paintingBold(paragraph);
-    paintingBold(paragraph2);
+    // paintingBold(paragraph);
+    // paintingBold(paragraph2);
   });
 </script>
 <!-- Fragment end -->
