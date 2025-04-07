@@ -8,8 +8,8 @@ document.addEventListener("click", (event) => {
   const modal = document.getElementById("modal");
   const modalImage = document.getElementById("modal-image");
 
-  imageGrid.classList.add("hidden");
   modal.classList.remove("hidden");
+  imageGrid.classList.add("hidden");
 
   const projectName = target.dataset.projectName;
   const sizeWidth = target.dataset.sizeWidth;
