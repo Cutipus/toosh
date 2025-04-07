@@ -42,6 +42,7 @@ columns_with_dimensions = [[(name, projects_data[name]) for name in col] for col
 # Standard Routes
 @app.route("/")
 def index():
+    return render_template("main/base.html.j2", page="main/under-construction.html.j2")
     return render_template("main/base.html.j2", page="main/index.html.j2")
 
 
