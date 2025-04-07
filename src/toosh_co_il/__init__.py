@@ -1,6 +1,6 @@
 import mimetypes
 import time
-from flask import Flask, abort, make_response, render_template
+from flask import Flask, abort, make_response, render_template, redirect
 import PIL.Image
 import pathlib
 
@@ -42,7 +42,7 @@ columns_with_dimensions = [[(name, projects_data[name]) for name in col] for col
 # Standard Routes
 @app.route("/")
 def index():
-    return render_template("main/base.html.j2", page="main/under-construction.html.j2")
+    return redirect("/designs")
     return render_template("main/base.html.j2", page="main/index.html.j2")
 
 
