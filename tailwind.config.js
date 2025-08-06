@@ -11,7 +11,7 @@ module.exports = {
       medium: ["2rem"],
       "medium-small": ["1.6rem"],
       small: ["1.4rem"],
-      "very-small": ["1rem"],
+      "very-small": ["14px"],
     },
     fontFamily: {
       narkiss: ['"miriam-libre"', "sans-serif"],

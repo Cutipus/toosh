@@ -1,8 +1,5 @@
 <!-- Index fragment -->
-<div class="mb-2 mt-0 flex max-w-[1300px] flex-col pt-8 lg:mb-8">
-  <section id="hello" class="lg:h-full">
-    <p id="hellop" class="hidden font-narkiss text-big lg:text-gigantic"><b>Hello there!!</b></p>
-  </section>
+<div class="flex max-w-[1300px] flex-col pt-8 lg:mb-8">
   <section id="about">
     <h1 id="dsgn" class="font-narkiss text-very-small font-bold underline lg:text-medium">toosh.dsgn</h1>
     <p id="p1" class="text-black-600 mt-2 font-narkiss text-medium-small uppercase blur-[0.04rem] contrast-200 lg:text-big">
@@ -18,37 +15,4 @@
   </section>
 </div>
 
-<script>
-  document.addEventListener("DOMContentLoaded", async () => {
-    const helloDiv = document.getElementById("hello");
-    const aboutDiv = document.getElementById("about");
-    const hellothere = document.getElementById("hellop");
-    const logotext = document.getElementById("dsgn");
-    const paragraph = document.getElementById("p1");
-    const paragraph2 = document.getElementById("p2");
-    // aboutDiv.classList.add("hidden");
-    logotext.classList.remove("underline");
-    // wrapCharactersWithSpans(hellothere, true);
-    wrapCharactersWithSpans(logotext, true);
-    wrapCharactersWithSpans(paragraph, true);
-    wrapCharactersWithSpans(paragraph2, true);
-
-    // hellothere.classList.remove("hidden");
-    // await typewriter(hellothere, 80, 0, false);
-    // await bolden(hellothere, 80);
-    // await untypewriter(hellothere, 60);
-    // hellothere.classList.add("hidden");
-    // aboutDiv.classList.remove("hidden");
-    await underliner(logotext, 16);
-    await typewriter(logotext, 30, 0, false);
-    logotext.lastChild.classList.remove("blinking-cursor");
-    await typewriter(paragraph, 8, 80);
-    await bolden(paragraph, 8, 20);
-    paragraph.lastChild.classList.remove("blinking-cursor");
-    await typewriterWords(paragraph2, 10);
-    await boldenWords(paragraph2, 8);
-    // paintingBold(paragraph);
-    // paintingBold(paragraph2);
-  });
-</script>
 <!-- Fragment end -->
