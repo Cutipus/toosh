@@ -13,13 +13,13 @@ function updateActiveLink() {
     .getElementById("navi")
     .querySelectorAll("a")
     .forEach((link) => {
-      link.classList.remove("invert");
+      link.dataset.selected = "false";
     });
 
   // Add the active class to the link that matches the current path
   const activeLinkIsCurrentLink = document.querySelector(`a[data-path="${currentPath}"]`);
-  
+
   if (activeLinkIsCurrentLink) {
-    activeLinkIsCurrentLink.classList.add("invert");
+    activeLinkIsCurrentLink.dataset.selected = "true";
   }
 }
