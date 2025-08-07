@@ -783,16 +783,8 @@ video {
   max-width: 100ch;
 }
 
-.max-w-\[1300px\] {
-  max-width: 1300px;
-}
-
 .max-w-md {
   max-width: 28rem;
-}
-
-.max-w-screen-lg {
-  max-width: 1024px;
 }
 
 .max-w-screen-xl {
@@ -1247,14 +1239,6 @@ video {
 }
 
 @media (min-width: 1024px) {
-  .lg\:mb-8 {
-    margin-bottom: 2rem;
-  }
-
-  .lg\:mt-20 {
-    margin-top: 5rem;
-  }
-
   .lg\:grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
@@ -1271,15 +1255,6 @@ video {
   .lg\:px-4 {
     padding-left: 1rem;
     padding-right: 1rem;
-  }
-
-  .lg\:text-big {
-    font-size: 3.6rem;
-    line-height: 4rem;
-  }
-
-  .lg\:text-medium {
-    font-size: 2rem;
   }
 
   .lg\:text-small {
