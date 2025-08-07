@@ -795,6 +795,10 @@ video {
   max-width: 36rem;
 }
 
+.max-w-prose {
+  max-width: 65ch;
+}
+
 .flex-grow {
   flex-grow: 1;
 }
@@ -921,6 +925,14 @@ video {
 
 .gap-4 {
   gap: 1rem;
+}
+
+.gap-10 {
+  gap: 2.5rem;
+}
+
+.gap-20 {
+  gap: 5rem;
 }
 
 .space-y-4 > :not([hidden]) ~ :not([hidden]) {
@@ -1101,8 +1113,16 @@ video {
   font-size: 14px;
 }
 
+.text-medium {
+  font-size: 2rem;
+}
+
 .font-bold {
   font-weight: 700;
+}
+
+.font-extrabold {
+  font-weight: 800;
 }
 
 .uppercase {
@@ -1148,6 +1168,11 @@ video {
 
 .blur-\[40\%\] {
   --tw-blur: blur(40%);
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
+.blur {
+  --tw-blur: blur(8px);
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
