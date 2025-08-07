@@ -871,10 +871,6 @@ video {
   scroll-snap-align: center;
 }
 
-.auto-cols-\[6rem\] {
-  grid-auto-columns: 6rem;
-}
-
 .auto-cols-\[8rem\] {
   grid-auto-columns: 8rem;
 }
@@ -1129,11 +1125,6 @@ video {
   text-transform: uppercase;
 }
 
-.text-gray-950 {
-  --tw-text-opacity: 1;
-  color: rgb(3 7 18 / var(--tw-text-opacity));
-}
-
 .text-transparent {
   color: transparent;
 }
@@ -1245,10 +1236,6 @@ video {
 
 .hover\:font-bold:hover {
   font-weight: 700;
-}
-
-.hover\:font-extrabold:hover {
-  font-weight: 800;
 }
 
 .hover\:underline:hover {
