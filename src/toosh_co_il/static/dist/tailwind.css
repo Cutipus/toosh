@@ -672,11 +672,6 @@ video {
   margin-right: auto;
 }
 
-.my-4 {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
-
 .mb-20 {
   margin-bottom: 5rem;
 }
@@ -740,8 +735,8 @@ video {
   height: 0.25rem;
 }
 
-.h-\[80dvh\] {
-  height: 80dvh;
+.h-\[85vh\] {
+  height: 85vh;
 }
 
 .h-\[89\%\] {
@@ -764,22 +759,6 @@ video {
   height: 100vh;
 }
 
-.h-\[85dvh\] {
-  height: 85dvh;
-}
-
-.h-\[82dvh\] {
-  height: 82dvh;
-}
-
-.h-\[80vh\] {
-  height: 80vh;
-}
-
-.h-\[85vh\] {
-  height: 85vh;
-}
-
 .min-h-screen {
   min-height: 100vh;
 }
@@ -800,8 +779,8 @@ video {
   width: 100%;
 }
 
-.max-w-\[100ch\] {
-  max-width: 100ch;
+.max-w-\[120ch\] {
+  max-width: 120ch;
 }
 
 .max-w-md {
@@ -814,18 +793,6 @@ video {
 
 .max-w-xl {
   max-width: 36rem;
-}
-
-.max-w-\[105ch\] {
-  max-width: 105ch;
-}
-
-.max-w-\[110ch\] {
-  max-width: 110ch;
-}
-
-.max-w-\[120ch\] {
-  max-width: 120ch;
 }
 
 .flex-grow {
@@ -900,10 +867,6 @@ video {
   scroll-snap-type: y var(--tw-scroll-snap-strictness);
 }
 
-.snap-mandatory {
-  --tw-scroll-snap-strictness: mandatory;
-}
-
 .snap-start {
   scroll-snap-align: start;
 }
@@ -944,8 +907,8 @@ video {
   justify-content: center;
 }
 
-.gap-0 {
-  gap: 0px;
+.gap-1 {
+  gap: 0.25rem;
 }
 
 .gap-2 {
@@ -958,10 +921,6 @@ video {
 
 .gap-4 {
   gap: 1rem;
-}
-
-.gap-1 {
-  gap: 0.25rem;
 }
 
 .space-y-4 > :not([hidden]) ~ :not([hidden]) {
@@ -982,20 +941,12 @@ video {
   overflow-x: clip;
 }
 
-.overflow-y-scroll {
-  overflow-y: scroll;
-}
-
 .rounded {
   border-radius: 0.25rem;
 }
 
 .rounded-lg {
   border-radius: 0.5rem;
-}
-
-.border-t {
-  border-top-width: 1px;
 }
 
 .bg-black {
@@ -1138,10 +1089,6 @@ video {
   line-height: 20rem;
 }
 
-.text-medium {
-  font-size: 2rem;
-}
-
 .text-medium-small {
   font-size: 1.6rem;
 }
@@ -1256,18 +1203,8 @@ video {
   content: var(--tw-content);
 }
 
-.before\:content-\[\'\/\'\]::before {
-  --tw-content: '/';
-  content: var(--tw-content);
-}
-
 .before\:content-\[\'\2022\'\]::before {
   --tw-content: '•';
-  content: var(--tw-content);
-}
-
-.before\:content-\[\'\|\'\]::before {
-  --tw-content: '|';
   content: var(--tw-content);
 }
 
@@ -1281,12 +1218,12 @@ video {
   background-color: rgb(220 38 38 / var(--tw-bg-opacity));
 }
 
-.hover\:font-extrabold:hover {
-  font-weight: 800;
-}
-
 .hover\:font-bold:hover {
   font-weight: 700;
+}
+
+.hover\:font-extrabold:hover {
+  font-weight: 800;
 }
 
 .hover\:opacity-100:hover {
@@ -1342,9 +1279,5 @@ video {
   .lg\:px-4 {
     padding-left: 1rem;
     padding-right: 1rem;
-  }
-
-  .lg\:text-small {
-    font-size: 1.4rem;
   }
 }
