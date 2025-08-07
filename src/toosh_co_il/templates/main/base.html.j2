@@ -33,7 +33,7 @@
     class="no-scrollbar flex min-h-screen flex-col gap-2 overflow-x-clip px-8 py-6 font-narkiss dark:bg-black dark:text-white lg:gap-4 lg:px-16"
   >
     <header class="sticky top-6">
-      <nav id="navi" class="grid w-full auto-cols-[8rem] grid-flow-col justify-center gap-32 text-center text-small">
+      <nav id="navi" class="grid w-full auto-cols-[8rem] grid-flow-col justify-center text-center text-small lg:gap-32">
         <a
           class="cursor-pointer hover:underline data-[selected=true]:font-extrabold"
           data-path="{{ url_for('index') }}"
@@ -67,7 +67,7 @@
       </nav>
     </header>
     <main id="main" class="flex flex-grow basis-auto">{% filter indent(width=6) %}{% include page %}{% endfilter %}</main>
-    <footer class="grid w-full auto-cols-[8rem] grid-flow-col justify-center gap-20 text-center text-small">
+    <footer class="grid w-full auto-cols-[8rem] grid-flow-col justify-center text-center text-small lg:gap-20">
       <a class="hover:font-bold" href="mailto:toosh.dsgn@gmail.com">Email</a>
       <a class="hover:font-bold" href="https://www.instagram.com/itamar669/">Instagram</a>
     </footer>

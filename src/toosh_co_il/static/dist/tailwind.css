@@ -1287,6 +1287,14 @@ video {
     gap: 1rem;
   }
 
+  .lg\:gap-32 {
+    gap: 8rem;
+  }
+
+  .lg\:gap-20 {
+    gap: 5rem;
+  }
+
   .lg\:px-16 {
     padding-left: 4rem;
     padding-right: 4rem;
