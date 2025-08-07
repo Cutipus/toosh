@@ -871,6 +871,18 @@ video {
   scroll-snap-align: center;
 }
 
+.auto-cols-\[6rem\] {
+  grid-auto-columns: 6rem;
+}
+
+.auto-cols-\[8rem\] {
+  grid-auto-columns: 8rem;
+}
+
+.grid-flow-col {
+  grid-auto-flow: column;
+}
+
 .grid-cols-1 {
   grid-template-columns: repeat(1, minmax(0, 1fr));
 }
@@ -1237,6 +1249,10 @@ video {
 
 .hover\:font-extrabold:hover {
   font-weight: 800;
+}
+
+.hover\:underline:hover {
+  text-decoration-line: underline;
 }
 
 .hover\:opacity-100:hover {

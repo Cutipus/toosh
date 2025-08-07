@@ -29,11 +29,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Miriam+Libre:wght@400..700&display=swap" rel="stylesheet" />
   </head>
-  <body class="no-scrollbar flex min-h-screen flex-col gap-2 overflow-x-clip px-8 py-6 lg:gap-4 lg:px-16">
+  <body
+    class="no-scrollbar flex min-h-screen flex-col gap-2 overflow-x-clip px-8 py-6 font-narkiss dark:bg-black dark:text-white lg:gap-4 lg:px-16"
+  >
     <header class="sticky top-6">
-      <nav id="navi" class="flex w-full flex-row justify-center gap-32">
+      <nav id="navi" class="grid w-full auto-cols-[8rem] grid-flow-col justify-center gap-32 text-center text-small">
         <a
-          class="cursor-pointer font-narkiss text-small text-gray-950 contrast-200 data-[selected=true]:font-extrabold dark:bg-black dark:text-white"
+          class="cursor-pointer hover:underline data-[selected=true]:font-extrabold"
           data-path="{{ url_for('index') }}"
           hx-target="#main"
           hx-get="{{ url_for('index_fragment') }}"
@@ -43,7 +45,7 @@
           >about</a
         >
         <a
-          class="cursor-pointer font-narkiss text-small text-gray-950 contrast-200 data-[selected=true]:font-extrabold dark:bg-black dark:text-white"
+          class="cursor-pointer hover:underline data-[selected=true]:font-extrabold"
           data-path="{{ url_for('designs') }}"
           hx-target="#main"
           hx-get="{{ url_for('designs_fragment') }}"
@@ -53,7 +55,7 @@
           >gallery</a
         >
         <a
-          class="cursor-pointer font-narkiss text-small text-gray-950 contrast-200 data-[selected=true]:font-extrabold dark:bg-black dark:text-white"
+          class="cursor-pointer hover:underline data-[selected=true]:font-extrabold"
           data-path="{{ url_for('projects') }}"
           hx-target="#main"
           hx-get="{{ url_for('projects_fragment') }}"
@@ -65,11 +67,9 @@
       </nav>
     </header>
     <main id="main" class="flex flex-grow basis-auto">{% filter indent(width=6) %}{% include page %}{% endfilter %}</main>
-    <footer class="w-full">
-      <p class="text-center font-narkiss text-small">
-        <b>contact me:</b> <a class="hover:font-bold" href="mailto:toosh.dsgn@gmail.com">toosh.dsgn@gmail.com</a> |
-        <a href="https://www.instagram.com/itamar669/" class="hover:font-extrabold">@Instagram</a>
-      </p>
+    <footer class="grid w-full auto-cols-[8rem] grid-flow-col justify-center gap-20 text-center text-small">
+      <a class="hover:font-bold" href="mailto:toosh.dsgn@gmail.com">Email</a>
+      <a class="hover:font-bold" href="https://www.instagram.com/itamar669/">Instagram</a>
     </footer>
   </body>
 </html>
