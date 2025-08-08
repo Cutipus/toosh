@@ -811,6 +811,10 @@ video {
   max-width: 1280px;
 }
 
+.max-w-\[90vw\] {
+  max-width: 90vw;
+}
+
 .flex-grow {
   flex-grow: 1;
 }
