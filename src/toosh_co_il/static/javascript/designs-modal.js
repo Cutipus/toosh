@@ -1,10 +1,13 @@
 let timer = null;
 
 document.addEventListener("keydown", ({ key }) => {
-  if (key === "Escape") document.getElementById("modal").classList.remove("currently-viewed");
+  if (key === "Escape") hideModal();
 });
 
-function showModal() {}
+function hideModal() {
+  document.getElementById("modal").classList.remove("currently-viewed");
+  document.getElementById("modal-image").classList.remove("zoomed");
+}
 
 function loadModalImage(image) {
   timer = setTimeout(() => {

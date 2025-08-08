@@ -31,11 +31,7 @@
   class="pointer-events-none fixed inset-0 hidden animate-fade-in items-center justify-center opacity-0 transition-opacity duration-500 currently-viewed:pointer-events-auto currently-viewed:opacity-100"
 >
   <!-- Underlay: covers full screen, dark background, catches clicks -->
-  <div
-    id="modal-underlay"
-    class="absolute inset-0 cursor-pointer bg-black bg-opacity-50"
-    onclick="document.getElementById('modal').classList.toggle('currently-viewed')"
-  ></div>
+  <div id="modal-underlay" class="absolute inset-0 cursor-pointer bg-black bg-opacity-50" onclick="hideModal()"></div>
 
   <!-- Modal content: above underlay -->
   <div
