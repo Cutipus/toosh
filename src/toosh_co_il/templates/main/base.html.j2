@@ -19,7 +19,7 @@
 
     <!-- Scripts -->
     <script src="{{ url_for('static', filename='dist/htmx.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='javascript/nav-links-colors.js') }}"></script>
+    <script src="{{ url_for('static', filename='javascript/activate-current-nav-link.js') }}"></script>
     <script src="{{ url_for('static', filename='javascript/animations.js') }}"></script>
     <script src="{{ url_for('static', filename='javascript/designs-modal.js') }}"></script>
 
@@ -35,7 +35,7 @@
     <header class="sticky top-6">
       <nav id="navi" class="grid w-full auto-cols-[8rem] grid-flow-col justify-center text-center text-small lg:gap-32">
         <a
-          class="cursor-pointer hover:underline data-[selected=true]:font-extrabold"
+          class="currently-viewed:font-extrabold cursor-pointer hover:underline"
           data-path="{{ url_for('index') }}"
           hx-target="#main"
           hx-get="{{ url_for('index_fragment') }}"
@@ -45,7 +45,7 @@
           >about</a
         >
         <a
-          class="cursor-pointer hover:underline data-[selected=true]:font-extrabold"
+          class="currently-viewed:font-extrabold cursor-pointer hover:underline"
           data-path="{{ url_for('designs') }}"
           hx-target="#main"
           hx-get="{{ url_for('designs_fragment') }}"
@@ -55,7 +55,7 @@
           >gallery</a
         >
         <a
-          class="cursor-pointer hover:underline data-[selected=true]:font-extrabold"
+          class="currently-viewed:font-extrabold cursor-pointer hover:underline"
           data-path="{{ url_for('projects') }}"
           hx-target="#main"
           hx-get="{{ url_for('projects_fragment') }}"

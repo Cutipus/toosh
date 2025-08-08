@@ -1262,12 +1262,20 @@ video {
   pointer-events: auto;
 }
 
+.currently-viewed\:font-extrabold.currently-viewed {
+  font-weight: 800;
+}
+
 .currently-viewed\:opacity-100.currently-viewed {
   opacity: 1;
 }
 
 .currently-viewed .currently-viewed\:pointer-events-auto {
   pointer-events: auto;
+}
+
+.currently-viewed .currently-viewed\:font-extrabold {
+  font-weight: 800;
 }
 
 .currently-viewed .currently-viewed\:opacity-100 {
