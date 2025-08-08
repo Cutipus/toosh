@@ -923,10 +923,6 @@ video {
   gap: 5rem;
 }
 
-.gap-32 {
-  gap: 8rem;
-}
-
 .gap-4 {
   gap: 1rem;
 }
@@ -1283,16 +1279,16 @@ video {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
-  .lg\:gap-4 {
-    gap: 1rem;
+  .lg\:gap-20 {
+    gap: 5rem;
   }
 
   .lg\:gap-32 {
     gap: 8rem;
   }
 
-  .lg\:gap-20 {
-    gap: 5rem;
+  .lg\:gap-4 {
+    gap: 1rem;
   }
 
   .lg\:px-16 {
