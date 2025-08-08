@@ -763,10 +763,6 @@ video {
   height: 100vh;
 }
 
-.h-auto {
-  height: auto;
-}
-
 .min-h-screen {
   min-height: 100vh;
 }
@@ -783,10 +779,6 @@ video {
   width: 91.666667%;
 }
 
-.w-\[90vw\] {
-  width: 90vw;
-}
-
 .w-auto {
   width: auto;
 }
@@ -797,6 +789,10 @@ video {
 
 .max-w-\[120ch\] {
   max-width: 120ch;
+}
+
+.max-w-\[90vw\] {
+  max-width: 90vw;
 }
 
 .max-w-md {
@@ -815,20 +811,12 @@ video {
   max-width: 1280px;
 }
 
-.max-w-\[90vw\] {
-  max-width: 90vw;
-}
-
 .flex-grow {
   flex-grow: 1;
 }
 
 .basis-auto {
   flex-basis: auto;
-}
-
-.origin-center {
-  transform-origin: center;
 }
 
 @keyframes fadeIn {
@@ -1034,11 +1022,6 @@ video {
 
 .bg-auto {
   background-size: auto;
-}
-
-.object-contain {
-  -o-object-fit: contain;
-     object-fit: contain;
 }
 
 .p-32 {
