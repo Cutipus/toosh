@@ -603,12 +603,20 @@ video {
   }
 }
 
+.pointer-events-none {
+  pointer-events: none;
+}
+
 .static {
   position: static;
 }
 
 .fixed {
   position: fixed;
+}
+
+.absolute {
+  position: absolute;
 }
 
 .relative {
@@ -645,10 +653,6 @@ video {
 
 .z-0 {
   z-index: 0;
-}
-
-.z-10 {
-  z-index: 10;
 }
 
 .z-20 {
@@ -1192,6 +1196,10 @@ video {
   transition-duration: 300ms;
 }
 
+.duration-500 {
+  transition-duration: 500ms;
+}
+
 .duration-\[20\] {
   transition-duration: 20;
 }
@@ -1248,6 +1256,22 @@ video {
 
 .data-\[selected\=true\]\:font-extrabold[data-selected="true"] {
   font-weight: 800;
+}
+
+.currently-viewed\:pointer-events-auto.currently-viewed {
+  pointer-events: auto;
+}
+
+.currently-viewed\:opacity-100.currently-viewed {
+  opacity: 1;
+}
+
+.currently-viewed .currently-viewed\:pointer-events-auto {
+  pointer-events: auto;
+}
+
+.currently-viewed .currently-viewed\:opacity-100 {
+  opacity: 1;
 }
 
 .htmx-swapping\:opacity-0.htmx-swapping {

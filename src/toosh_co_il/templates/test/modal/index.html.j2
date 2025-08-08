@@ -9,34 +9,44 @@
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" />
     <script src="{{ url_for('static', filename='dist/htmx.min.js') }}"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='dist/tailwind.css') }}" />
-    <!--external fonts-->
-    <link rel="stylesheet" href="https://use.typekit.net/qps5fsd.css" />
     <script>
-      document.addEventListener("click", (event) => {
-        const modal = document.getElementById("modal");
-        const modalUnderlay = document.getElementById("modal-underlay");
-        const modalClose = document.getElementById("modal-close");
-        const modalContent = document.getElementById("modal-content");
-
-        if (event.target !== modalUnderlay && event.target !== modalClose) return;
-
-        modal.classList.remove("animate-fade-in");
-        modal.classList.add("animate-fade-out");
-        modalContent.classList.remove("animate-zoom-in");
-        modalContent.classList.add("animate-zoom-out");
-
-        modal.addEventListener("animationend", modal.remove, { once: true });
+      document.addEventListener("keydown", ({ key }) => {
+        if (key === "Escape") document.getElementById("modal").classList.remove("currently-viewed");
       });
     </script>
+    <!--external fonts-->
+    <link rel="stylesheet" href="https://use.typekit.net/qps5fsd.css" />
   </head>
   <body class="h-dvh">
     <button
       class="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
-      hx-get="{{ url_for('test_modal_fragment') }}"
-      hx-target="body"
-      hx-swap="beforeend"
+      onclick="document.getElementById('modal').classList.toggle('currently-viewed')"
     >
       Open a Modal
     </button>
+
+    <div
+      id="modal"
+      class="currently-viewed:pointer-events-auto currently-viewed:opacity-100 pointer-events-none fixed inset-0 flex animate-fade-in items-center justify-center opacity-0 transition-opacity duration-500"
+    >
+      <!-- Underlay: covers full screen, dark background, catches clicks -->
+      <div
+        id="modal-underlay"
+        class="absolute inset-0 cursor-pointer bg-black bg-opacity-50"
+        onclick="document.getElementById('modal').classList.toggle('currently-viewed'); console.log('Modal closed')"
+      ></div>
+
+      <!-- Modal content: above underlay -->
+      <div id="modal-content" class="relative z-20 w-11/12 max-w-md rounded-lg bg-white p-6 shadow-lg">
+        <h1 class="text-xl mb-4 font-bold">Modal Dialog</h1>
+        <p class="mb-4">This is the modal content. You can put anything here, like text, or a form, or an image.</p>
+        <button
+          class="rounded bg-red-500 px-4 py-2 text-white hover:bg-red-600"
+          onclick="document.getElementById('modal').classList.toggle('currently-viewed')"
+        >
+          Close
+        </button>
+      </div>
+    </div>
   </body>
 </html>
