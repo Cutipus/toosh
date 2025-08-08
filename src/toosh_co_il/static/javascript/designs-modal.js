@@ -1,8 +1,23 @@
+let timer = null;
+
 document.addEventListener("keydown", ({ key }) => {
   if (key === "Escape") document.getElementById("modal").classList.remove("currently-viewed");
 });
 
 function showModal() {}
+
+function loadModalImage(image) {
+  timer = setTimeout(() => {
+    const modalImage = document.getElementById("modal-image");
+    modalImage.src = image.src.replace("preview", "fullsize");
+    modalImage.alt = image.alt;
+    modalImage.style.aspectRatio = image.dataset.sizeWidth + "/" + image.dataset.sizeHeight;
+  }, 200);
+}
+
+function unloadModalImage(image) {
+  timer && clearTimeout(timer);
+}
 
 document.addEventListener("click", (event) => {
   const target = event.target.closest("#designs-grid .bg-svg");
@@ -13,14 +28,4 @@ document.addEventListener("click", (event) => {
   const modal = document.getElementById("modal");
   modal.classList.remove("hidden");
   modal.classList.add("flex", "currently-viewed");
-
-  // set image source and alt text
-  const modalImage = document.getElementById("modal-image");
-  const projectName = target.dataset.projectName;
-  const sizeWidth = target.dataset.sizeWidth;
-  const sizeHeight = target.dataset.sizeHeight;
-  const fullsizeImageUrl = `/static/projects/${projectName}/fullsize.webp`;
-  modalImage.src = fullsizeImageUrl;
-  modalImage.alt = projectName;
-  modalImage.style.aspectRatio = `${sizeWidth} / ${sizeHeight}`;
 });

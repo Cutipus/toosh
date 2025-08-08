@@ -17,6 +17,8 @@
             alt="{{ project_name }}"
             class="size-full cursor-pointer opacity-0 transition-opacity duration-300"
             onload="this.classList.remove('opacity-0');"
+            onmouseover="loadModalImage(this)"
+            onmouseout="unloadModalImage(this)"
           />
         </div>
       {% endfor %}
@@ -42,7 +44,7 @@
   >
     <img
       id="modal-image"
-      class="zoomed:h-max zoomed:cursor-zoom-out mx-auto h-full w-auto max-w-none origin-center cursor-zoom-in"
+      class="zoomed:h-max zoomed:cursor-zoom-out mx-auto h-full w-auto max-w-none cursor-zoom-in"
       onclick="this.classList.toggle('zoomed');"
     />
   </div>
