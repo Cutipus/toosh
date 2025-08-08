@@ -6,7 +6,7 @@ document.addEventListener("keydown", ({ key }) => {
 
 function hideModal() {
   document.getElementById("modal").classList.remove("currently-viewed");
-  document.getElementById("modal-image").classList.remove("zoomed");
+  setTimeout(() => document.getElementById("modal-image").classList.remove("zoomed"), 500);
 }
 
 function loadModalImage(image) {
@@ -28,6 +28,7 @@ document.addEventListener("click", (event) => {
   event.stopImmediatePropagation(); // don't trigger the second event
 
   // show modal
+  loadModalImage(target.querySelector("img"));
   const modal = document.getElementById("modal");
   modal.classList.remove("hidden");
   modal.classList.add("flex", "currently-viewed");
