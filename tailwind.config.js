@@ -49,6 +49,7 @@ module.exports = {
   },
   plugins: [
     plugin(function ({ addVariant }) {
+      addVariant("zoomed", ["&.zoomed", ".zoomed &"]);
       addVariant("currently-viewed", ["&.currently-viewed", ".currently-viewed &"]);
       addVariant("htmx-settling", ["&.htmx-settling", ".htmx-settling &"]);
       addVariant("htmx-request", ["&.htmx-request", ".htmx-request &"]);

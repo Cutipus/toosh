@@ -747,17 +747,16 @@ video {
   height: 90%;
 }
 
+.h-\[90vh\] {
+  height: 90vh;
+}
+
 .h-dvh {
   height: 100dvh;
 }
 
 .h-full {
   height: 100%;
-}
-
-.h-max {
-  height: -moz-max-content;
-  height: max-content;
 }
 
 .h-screen {
@@ -780,9 +779,12 @@ video {
   width: 91.666667%;
 }
 
-.w-fit {
-  width: -moz-fit-content;
-  width: fit-content;
+.w-\[90vw\] {
+  width: 90vw;
+}
+
+.w-auto {
+  width: auto;
 }
 
 .w-full {
@@ -795,6 +797,10 @@ video {
 
 .max-w-md {
   max-width: 28rem;
+}
+
+.max-w-none {
+  max-width: none;
 }
 
 .max-w-prose {
@@ -811,6 +817,10 @@ video {
 
 .basis-auto {
   flex-basis: auto;
+}
+
+.origin-center {
+  transform-origin: center;
 }
 
 @keyframes fadeIn {
@@ -871,6 +881,10 @@ video {
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+.cursor-zoom-in {
+  cursor: zoom-in;
 }
 
 .snap-y {
@@ -953,6 +967,10 @@ video {
 
 .overflow-clip {
   overflow: clip;
+}
+
+.overflow-scroll {
+  overflow: scroll;
 }
 
 .overflow-x-clip {
@@ -1262,6 +1280,24 @@ video {
 
 .peer:hover ~ .peer-hover\:opacity-0 {
   opacity: 0;
+}
+
+.zoomed\:h-max.zoomed {
+  height: -moz-max-content;
+  height: max-content;
+}
+
+.zoomed\:cursor-zoom-out.zoomed {
+  cursor: zoom-out;
+}
+
+.zoomed .zoomed\:h-max {
+  height: -moz-max-content;
+  height: max-content;
+}
+
+.zoomed .zoomed\:cursor-zoom-out {
+  cursor: zoom-out;
 }
 
 .currently-viewed\:pointer-events-auto.currently-viewed {
