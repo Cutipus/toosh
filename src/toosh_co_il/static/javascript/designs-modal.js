@@ -1,16 +1,21 @@
+document.addEventListener("keydown", ({ key }) => {
+  if (key === "Escape") document.getElementById("modal").classList.remove("currently-viewed");
+});
+
+function showModal() {}
+
 document.addEventListener("click", (event) => {
   const target = event.target.closest("#designs-grid .bg-svg");
   if (target === null) return; // didn't click on designs
-
   event.stopImmediatePropagation(); // don't trigger the second event
 
-  const imageGrid = document.getElementById("designs-grid");
+  // show modal
   const modal = document.getElementById("modal");
-  const modalImage = document.getElementById("modal-image");
-
   modal.classList.remove("hidden");
-  imageGrid.classList.add("hidden");
+  modal.classList.add("flex", "currently-viewed");
 
+  // set image source and alt text
+  const modalImage = document.getElementById("modal-image");
   const projectName = target.dataset.projectName;
   const sizeWidth = target.dataset.sizeWidth;
   const sizeHeight = target.dataset.sizeHeight;
@@ -18,17 +23,4 @@ document.addEventListener("click", (event) => {
   modalImage.src = fullsizeImageUrl;
   modalImage.alt = projectName;
   modalImage.style.aspectRatio = `${sizeWidth} / ${sizeHeight}`;
-});
-
-document.addEventListener("click", (event) => {
-  const modal = document.getElementById("modal");
-  const imageGrid = document.getElementById("designs-grid");
-
-  if (modal === null) return; // not on designs page
-  if (modal.classList.contains("hidden")) return; // modal not visible
-  const target = event.target.closest("#modal-image");
-  if (target !== null) return; // clicking on image doesn't do anything
-
-  imageGrid.classList.remove("hidden");
-  modal.classList.add("hidden");
 });

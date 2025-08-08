@@ -24,7 +24,25 @@
   {% endfor %}
 </div>
 
-<div id="modal" class="hidden flex-grow p-4">
-  <img id="modal-image" src="" alt="" class="mx-auto" />
+<div
+  id="modal"
+  class="currently-viewed:pointer-events-auto currently-viewed:opacity-100 pointer-events-none fixed inset-0 hidden animate-fade-in items-center justify-center opacity-0 transition-opacity duration-500"
+>
+  <!-- Underlay: covers full screen, dark background, catches clicks -->
+  <div
+    id="modal-underlay"
+    class="absolute inset-0 cursor-pointer bg-black bg-opacity-50"
+    onclick="document.getElementById('modal').classList.toggle('currently-viewed')"
+  ></div>
+
+  <!-- Modal content: above underlay -->
+  <div id="modal-content" class="relative z-20 h-max w-fit rounded-lg bg-white p-6 shadow-lg">
+    <img
+      id="modal-image"
+      class="size-full cursor-pointer opacity-0 transition-opacity duration-300"
+      onload="this.classList.remove('opacity-0');"
+    />
+  </div>
 </div>
+
 <!-- Fragment end -->
