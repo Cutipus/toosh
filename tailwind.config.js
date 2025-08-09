@@ -11,12 +11,13 @@ module.exports = {
       medium: ["2rem"],
       "medium-small": ["1.6rem"],
       small: ["1.4rem"],
-      smaller: ["20px"],
+      smaller: ["16px"],
       "very-small": ["14px"],
       "very-very-small": ["12px"],
     },
     fontFamily: {
       narkiss: ['"miriam-libre"', "sans-serif"],
+      "google-sans-code": ['"Google Sans Code"', "sans-serif"],
       // narkiss: ['"narkiss-tam"', 'sans-serif'],
     },
     extend: {

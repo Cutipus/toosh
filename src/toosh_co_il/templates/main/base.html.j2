@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="">
   <head>
     <!-- Basic settings -->
     <title>Toosh</title>
@@ -29,14 +29,18 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Miriam+Libre:wght@400..700&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body
-    class="no-scrollbar flex min-h-screen flex-col gap-2 overflow-x-clip px-8 py-6 font-narkiss dark:bg-black dark:text-white lg:gap-4 lg:px-16"
+    class="no-scrollbar flex min-h-screen flex-col gap-2 overflow-x-clip bg-white px-8 py-6 font-narkiss text-blue-950 dark:bg-gray-900 dark:text-orange-100 lg:gap-4 lg:px-16"
   >
     <header class="sticky top-6">
       <nav
         id="navi"
-        class="text-smaller grid w-full auto-cols-[8rem] grid-flow-col justify-center text-center lowercase lg:gap-32"
+        class="font-google-sans-code text-smaller grid w-full auto-cols-[8rem] grid-flow-col justify-center text-center lowercase text-green-700 dark:text-red-400 lg:gap-32"
       >
         <a
           class="cursor-pointer hover:underline currently-viewed:font-extrabold"
@@ -71,7 +75,7 @@
       </nav>
     </header>
     <main id="main" class="flex flex-grow basis-auto">{% filter indent(width=6) %}{% include page %}{% endfilter %}</main>
-    <footer class="flex flex-col gap-1">
+    <footer class="font-google-sans-code flex flex-col gap-1 text-green-700 dark:text-red-400">
       <nav class="text-smaller grid w-full auto-cols-[8rem] grid-flow-col justify-center text-center lowercase lg:gap-32">
         <a class="hover:font-bold" href="mailto:toosh.dsgn@gmail.com">Email</a>
         <p class="font-bold uppercase">toosh.dsgn</p>
@@ -79,7 +83,7 @@
       </nav>
       <p class="text-very-very-small text-center"
         >Copyright © 2025, designed by <span class="font-bold">Toosh</span>, developed by
-        <a class="font-bold text-red-950 dark:text-red-400" href="https://github.com/Cutipus">Cutipus</a></p
+        <a class="font-bold" href="https://github.com/Cutipus">Cutipus</a></p
       >
     </footer>
   </body>
