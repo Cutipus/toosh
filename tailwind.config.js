@@ -13,6 +13,7 @@ module.exports = {
       small: ["1.4rem"],
       smaller: ["20px"],
       "very-small": ["14px"],
+      "very-very-small": ["12px"],
     },
     fontFamily: {
       narkiss: ['"miriam-libre"', "sans-serif"],
