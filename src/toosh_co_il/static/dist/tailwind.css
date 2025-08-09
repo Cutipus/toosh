@@ -1375,9 +1375,9 @@ video {
   opacity: 0;
 }
 
-.dark\:bg-gray-900:is(.dark *) {
+.dark\:bg-dark-ancient-gray:is(.dark *) {
   --tw-bg-opacity: 1;
-  background-color: rgb(17 24 39 / var(--tw-bg-opacity));
+  background-color: rgb(42 39 39 / var(--tw-bg-opacity));
 }
 
 .dark\:text-orange-100:is(.dark *) {

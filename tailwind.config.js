@@ -21,6 +21,14 @@ module.exports = {
       // narkiss: ['"narkiss-tam"', 'sans-serif'],
     },
     extend: {
+      colors: {
+        "dark-sepia": "#231F18",
+        "ancient-gray": "#393433",
+        "greenboard-green": "#191B19",
+        "dark-ancient-gray": "#2A2727",
+        "darkest-ancient-gray": "#181716",
+        "coral-red": "#E9443C",
+      },
       animation: {
         "fade-in": "fadeIn 150ms ease-in",
         "fade-out": "fadeOut 150ms ease-out",
