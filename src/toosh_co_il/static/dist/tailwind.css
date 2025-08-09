@@ -787,6 +787,10 @@ video {
   width: 100%;
 }
 
+.min-w-32 {
+  min-width: 8rem;
+}
+
 .max-w-\[120ch\] {
   max-width: 120ch;
 }
