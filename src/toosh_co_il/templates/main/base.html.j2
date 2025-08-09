@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" class="dark">
+<html lang="en" class="">
   <head>
     <!-- Basic settings -->
     <title>Toosh</title>
@@ -13,8 +13,8 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='dist/tailwind.css') }}" />
 
     <!-- Prefetch fragments -->
-    <link rel="prefetch" href="{{ url_for('designs_fragment') }}" />
-    <link rel="prefetch" href="{{ url_for('index_fragment') }}" />
+    <link rel="prefetch" href="{{ url_for('about_fragment') }}" />
+    <link rel="prefetch" href="{{ url_for('gallery_fragment') }}" />
     <link rel="prefetch" href="{{ url_for('projects_fragment') }}" />
 
     <!-- Scripts -->
@@ -44,21 +44,21 @@
       >
         <a
           class="cursor-pointer hover:underline currently-viewed:font-extrabold"
-          data-path="{{ url_for('index') }}"
+          data-path="{{ url_for('about') }}"
           hx-target="#main"
-          hx-get="{{ url_for('index_fragment') }}"
-          hx-push-url="{{ url_for('index') }}"
-          href="{{ url_for('index') }}"
+          hx-get="{{ url_for('about_fragment') }}"
+          hx-push-url="{{ url_for('about') }}"
+          href="{{ url_for('about') }}"
           hx-swap="innerHTML"
           >About</a
         >
         <a
           class="cursor-pointer hover:underline currently-viewed:font-extrabold"
-          data-path="{{ url_for('designs') }}"
+          data-path="{{ url_for('gallery') }}"
           hx-target="#main"
-          hx-get="{{ url_for('designs_fragment') }}"
-          hx-push-url="{{ url_for('designs') }}"
-          href="{{ url_for('designs') }}"
+          hx-get="{{ url_for('gallery_fragment') }}"
+          hx-push-url="{{ url_for('gallery') }}"
+          href="{{ url_for('gallery') }}"
           hx-swap="innerHTML"
           >Gallery</a
         >

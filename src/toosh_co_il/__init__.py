@@ -1,6 +1,6 @@
 import mimetypes
 import time
-from flask import Flask, abort, make_response, render_template, redirect
+from flask import Flask, abort, make_response, render_template, redirect, url_for
 import PIL.Image
 import pathlib
 
@@ -40,14 +40,17 @@ columns_with_dimensions = [[(name, projects_data[name]) for name in col] for col
 
 
 # Standard Routes
+
+
 @app.route("/")
-def index():
-    return render_template("main/base.html.j2", page="main/index.html.j2")
+@app.route("/gallery")
+def gallery():
+    return render_template("main/base.html.j2", page="main/gallery.html.j2", columns=columns_with_dimensions)
 
 
-@app.route("/fragments/index")
-def index_fragment():
-    html = render_template("main/index.html.j2")
+@app.route("/fragments/gallery")
+def gallery_fragment():
+    html = render_template("main/gallery.html.j2", columns=columns_with_dimensions)
     response = make_response(html)
     cache_duration = 360
     response.headers["Cache-Control"] = f"public, max-age={cache_duration}"
@@ -55,14 +58,14 @@ def index_fragment():
     return response
 
 
-@app.route("/designs")
-def designs():
-    return render_template("main/base.html.j2", page="main/designs.html.j2", columns=columns_with_dimensions)
+@app.route("/about")
+def about():
+    return render_template("main/base.html.j2", page="main/about.html.j2")
 
 
-@app.route("/fragments/designs")
-def designs_fragment():
-    html = render_template("main/designs.html.j2", columns=columns_with_dimensions)
+@app.route("/fragments/about")
+def about_fragment():
+    html = render_template("main/about.html.j2")
     response = make_response(html)
     cache_duration = 360
     response.headers["Cache-Control"] = f"public, max-age={cache_duration}"
