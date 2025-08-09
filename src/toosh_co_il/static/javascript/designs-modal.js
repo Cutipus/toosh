@@ -1,22 +1,18 @@
 // designs-modal.js
+const fullsizeQueue = new ImageQueue();
 let modalState = "closed"; // possible values: "closed", "opening", "open", "closing"
 const preloadCache = {};
 let preloadTimer = null;
 let lastModalAction = 0; // cooldown tracker for triple-click
 let cleanupHandler = null;
-let latestImageRequestID = 0;
 
 function preloadImage(projectName, width, height) {
-  if (preloadCache[projectName]) return;
-  const img = new Image();
-  img.src = `/static/projects/${projectName}/fullsize.webp`;
-  img.width = width;
-  img.height = height;
-  preloadCache[projectName] = img;
+  const url = `/static/projects/${projectName}/fullsize.webp`;
+  fullsizeQueue.add(url);
 }
 
-function openModal(projectName, width, height) {
-  // Cancel any pending close cleanups
+async function openModal(projectName, width, height) {
+  // cancel pending cleanup...
   if (cleanupHandler) {
     document.getElementById("modal").removeEventListener("transitionend", cleanupHandler);
     cleanupHandler = null;
@@ -26,7 +22,7 @@ function openModal(projectName, width, height) {
   modalState = "opening";
   lastModalAction = performance.now();
 
-  const currentRequestID = ++latestImageRequestID;
+  const url = `/static/projects/${projectName}/fullsize.webp`;
   const modal = document.getElementById("modal");
   const modalImage = document.getElementById("modal-image");
 
@@ -35,17 +31,20 @@ function openModal(projectName, width, height) {
   modalImage.style.aspectRatio = `${width} / ${height}`;
   modalImage.classList.add("loading");
 
-  const fullImg = preloadCache[projectName] || new Image();
-  fullImg.src = `/static/projects/${projectName}/fullsize.webp`;
-  fullImg
-    .decode()
-    .catch(() => {})
-    .finally(() => {
-      if (currentRequestID !== latestImageRequestID) return; // Ignore if a newer request was made
-      modalImage.src = fullImg.src;
-      modalImage.classList.remove("loading");
-      modalState = "open";
-    });
+  // Prioritize this URL and start a single fetch immediately
+  const promise = fullsizeQueue.addToFront(url);
+  await fullsizeQueue.startOnce(); // process the front-of-queue item right now
+
+  try {
+    await promise; // resolves when that URL is loaded (or rejects)
+    modalImage.src = url;
+  } catch (err) {
+    console.error("Failed to load fullsize:", err);
+    // optionally fallback to preview by setting modalImage.src = `/static/.../preview.webp`
+  }
+
+  modalImage.classList.remove("loading");
+  modalState = "open";
 }
 
 function hideModal() {
@@ -95,14 +94,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Hover delay for desktop
+  // Hover delay for desktop (queued, but doesn't start until previews loaded)
   document.addEventListener("mouseover", (e) => {
     const img = e.target.closest("#designs-grid img");
     if (!img || img.dataset.ready !== "true") return;
-    preloadTimer = setTimeout(() => {
-      const container = img.closest("[data-project-name]");
-      preloadImage(container.dataset.projectName, container.dataset.sizeWidth, container.dataset.sizeHeight);
-    }, 200);
+    const container = img.closest("[data-project-name]");
+    fullsizeQueue.addToFront(`/static/projects/${container.dataset.projectName}/fullsize.webp`);
   });
 
   document.addEventListener("mouseout", () => {
@@ -112,7 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Click image → open modal
+  // Click image → open modal (immediate load, bypass preview wait)
   document.addEventListener("click", (e) => {
     const img = e.target.closest("#designs-grid img");
     if (!img) return;
@@ -139,7 +136,7 @@ document.addEventListener("DOMContentLoaded", () => {
       for (const entry of entries) {
         if (entry.isIntersecting && entry.target.dataset.ready === "true") {
           const container = entry.target.closest("[data-project-name]");
-          preloadImage(container.dataset.projectName, container.dataset.sizeWidth, container.dataset.sizeHeight);
+          fullsizeQueue.addToFront(`/static/projects/${container.dataset.projectName}/fullsize.webp`);
           observer.unobserve(entry.target);
         }
       }
@@ -148,4 +145,14 @@ document.addEventListener("DOMContentLoaded", () => {
   );
 
   gridImages.forEach((img) => observer.observe(img));
+
+  // Load all previews first, then start queued fullsize loads
+  Promise.all(
+    Array.from(gridImages).map((img) => {
+      if (img.complete) return Promise.resolve();
+      return new Promise((resolve) => img.addEventListener("load", resolve));
+    }),
+  ).then(() => {
+    fullsizeQueue.start();
+  });
 });
