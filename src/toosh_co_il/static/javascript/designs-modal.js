@@ -4,6 +4,7 @@ const preloadCache = {};
 let preloadTimer = null;
 let lastModalAction = 0; // cooldown tracker for triple-click
 let cleanupHandler = null;
+let latestImageRequestID = 0;
 
 function preloadImage(projectName, width, height) {
   if (preloadCache[projectName]) return;
@@ -25,15 +26,14 @@ function openModal(projectName, width, height) {
   modalState = "opening";
   lastModalAction = performance.now();
 
+  const currentRequestID = ++latestImageRequestID;
   const modal = document.getElementById("modal");
   const modalImage = document.getElementById("modal-image");
 
   modal.classList.remove("hidden");
   modal.classList.add("flex", "currently-viewed");
-
-  modalImage.src = `/static/projects/${projectName}/preview.webp`;
   modalImage.style.aspectRatio = `${width} / ${height}`;
-  modalImage.classList.remove("opacity-0");
+  modalImage.classList.add("loading");
 
   const fullImg = preloadCache[projectName] || new Image();
   fullImg.src = `/static/projects/${projectName}/fullsize.webp`;
@@ -41,7 +41,9 @@ function openModal(projectName, width, height) {
     .decode()
     .catch(() => {})
     .finally(() => {
+      if (currentRequestID !== latestImageRequestID) return; // Ignore if a newer request was made
       modalImage.src = fullImg.src;
+      modalImage.classList.remove("loading");
       modalState = "open";
     });
 }
@@ -54,6 +56,8 @@ function hideModal() {
   lastModalAction = now;
 
   const modal = document.getElementById("modal");
+  const modalImage = document.getElementById("modal-image");
+
   if (!modal.classList.contains("currently-viewed")) {
     modalState = "closed";
     return;
@@ -65,6 +69,7 @@ function hideModal() {
     if (e.target !== modal) return;
     document.getElementById("modal-image").classList.remove("zoomed");
     modal.classList.add("hidden");
+    modalImage.src = "";
     modal.removeEventListener("transitionend", cleanupHandler);
     cleanupHandler = null;
     modalState = "closed";
@@ -143,32 +148,4 @@ document.addEventListener("DOMContentLoaded", () => {
   );
 
   gridImages.forEach((img) => observer.observe(img));
-
-  // Idle preloading for the rest of the gallery
-  const startIdlePreload = () => {
-    if (typeof requestIdleCallback !== "function") return;
-    requestIdleCallback(() => {
-      gridImages.forEach((img) => {
-        const container = img.closest("[data-project-name]");
-        if (container && img.dataset.ready === "true") {
-          preloadImage(container.dataset.projectName, container.dataset.sizeWidth, container.dataset.sizeHeight);
-        }
-      });
-    });
-  };
-
-  // Trigger idle preload after first hover/click preload
-  document.addEventListener("mouseover", function onceHover(e) {
-    const img = e.target.closest("#designs-grid img");
-    if (!img) return;
-    startIdlePreload();
-    document.removeEventListener("mouseover", onceHover);
-  });
-
-  document.addEventListener("click", function onceClick(e) {
-    const img = e.target.closest("#designs-grid img");
-    if (!img) return;
-    startIdlePreload();
-    document.removeEventListener("click", onceClick);
-  });
 });

@@ -787,8 +787,8 @@ video {
   width: 100%;
 }
 
-.min-w-32 {
-  min-width: 8rem;
+.min-w-96 {
+  min-width: 24rem;
 }
 
 .max-w-\[120ch\] {
@@ -1279,6 +1279,18 @@ video {
 }
 
 .peer:hover ~ .peer-hover\:opacity-0 {
+  opacity: 0;
+}
+
+.loading\:pointer-events-none.loading {
+  pointer-events: none;
+}
+
+.loading\:cursor-wait.loading {
+  cursor: wait;
+}
+
+.loading\:opacity-0.loading {
   opacity: 0;
 }
 

@@ -33,9 +33,12 @@
   <!-- Modal content: above underlay -->
   <div
     id="modal-content"
-    class="no-scrollbar bg-svg relative z-20 h-[90vh] min-w-32 max-w-[90vw] justify-center overflow-scroll rounded-lg bg-white p-6 shadow-lg"
+    class="no-scrollbar bg-svg relative z-20 h-[90vh] min-w-96 max-w-[90vw] justify-center overflow-scroll rounded-lg bg-white p-6 shadow-lg"
   >
-    <img id="modal-image" class="zoomed:h-max zoomed:cursor-zoom-out mx-auto h-full w-auto max-w-none cursor-zoom-in opacity-0" />
+    <img
+      id="modal-image"
+      class="zoomed:h-max zoomed:cursor-zoom-out loading:cursor-wait loading:pointer-events-none loading:opacity-0 mx-auto h-full w-auto max-w-none cursor-zoom-in opacity-100"
+    />
   </div>
 </div>
 <!-- Fragment end -->
