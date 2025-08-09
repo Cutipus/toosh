@@ -43,6 +43,10 @@ columns_with_dimensions = [[(name, projects_data[name]) for name in col] for col
 
 
 @app.route("/")
+def index():
+    return redirect(url_for("gallery"))
+
+
 @app.route("/gallery")
 def gallery():
     return render_template("main/base.html.j2", page="main/gallery.html.j2", columns=columns_with_dimensions)
