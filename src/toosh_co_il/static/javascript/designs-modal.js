@@ -78,11 +78,12 @@ function hideModal() {
 }
 
 // ---------------- Bind Events ----------------
-document.addEventListener("DOMContentLoaded", () => {
+function bindEvents() {
   const gridImages = document.querySelectorAll("#designs-grid img");
 
   // Fade-in previews when loaded
   gridImages.forEach((img) => {
+    console.log("Binding image load event for:", img.src);
     if (img.complete) {
       img.classList.remove("opacity-0");
       img.dataset.ready = "true";
@@ -155,4 +156,12 @@ document.addEventListener("DOMContentLoaded", () => {
   ).then(() => {
     fullsizeQueue.start();
   });
+}
+
+document.addEventListener("DOMContentLoaded", bindEvents);
+document.addEventListener("htmx:load", (e) => {
+  if (e.target.id === "designs-grid") {
+    console.log("HTMX swap detected, re-binding events for designs grid");
+    bindEvents(); // re-bind after HTMX swap
+  }
 });
