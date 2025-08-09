@@ -27,10 +27,10 @@ def load_gallery() -> dict[str, tuple[int, int]]:
 projects_data = load_gallery()
 
 columns: list[list[str]] = [
-    ["juice", "maskit", "pocahontas2"],
-    ["pocahontas", "good-morning", "hibbuk1", "alefbeitgimel"],
-    ["crazaza", "golden-margarita-bw", "smoke", "lifta"],
-    ["jeff-bright", "sunshine", "goodgood", "hibbuk2", "pigumim"],
+    ["kraza", "juice", "maskit", "pocahontas2"],
+    ["pocahontas", "good-morning", "hibbuk1", "alefbeitgimel", "lifta"],
+    ["crazaza", "no-players", "golden-margarita-bw", "smoke"],
+    ["jeff-bright", "pigumim", "sunshine", "goodgood", "hibbuk2"],
 ]
 for col in columns:
     for project_name in col:
