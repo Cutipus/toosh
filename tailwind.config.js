@@ -11,6 +11,7 @@ module.exports = {
       medium: ["2rem"],
       "medium-small": ["1.6rem"],
       small: ["1.4rem"],
+      smaller: ["20px"],
       "very-small": ["14px"],
     },
     fontFamily: {

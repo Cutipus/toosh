@@ -907,10 +907,6 @@ video {
   grid-auto-flow: column;
 }
 
-.auto-rows-fr {
-  grid-auto-rows: minmax(0, 1fr);
-}
-
 .grid-cols-1 {
   grid-template-columns: repeat(1, minmax(0, 1fr));
 }
@@ -919,8 +915,8 @@ video {
   grid-template-columns: repeat(5, minmax(0, 1fr));
 }
 
-.grid-cols-\[auto_1fr\] {
-  grid-template-columns: auto 1fr;
+.grid-cols-\[100px_1fr\] {
+  grid-template-columns: 100px 1fr;
 }
 
 .flex-row {
@@ -962,6 +958,10 @@ video {
 .gap-x-8 {
   -moz-column-gap: 2rem;
        column-gap: 2rem;
+}
+
+.gap-y-4 {
+  row-gap: 1rem;
 }
 
 .space-y-4 > :not([hidden]) ~ :not([hidden]) {
@@ -1142,8 +1142,8 @@ video {
   font-size: 2rem;
 }
 
-.text-small {
-  font-size: 1.4rem;
+.text-smaller {
+  font-size: 20px;
 }
 
 .text-very-small {
@@ -1156,6 +1156,10 @@ video {
 
 .font-extrabold {
   font-weight: 800;
+}
+
+.uppercase {
+  text-transform: uppercase;
 }
 
 .lowercase {
@@ -1374,10 +1378,6 @@ video {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
-  .lg\:gap-20 {
-    gap: 5rem;
-  }
-
   .lg\:gap-32 {
     gap: 8rem;
   }
@@ -1397,12 +1397,12 @@ video {
   }
 }
 
-.\[\&\>p\]\:before\:mr-2>p::before {
+.\[\&_p\]\:before\:mr-2 p::before {
   content: var(--tw-content);
   margin-right: 0.5rem;
 }
 
-.\[\&\>p\]\:before\:content-\[\'\2022\'\]>p::before {
+.\[\&_p\]\:before\:content-\[\'\2022\'\] p::before {
   --tw-content: '•';
   content: var(--tw-content);
 }

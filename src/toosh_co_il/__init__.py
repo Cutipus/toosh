@@ -28,9 +28,9 @@ projects_data = load_gallery()
 
 columns: list[list[str]] = [
     ["kraza", "juice", "maskit", "pocahontas2"],
-    ["pocahontas", "good-morning", "hibbuk1", "alefbeitgimel", "lifta"],
+    ["pocahontas", "good-morning", "hibbuk1", "lifta", "hibbuk2"],
     ["crazaza", "no-players", "golden-margarita-bw", "smoke"],
-    ["jeff-bright", "pigumim", "sunshine", "goodgood", "hibbuk2"],
+    ["jeff-bright", "pigumim", "sunshine", "goodgood"],
 ]
 for col in columns:
     for project_name in col:
