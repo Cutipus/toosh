@@ -1,4 +1,5 @@
 {
+    "htmlWhitespaceSensitivity": "strict",
     "singleAttributePerLine": false,
     "printWidth": 130,
     "plugins": ["prettier-plugin-jinja-template", "prettier-plugin-tailwindcss"],
