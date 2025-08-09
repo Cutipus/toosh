@@ -34,7 +34,7 @@
     class="no-scrollbar flex min-h-screen flex-col gap-2 overflow-x-clip px-8 py-6 font-narkiss dark:bg-black dark:text-white lg:gap-4 lg:px-16"
   >
     <header class="sticky top-6">
-      <nav id="navi" class="grid w-full auto-cols-[8rem] grid-flow-col justify-center text-center text-small lg:gap-32">
+      <nav id="navi" class="grid w-full auto-cols-[8rem] grid-flow-col justify-center text-center text-small lowercase lg:gap-32">
         <a
           class="cursor-pointer hover:underline currently-viewed:font-extrabold"
           data-path="{{ url_for('index') }}"
@@ -43,7 +43,7 @@
           hx-push-url="{{ url_for('index') }}"
           href="{{ url_for('index') }}"
           hx-swap="innerHTML"
-          >about</a
+          >About</a
         >
         <a
           class="cursor-pointer hover:underline currently-viewed:font-extrabold"
@@ -53,7 +53,7 @@
           hx-push-url="{{ url_for('designs') }}"
           href="{{ url_for('designs') }}"
           hx-swap="innerHTML"
-          >gallery</a
+          >Gallery</a
         >
         <a
           class="cursor-pointer hover:underline currently-viewed:font-extrabold"
@@ -63,12 +63,12 @@
           hx-push-url="{{ url_for('projects') }}"
           href="{{ url_for('projects') }}"
           hx-swap="innerHTML"
-          >projects</a
+          >Projects</a
         >
       </nav>
     </header>
     <main id="main" class="flex flex-grow basis-auto">{% filter indent(width=6) %}{% include page %}{% endfilter %}</main>
-    <footer class="grid w-full auto-cols-[8rem] grid-flow-col justify-center text-center text-small lg:gap-20">
+    <footer class="grid w-full auto-cols-[8rem] grid-flow-col justify-center text-center text-small lowercase lg:gap-20">
       <a class="hover:font-bold" href="mailto:toosh.dsgn@gmail.com">Email</a>
       <a class="hover:font-bold" href="https://www.instagram.com/itamar669/">Instagram</a>
     </footer>

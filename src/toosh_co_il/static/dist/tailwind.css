@@ -1153,6 +1153,10 @@ video {
   text-transform: uppercase;
 }
 
+.lowercase {
+  text-transform: lowercase;
+}
+
 .text-transparent {
   color: transparent;
 }
