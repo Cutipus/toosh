@@ -1,20 +1,20 @@
 <!-- Gallery fragment -->
 <div id="designs-grid" class="no-scrollbar mx-auto grid max-w-screen-xl grid-cols-1 gap-4 px-10 pb-4 pt-8 lg:grid-cols-4 lg:px-4">
-  {% for col in columns %}
+  {% for col in gallery_columns %}
     <div class="flex flex-col space-y-4">
-      {% for project_name, size in col %}
+      {% for image_name in col %}
         <div
           class="bg-svg"
-          data-project-name="{{ project_name }}"
-          data-size-width="{{ size[0] }}"
-          data-size-height="{{ size[1] }}"
-          style="aspect-ratio: {{ size[0] }} / {{ size[1] }};"
+          data-image-name="{{ image_name }}"
+          data-size-width="{{ image_metadata[image_name].dimensions_xy[0] }}"
+          data-size-height="{{ image_metadata[image_name].dimensions_xy[1] }}"
+          style="aspect-ratio: {{ image_metadata[image_name].dimensions_xy[0] }} / {{ image_metadata[image_name].dimensions_xy[1] }};"
         >
           <img
-            src="{{ url_for('static', filename='projects/' + project_name + '/preview.webp') }}"
-            width="{{ size[0] }}"
-            height="{{ size[1] }}"
-            alt="{{ project_name }}"
+            src="{{ url_for('static', filename='images/preview/' ~ image_name ~ '.webp') }}"
+            width="{{ image_metadata[image_name].dimensions_xy[0] }}"
+            height="{{ image_metadata[image_name].dimensions_xy[1] }}"
+            alt="{{ image_name }}"
             class="size-full cursor-pointer opacity-0 transition-opacity duration-300"
           />
         </div>

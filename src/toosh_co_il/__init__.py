@@ -1,42 +1,37 @@
 import mimetypes
 import time
-from flask import Flask, abort, make_response, render_template, redirect, url_for
-import PIL.Image
+from flask import Flask, make_response, render_template, redirect, url_for
 import pathlib
+
+from toosh_co_il import gallery_config
 
 mimetypes.add_type("image/webp", ".webp")
 
 app = Flask(__name__)
 
 
-def load_gallery() -> dict[str, tuple[int, int]]:
+def load_gallery_config():
     assert app.static_folder is not None
-    static_dir = pathlib.Path(app.static_folder)
-    projects_dir = static_dir / "projects"
-    assert projects_dir.is_dir()
-    projects: dict[str, tuple[int, int]] = {}  # projectname -> (dimx, dimy)
-    for project_path in projects_dir.iterdir():
-        assert project_path.is_dir()
-        assert (project_path / "fullsize.webp").is_file()
-        assert (project_path / "preview.webp").is_file()
-        with PIL.Image.open(project_path / "preview.webp") as preview_file:
-            projects[project_path.name] = preview_file.width, preview_file.height
-    return projects
+    assert app.template_folder is not None
+    fullsize_path = pathlib.Path(app.static_folder) / "images" / "fullsize"
+    previews_path = pathlib.Path(app.static_folder) / "images" / "preview"
+    templates_path = pathlib.Path(app.root_path) / app.template_folder / "main" / "image-sets"
+    gallery_config.init(fullsize_path, previews_path, templates_path)
+    gallery_config.validate()
+    gallery_config.show_image_files_not_in_sets()
+    gallery_config.show_unpreviewed_images()
 
 
-projects_data = load_gallery()
+load_gallery_config()
 
-columns: list[list[str]] = [
-    ["kraza", "juice", "maskit", "pocahontas2"],
-    ["pocahontas", "good-morning", "hibbuk1", "lifta", "hibbuk2"],
-    ["crazaza", "no-players", "golden-margarita-bw", "smoke"],
-    ["jeff-bright", "pigumim", "sunshine", "goodgood"],
-]
-for col in columns:
-    for project_name in col:
-        assert project_name in projects_data, f"project {project_name} declared but not actually in filesystem"
 
-columns_with_dimensions = [[(name, projects_data[name]) for name in col] for col in columns]
+@app.context_processor
+def gallery_config_context():
+    return dict(
+        gallery_columns=gallery_config.GALLERY_COLUMNS,
+        image_sets=gallery_config.SETS,
+        image_metadata=gallery_config.IMAGE_METADATA,
+    )
 
 
 # Standard Routes
@@ -49,12 +44,12 @@ def index():
 
 @app.route("/gallery")
 def gallery():
-    return render_template("main/base.html.j2", page="main/gallery.html.j2", columns=columns_with_dimensions)
+    return render_template("main/base.html.j2", page="main/gallery.html.j2")
 
 
 @app.route("/fragments/gallery")
 def gallery_fragment():
-    html = render_template("main/gallery.html.j2", columns=columns_with_dimensions)
+    html = render_template("main/gallery.html.j2")
     response = make_response(html)
     cache_duration = 360
     response.headers["Cache-Control"] = f"public, max-age={cache_duration}"
@@ -92,91 +87,22 @@ def projects_fragment():
     return response
 
 
-# @app.route("/image-focus/<project_name>")
-# def image_focus_fragment(project_name: str):
-#     project_name = project_name.lower()
-#     if project_name not in projects_data:
-#         abort(404)
-#     return render_template("image-focus.html.j2", project_name=project_name, size=projects_data[project_name])
-
-
-# @app.route("/fragments/image-focus/<project_name>")
-# def image_focus_fullpage(project_name: str):
-#     project_name = project_name.lower()
-#     if project_name not in projects_data:
-#         abort(404)
-#     return render_template(
-#         "main/base.html.j2",
-#         page="image-focus.html.j2",
-#         project_name=project_name,
-#         size=projects_data[project_name],
-#     )
-
-
-# @app.route("/")
-# def index_fullpage() -> str:
-#     return render_template("base.html.j2", title="Toosh", page="index.html.j2", columns=columns_with_dimensions)
-
-
-# @app.route("/fragments/index")
-# def index_fragment() -> str:
-#     return render_template("index.html.j2", columns=columns_with_dimensions)
-
-
-# @app.route("/fragments/image-focus/<project_name>")
-# def image_focus_fragment(project_name: str):
-#     project_name = project_name.lower()
-#     if project_name not in projects_data:
-#         abort(404)
-#     return render_template("image-focus.html.j2", project_name=project_name, size=projects_data[project_name])
-
-
-# @app.route("/image-focus/<project_name>")
-# def image_focus_fullpage(project_name: str):
-#     project_name = project_name.lower()
-#     if project_name not in projects_data:
-#         abort(404)
-#     return render_template(
-#         "base.html.j2",
-#         title="Toosh",
-#         page="image-focus.html.j2",
-#         project_name=project_name,
-#         size=projects_data[project_name],
-#     )
-
-
-# @app.route("/projects")
-# def projects_fullpage():
-#     return render_template("base.html.j2", title="Projects", page="projects.html.j2")
-
-
-# @app.route("/fragments/projects")
-# def projects_fragment() -> str:
-#     return render_template("projects.html.j2")
-
-
 # Tests
+
+
 @app.route("/test/transition")
 def test_transition():
-    return render_template(
-        "base.html.j2",
-        page="test/transition/index.html.j2",
-    )
+    return render_template("base.html.j2", page="test/transition/index.html.j2")
 
 
 @app.route("/test/transition/end")
 def test_transition_end_fullpage():
-    return render_template(
-        "base.html.j2",
-        page="test/transition/end.html.j2",
-    )
+    return render_template("base.html.j2", page="test/transition/end.html.j2")
 
 
 @app.route("/test/transition/fragments/end")
 def test_transition_end_fragment():
-    return render_template(
-        "test/transition/end.html.j2",
-    )
+    return render_template("test/transition/end.html.j2")
 
 
 @app.route("/test/modal")
