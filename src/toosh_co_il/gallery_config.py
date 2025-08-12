@@ -14,6 +14,7 @@ class ImageSet:
 @dataclass(frozen=True)
 class ImageMetadata:
     id: str
+    image_set_id: str
     dimensions_xy: tuple[int, int]
     fullsize_size_bytes: int
     preview_size_bytes: int
@@ -88,6 +89,8 @@ def show_unpreviewed_images():
 
 def _load_image_metadata() -> None:
     images_in_sets = {img for s in SETS for img in s.images}
+    image_to_set = {img: s.id for s in SETS for img in s.images}
+
     for image_name in images_in_sets:
         fullsize_image_path = FULLSIZE_PATH / (image_name + ".webp")
         fullsize_size_bytes = fullsize_image_path.stat().st_size
@@ -98,7 +101,11 @@ def _load_image_metadata() -> None:
             fullsize_dimensions_xy = (image.width, image.height)
 
         IMAGE_METADATA[image_name] = ImageMetadata(
-            image_name, fullsize_dimensions_xy, fullsize_size_bytes, preview_size_bytes
+            id=image_name,
+            image_set_id=image_to_set[image_name],
+            dimensions_xy=fullsize_dimensions_xy,
+            fullsize_size_bytes=fullsize_size_bytes,
+            preview_size_bytes=preview_size_bytes,
         )
 
 

@@ -1,6 +1,6 @@
 import mimetypes
 import time
-from flask import Flask, make_response, render_template, redirect, url_for
+from flask import Flask, make_response, render_template, redirect, url_for, Response
 import pathlib
 
 from toosh_co_il import gallery_config
@@ -34,6 +34,14 @@ def gallery_config_context():
     )
 
 
+@app.after_request
+def add_cache_header(response: Response):
+    response.cache_control.max_age = 31536000
+    response.cache_control.public = True
+    response.add_etag()
+    return response
+
+
 # Standard Routes
 
 
@@ -49,12 +57,7 @@ def gallery():
 
 @app.route("/fragments/gallery")
 def gallery_fragment():
-    html = render_template("main/gallery.html.j2")
-    response = make_response(html)
-    cache_duration = 360
-    response.headers["Cache-Control"] = f"public, max-age={cache_duration}"
-    response.headers["Expires"] = str(int(time.time() + cache_duration))
-    return response
+    return render_template("main/gallery.html.j2")
 
 
 @app.route("/about")
@@ -64,12 +67,7 @@ def about():
 
 @app.route("/fragments/about")
 def about_fragment():
-    html = render_template("main/about.html.j2")
-    response = make_response(html)
-    cache_duration = 360
-    response.headers["Cache-Control"] = f"public, max-age={cache_duration}"
-    response.headers["Expires"] = str(int(time.time() + cache_duration))
-    return response
+    return render_template("main/about.html.j2")
 
 
 @app.route("/projects")
@@ -79,12 +77,12 @@ def projects():
 
 @app.route("/fragments/projects")
 def projects_fragment():
-    html = render_template("main/projects.html.j2")
-    response = make_response(html)
-    cache_duration = 360
-    response.headers["Cache-Control"] = f"public, max-age={cache_duration}"
-    response.headers["Expires"] = str(int(time.time() + cache_duration))
-    return response
+    return render_template("main/projects.html.j2")
+
+
+@app.route("/modal-views/<set_name>")
+def modal_view(set_name):
+    return render_template(f"main/image-sets/{set_name}.html.j2")
 
 
 # Tests

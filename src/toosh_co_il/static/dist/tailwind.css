@@ -787,6 +787,10 @@ video {
   width: 100%;
 }
 
+.w-screen {
+  width: 100vw;
+}
+
 .min-w-96 {
   min-width: 24rem;
 }
@@ -1347,6 +1351,10 @@ video {
   pointer-events: auto;
 }
 
+.currently-viewed\:flex.currently-viewed {
+  display: flex;
+}
+
 .currently-viewed\:font-extrabold.currently-viewed {
   font-weight: 800;
 }
@@ -1357,6 +1365,10 @@ video {
 
 .currently-viewed .currently-viewed\:pointer-events-auto {
   pointer-events: auto;
+}
+
+.currently-viewed .currently-viewed\:flex {
+  display: flex;
 }
 
 .currently-viewed .currently-viewed\:font-extrabold {

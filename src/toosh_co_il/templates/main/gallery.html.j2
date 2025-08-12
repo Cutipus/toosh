@@ -11,11 +11,18 @@
           style="aspect-ratio: {{ image_metadata[image_name].dimensions_xy[0] }} / {{ image_metadata[image_name].dimensions_xy[1] }};"
         >
           <img
+            fetchpriority="high"
             src="{{ url_for('static', filename='images/preview/' ~ image_name ~ '.webp') }}"
             width="{{ image_metadata[image_name].dimensions_xy[0] }}"
             height="{{ image_metadata[image_name].dimensions_xy[1] }}"
             alt="{{ image_name }}"
             class="size-full cursor-pointer opacity-0 transition-opacity duration-300"
+            onload="this.classList.remove('opacity-0')"
+            hx-trigger="mouseenter"
+            hx-swap="innerHTML"
+            hx-target="#modal-content"
+            hx-get="{{ url_for('modal_view', set_name=image_metadata[image_name].image_set_id) }}"
+            onmousedown="document.getElementById('modal').classList.add('currently-viewed')"
           />
         </div>
       {% endfor %}
@@ -25,20 +32,20 @@
 
 <div
   id="modal"
-  class="pointer-events-none fixed inset-0 hidden animate-fade-in items-center justify-center opacity-0 transition-opacity duration-500 currently-viewed:pointer-events-auto currently-viewed:opacity-100"
+  class="pointer-events-none fixed inset-0 hidden h-screen w-screen animate-fade-in items-center justify-center opacity-0 transition-opacity duration-500 currently-viewed:pointer-events-auto currently-viewed:flex currently-viewed:opacity-100"
 >
   <!-- Underlay: covers full screen, dark background, catches clicks -->
-  <div id="modal-underlay" class="absolute inset-0 cursor-pointer bg-black bg-opacity-50"></div>
+  <div
+    id="modal-underlay"
+    onmousedown="document.getElementById('modal').classList.remove('currently-viewed')"
+    class="absolute inset-0 cursor-pointer bg-black bg-opacity-50"
+  ></div>
 
   <!-- Modal content: above underlay -->
   <div
     id="modal-content"
     class="no-scrollbar bg-svg relative z-20 h-[90vh] min-w-96 max-w-[90vw] justify-center overflow-scroll rounded-lg bg-white p-6 shadow-lg"
   >
-    <img
-      id="modal-image"
-      class="mx-auto h-full w-auto max-w-none cursor-zoom-in opacity-100 loading:pointer-events-none loading:cursor-wait loading:opacity-0 zoomed:h-max zoomed:cursor-zoom-out"
-    />
   </div>
 </div>
 <!-- Fragment end -->

@@ -13,16 +13,19 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='dist/tailwind.css') }}" />
 
     <!-- Prefetch fragments -->
-    <link rel="prefetch" href="{{ url_for('about_fragment') }}" />
-    <link rel="prefetch" href="{{ url_for('gallery_fragment') }}" />
-    <link rel="prefetch" href="{{ url_for('projects_fragment') }}" />
+    <link rel="prefetch" fetchpriority="high" href="{{ url_for('about_fragment') }}" />
+    <link rel="prefetch" fetchpriority="high" href="{{ url_for('gallery_fragment') }}" />
+    <link rel="prefetch" fetchpriority="high" href="{{ url_for('projects_fragment') }}" />
+    <!-- Prefetch gallery modal views -->
+    {% for set in image_sets %}
+      <link rel="prefetch" fetchpriority="low" href="{{ url_for('modal_view', set_name=set.id) }}" />
+    {% endfor %}
 
     <!-- Scripts -->
     <script src="{{ url_for('static', filename='dist/htmx.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='javascript/image-queue.js') }}"></script>
+    <script src="{{ url_for('static', filename='javascript/gallery.js') }}"></script>
     <script src="{{ url_for('static', filename='javascript/activate-current-nav-link.js') }}"></script>
     <script src="{{ url_for('static', filename='javascript/animations.js') }}"></script>
-    <script src="{{ url_for('static', filename='javascript/designs-modal.js') }}"></script>
 
     <!-- External fonts -->
     <link rel="stylesheet" href="https://use.typekit.net/qps5fsd.css" />
@@ -35,12 +38,12 @@
     />
   </head>
   <body
-    class="no-scrollbar dark:bg-dark-ancient-gray flex min-h-screen flex-col gap-2 overflow-x-clip px-8 py-6 font-narkiss text-blue-950 dark:text-orange-100 lg:gap-4 lg:px-16"
+    class="no-scrollbar flex min-h-screen flex-col gap-2 overflow-x-clip px-8 py-6 font-narkiss text-blue-950 dark:bg-dark-ancient-gray dark:text-orange-100 lg:gap-4 lg:px-16"
   >
     <header class="sticky top-6">
       <nav
         id="navi"
-        class="font-google-sans-code text-smaller grid w-full auto-cols-[8rem] grid-flow-col justify-center text-center lowercase text-green-700 dark:text-red-400 lg:gap-32"
+        class="grid w-full auto-cols-[8rem] grid-flow-col justify-center text-center font-google-sans-code text-smaller lowercase text-green-700 dark:text-red-400 lg:gap-32"
       >
         <a
           class="cursor-pointer hover:underline currently-viewed:font-extrabold"
@@ -75,13 +78,13 @@
       </nav>
     </header>
     <main id="main" class="flex flex-grow basis-auto">{% filter indent(width=6) %}{% include page %}{% endfilter %}</main>
-    <footer class="font-google-sans-code flex flex-col gap-1 text-green-700 dark:text-red-400">
-      <nav class="text-smaller grid w-full auto-cols-[8rem] grid-flow-col justify-center text-center lowercase lg:gap-32">
+    <footer class="flex flex-col gap-1 font-google-sans-code text-green-700 dark:text-red-400">
+      <nav class="grid w-full auto-cols-[8rem] grid-flow-col justify-center text-center text-smaller lowercase lg:gap-32">
         <a class="hover:font-bold" href="mailto:toosh.dsgn@gmail.com">Email</a>
         <p class="font-bold uppercase">toosh.dsgn</p>
         <a class="hover:font-bold" href="https://www.instagram.com/itamar669/">Instagram</a>
       </nav>
-      <p class="text-very-very-small text-center"
+      <p class="text-center text-very-very-small"
         >Copyright © 2025, designed by <span class="font-bold">Toosh</span>, developed by
         <a class="font-bold" href="https://github.com/Cutipus">Cutipus</a></p
       >
