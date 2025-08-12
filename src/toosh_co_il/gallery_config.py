@@ -59,6 +59,10 @@ def init(fullsize_path: Path, previews_path: Path, templates_path: Path) -> None
     FULLSIZE_PATH = fullsize_path
     PREVIEWS_PATH = previews_path
     TEMPLATES_PATH = templates_path
+
+    FULLSIZE_PATH.mkdir(parents=True, exist_ok=True)
+    PREVIEWS_PATH.mkdir(parents=True, exist_ok=True)
+    TEMPLATES_PATH.mkdir(parents=True, exist_ok=True)
     _load_image_metadata()
 
 
