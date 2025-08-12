@@ -11,7 +11,7 @@
           style="aspect-ratio: {{ image_metadata[image_name].dimensions_xy[0] }} / {{ image_metadata[image_name].dimensions_xy[1] }};"
         >
           <img
-            fetchpriority="high"
+            fetchpriority="low"
             src="{{ url_for('static', filename='images/preview/' ~ image_name ~ '.webp') }}"
             width="{{ image_metadata[image_name].dimensions_xy[0] }}"
             height="{{ image_metadata[image_name].dimensions_xy[1] }}"
