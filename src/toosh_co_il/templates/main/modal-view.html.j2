@@ -1,0 +1,9 @@
+<!-- Generic modal view for gallery -->
+{% for image_name in image_set.images %}
+  <img
+    fetchpriority="high"
+    src="{{ url_for('static', filename='images/fullsize/' ~ image_name ~'.webp') }}"
+    id="modal-image"
+    class="mx-auto h-full w-auto max-w-none cursor-zoom-in opacity-100 loading:pointer-events-none loading:cursor-wait loading:opacity-0 zoomed:h-max zoomed:cursor-zoom-out"
+  />
+{% endfor %}

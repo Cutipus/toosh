@@ -1,7 +1,10 @@
 import mimetypes
 import time
-from flask import Flask, make_response, render_template, redirect, url_for, Response
+from flask import Flask, render_template, redirect, url_for, Response
 import pathlib
+
+from jinja2 import TemplateNotFound
+from werkzeug.exceptions import NotFound
 
 from toosh_co_il import gallery_config
 
@@ -83,7 +86,15 @@ def projects_fragment():
 
 @app.route("/modal-views/<set_name>")
 def modal_view(set_name):
-    return render_template(f"main/image-sets/{set_name}.html.j2")
+    image_set = next((s for s in gallery_config.SETS if s.id == set_name), None)
+
+    if image_set is None:
+        raise NotFound("No such modal view!")
+
+    try:
+        return render_template(f"main/image-sets/{set_name}.html.j2")
+    except TemplateNotFound:
+        return render_template(f"main/modal-view.html.j2", image_set=image_set)
 
 
 # Tests

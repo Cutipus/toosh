@@ -68,7 +68,7 @@ def validate():
     _validate_column_images_in_sets()
     _validate_images_have_corresponding_files()
     _validate_each_image_has_a_preview()
-    _validate_each_set_has_corresponding_template()
+    _validate_each_set_template_has_corresponding_set()
 
 
 def show_image_files_not_in_sets():
@@ -149,13 +149,10 @@ def _validate_each_image_has_a_preview():
         raise ValueError(f"Some fullsize images do not have previews: {missing}")
 
 
-def _validate_each_set_has_corresponding_template():
-    set_names = {s.id for s in SETS}
+def _validate_each_set_template_has_corresponding_set():
     templates = {p.name.removesuffix(".html.j2") for p in TEMPLATES_PATH.iterdir() if p.is_file()}
-    missing_templates = set_names - templates
+    set_names = {s.id for s in SETS}
     missing_sets = templates - set_names
-    if missing_templates:
-        raise ValueError(f"Some sets don't have a corresponding template: {missing_templates}")
     if missing_sets:
         raise ValueError(f"Some templates don't have a corresponding set: {missing_sets}")
 
