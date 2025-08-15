@@ -735,10 +735,6 @@ video {
   height: 0.25rem;
 }
 
-.h-96 {
-  height: 24rem;
-}
-
 .h-\[85vh\] {
   height: 85vh;
 }
@@ -751,8 +747,8 @@ video {
   height: 90%;
 }
 
-.h-\[90vh\] {
-  height: 90vh;
+.h-auto {
+  height: auto;
 }
 
 .h-dvh {
@@ -767,21 +763,12 @@ video {
   height: 100vh;
 }
 
-.h-auto {
-  height: auto;
-}
-
-.h-max {
-  height: -moz-max-content;
-  height: max-content;
+.min-h-96 {
+  min-height: 24rem;
 }
 
 .min-h-screen {
   min-height: 100vh;
-}
-
-.min-h-96 {
-  min-height: 24rem;
 }
 
 .w-1\/3 {
@@ -800,16 +787,16 @@ video {
   width: 24rem;
 }
 
+.w-auto {
+  width: auto;
+}
+
 .w-full {
   width: 100%;
 }
 
 .w-screen {
   width: 100vw;
-}
-
-.w-auto {
-  width: auto;
 }
 
 .min-w-96 {
@@ -832,10 +819,6 @@ video {
   max-width: 28rem;
 }
 
-.max-w-none {
-  max-width: none;
-}
-
 .max-w-screen-xl {
   max-width: 1280px;
 }
@@ -846,10 +829,6 @@ video {
 
 .basis-auto {
   flex-basis: auto;
-}
-
-.origin-top-left {
-  transform-origin: top left;
 }
 
 @keyframes fadeIn {
@@ -1291,14 +1270,6 @@ video {
   transition-duration: 150ms;
 }
 
-.transition {
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
-}
-
 .transition-transform {
   transition-property: transform;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -1315,10 +1286,6 @@ video {
 
 .duration-\[20\] {
   transition-duration: 20;
-}
-
-.duration-200 {
-  transition-duration: 200ms;
 }
 
 .ease-in-out {
