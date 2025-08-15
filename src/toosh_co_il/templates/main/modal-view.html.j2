@@ -1,9 +1,15 @@
 <!-- Generic modal view for gallery -->
 {% for image_name in image_set.images %}
-  <img
-    fetchpriority="high"
-    src="{{ url_for('static', filename='images/fullsize/' ~ image_name ~'.webp') }}"
-    id="modal-image-{{ image_name }}"
-    class="mx-auto h-full w-auto max-w-none cursor-zoom-in select-none opacity-100 loading:pointer-events-none loading:cursor-wait loading:opacity-0 zoomed:h-max zoomed:cursor-zoom-out"
-  />
+  <div
+    class="h-auto w-96 overflow-clip"
+    style="aspect-ratio: {{ image_metadata[image_name].dimensions_xy[0] }} / {{ image_metadata[image_name].dimensions_xy[1] }};"
+  >
+    <img
+      fetchpriority="high"
+      src="{{ url_for('static', filename='images/fullsize/' ~ image_name ~'.webp') }}"
+      id="modal-image-{{ image_name }}"
+      class="mx-auto h-full w-auto cursor-zoom-in select-none object-contain opacity-100 transition-transform duration-300 loading:pointer-events-none loading:cursor-wait loading:opacity-0 zoomed:h-max zoomed:cursor-zoom-out"
+      onmousedown="toggleZoom(this, event)"
+    />
+  </div>
 {% endfor %}
