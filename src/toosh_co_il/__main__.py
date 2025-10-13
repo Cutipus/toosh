@@ -3,9 +3,10 @@ import subprocess
 
 def start_dev_mode():
     print("Starting dev environment")
-    subprocess.Popen(["Flask", "--debug", "--app", "toosh_co_il", "run"])
+    subprocess.Popen(["flask", "--no-debug", "--app", "toosh_co_il", "run"])
     subprocess.Popen(
         [
+            "npx",
             "tailwindcss",
             "--watch",
             "--poll",
@@ -13,7 +14,8 @@ def start_dev_mode():
             "./src/tailwind/styles.css",
             "--output",
             "./src/toosh_co_il/static/dist/tailwind.css",
-        ]
+        ],
+        stdin=subprocess.DEVNULL,
     )
 
 
