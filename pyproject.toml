@@ -21,3 +21,7 @@ build-backend = "hatchling.build"
 [project.urls]
 Repository = ""
 Issues = ""
+
+[tool.black]
+line-length = 120
+

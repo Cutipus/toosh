@@ -1,7 +1,6 @@
 import mimetypes
-import time
 from flask import Flask, render_template, redirect, url_for, Response
-import pathlib
+from pathlib import Path
 
 from jinja2 import TemplateNotFound
 from werkzeug.exceptions import NotFound
@@ -16,9 +15,9 @@ app = Flask(__name__)
 def load_gallery_config():
     assert app.static_folder is not None
     assert app.template_folder is not None
-    fullsize_path = pathlib.Path(app.static_folder) / "images" / "fullsize"
-    previews_path = pathlib.Path(app.static_folder) / "images" / "preview"
-    templates_path = pathlib.Path(app.root_path) / app.template_folder / "main" / "image-sets"
+    fullsize_path = Path(app.static_folder) / "images" / "fullsize"
+    previews_path = Path(app.static_folder) / "images" / "preview"
+    templates_path = Path(app.root_path) / app.template_folder / "main" / "image-sets"
     gallery_config.init(fullsize_path, previews_path, templates_path)
     gallery_config.validate()
     gallery_config.show_image_files_not_in_sets()
@@ -94,7 +93,7 @@ def modal_view(set_name):
     try:
         return render_template(f"main/image-sets/{set_name}.html.j2")
     except TemplateNotFound:
-        return render_template(f"main/modal-view.html.j2", image_set=image_set)
+        return render_template("main/modal-view.html.j2", image_set=image_set)
 
 
 # Tests
