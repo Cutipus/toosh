@@ -1,0 +1,13 @@
+plan for improvements of toosh:
+- support mp4/webm 'gifv' formats in gallery view
+  - condition for detecting whether webp or mp4 and change accordingly
+  - convert large webp files to mp4
+  - verify that it helps with performance
+  - convert the rest
+- fix the looks of the gallery view
+  - zoom bug: rapid zoom causes weird and unpredictable behavior
+  - layout: the current layout for the zoom/focus menu is all fucked up
+  - per-zoom 'project' description
+- projects view
+  - refurbish the looks & feel
+
